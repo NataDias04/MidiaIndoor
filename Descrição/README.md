@@ -12,7 +12,7 @@ Angular: usado para o desenvolvimento do frontend da aplicação web. O framewor
 
 Node.js: usado para o desenvolvimento do backend da aplicação. O Node.js será usado no desenvolvimento de uma API que gerenciará a lógica por trás da versão exibida do conteúdo e manterá a comunicação regulada entre a aplicação e o banco de dados, bem como entre a aplicação e os monitores. Com a ajuda do Node.js, uma gestão inteligente de solicitações e operações será possível em tempo real. 
 
-Firebase: servirá como banco de dados e plataforma de autenticação. Firebase permitirá o armazenamento de dados relacionados ao conteúdo a ser exibido, como playlists e programação de anúncios, e oferecerá sincronização em tempo real entre o site e as telas. Além disso, o Firebase facilitará a autenticação e a autorização de usuários.
+MongoDB: servirá como banco de dados e plataforma de autenticação. MongoDB permitirá o armazenamento de dados relacionados ao conteúdo a ser exibido, como playlists e programação de anúncios, e oferecerá sincronização em tempo real entre o site e as telas. 
 
 TV Box: Um dispositivo dedicado que permitirá o acesso ao sistema web e a seleção da mídia a ser exibida. Esse TV Box será uma interface física conectada às telas do consultório e permitirá que os administradores acessem o sistema e gerenciem o conteúdo diretamente de uma tela dedicada.
 
