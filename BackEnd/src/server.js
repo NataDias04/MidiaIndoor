@@ -1,18 +1,37 @@
-import express from 'express'
+import express from 'express';
 import path from 'path';
-import rotasMidias from './medias_rotas.js';
 import { fileURLToPath } from 'url';
+import rotasMidias from './midias_rotas.js';
+import './db.js'; // Importar a função de conexão com o banco de dados
+import dotenv from 'dotenv';
 
-//inicializando uma constante para usar a blibioteca express
-const app = express()
+// Carregar variáveis de ambiente
+dotenv.config();
+
+// Inicializando o express
+const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-//mostramos para o express que vamos usar .json
-app.use(express.json())
+// Configurar a porta a partir do arquivo .env ou usar um valor padrão
+const PORTA = process.env.PORTA || 3000;
 
+// Configurar o middleware
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Servir arquivos estáticos (como imagens e vídeos) da pasta uploads
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+// Usar as rotas de mídia
+app.use('/api/midias', rotasMidias);
+
+// Iniciar o servidor
+app.listen(PORTA, () => {
+  console.log(`Servidor rodando na porta ${PORTA}`);
+});
+
 
 /*
     para definir uma rota e preciso saber:
@@ -35,14 +54,3 @@ app.use(express.urlencoded({ extended: true }));
 // criando uma nova rota da api
 //app.get('/', (request, response)=>{
 //})
-
-// Servir arquivos estáticos (como imagens e vídeos) da pasta uploads
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-
-// Usar as rotas de mídia
-app.use('/api/midias', rotasMidias);
-
-// Iniciar o servidor
-app.listen(PORTA, () => {
-  console.log(`Servidor rodando na porta ${PORTA}`);
-});
