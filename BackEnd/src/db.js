@@ -9,6 +9,7 @@ async function main(){
     await mongoose.connect(
         `mongodb+srv://${process.env.USERDB}:${process.env.SENHADB}@clusterpi.nktnw.mongodb.net/?retryWrites=true&w=majority&appName=ClusterPI`
     );
+    console.log("Conectado com sucesso!")
 }
 
 main().catch((error) => console.log(error));
