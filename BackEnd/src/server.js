@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import './db.js';
 import ImagemRota from './rotas/imagem.js';
+import ImagemRotaLink from './rotas/imagem_link.js';
 
 // Carregar variáveis de ambiente
 dotenv.config();
@@ -13,6 +14,7 @@ const app = express();
 const PORTA = process.env.PORTA || 3000;
 
 app.use("/imagem", ImagemRota)
+app.use("/imagem_link", ImagemRotaLink);
 
 // Iniciar o servidor
 app.listen(PORTA, () => {
