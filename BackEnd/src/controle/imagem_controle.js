@@ -56,7 +56,7 @@ const findOne = async (request, response) => {
 const remove = async (request, response) =>{
     try {
 
-        const imagem = await Imagem.findById(req.params.id)
+        const imagem = await Imagem.findById(request.params.id)
 
         if(!imagem){
             return response.status(404).json({message: "imagem não encontrada"})
@@ -64,12 +64,13 @@ const remove = async (request, response) =>{
 
         fs.unlinkSync(imagem.src)
 
-        await imagem.remove()
+        //await imagem.remove()
+        await Imagem.deleteOne({ _id: request.params.id });
 
         response.json({ message : "imagem revomida com sucesso"})
         
     } catch (error) {
-        response.status(500).json({message: "erro ao excluir imagem"})
+        response.status(500).json({message: "erro ao excluir imagem", erro: error.message})
     }
 }
 

@@ -92,7 +92,8 @@ const remove = async (request, response) => {
 
     }
 
-    await imagemLink.remove();
+    //await imagemLink.remove();
+    await Imagem.deleteOne({ _id: request.params.id });
 
     response.json({ mensagem: 'Imagem ou link removido com sucesso' });
 
