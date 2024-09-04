@@ -4,6 +4,7 @@ import cors from 'cors';
 import './db.js';
 import ImagemRota from './rotas/imagem.js';
 import ImagemRotaLink from './rotas/imagem_link.js';
+import VideoRota from './rotas/video.js';
 
 // Carregar variáveis de ambiente
 dotenv.config();
@@ -28,6 +29,7 @@ const PORTA = process.env.PORTA || 3000;
 
 app.use("/imagem", ImagemRota)
 app.use("/imagem_link", ImagemRotaLink);
+app.use("/video", VideoRota);
 
 // Iniciar o servidor
 app.listen(PORTA, () => {
