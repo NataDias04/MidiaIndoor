@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 
 const create = async (request, response) => {
   try {
-    
+
     const { name, externalUrl } = request.body;
 
     let filePath = null;
@@ -18,10 +18,12 @@ const create = async (request, response) => {
 
       const responseFetch = await fetch(externalUrl);
 
-      const buffer = await responseFetch.buffer();
+      const arrayBuffer = await responseFetch.arrayBuffer();
+
+      const buffer = Buffer.from(arrayBuffer);
 
       const fileName = `${Date.now()}_${path.basename(externalUrl)}`;
-      
+
       filePath = `uploads/${fileName}`;
 
       fs.writeFileSync(filePath, buffer);
@@ -76,33 +78,29 @@ const findOne = async (request, response) => {
 };
 
 const remove = async (request, response) => {
-
   try {
-
+    // Buscar a imagem pelo ID
     const imagemLink = await ImagemLink.findById(request.params.id);
 
     if (!imagemLink) {
-
       return response.status(404).json({ mensagem: 'Imagem ou link não encontrado' });
     }
 
+    // Excluir o arquivo físico
     if (imagemLink.src && fs.existsSync(imagemLink.src)) {
-
-      fs.unlinkSync(imagemLink.src); 
-
+      fs.unlinkSync(imagemLink.src);
     }
 
-    //await imagemLink.remove();
-    await Imagem.deleteOne({ _id: request.params.id });
+    // Excluir o documento da base de dados
+    await ImagemLink.findByIdAndDelete(request.params.id);
 
     response.json({ mensagem: 'Imagem ou link removido com sucesso' });
 
   } catch (error) {
-    
     response.status(500).json({ mensagem: 'Erro ao excluir imagem ou link', erro: error.message });
-  
-    }
+  }
 };
+
 
 export default {
     create,

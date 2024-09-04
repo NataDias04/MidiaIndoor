@@ -10,6 +10,9 @@ dotenv.config();
 // Inicializando o express
 const app = express();
 
+// Middleware para interpretar JSON
+app.use(express.json()); 
+
 // Configurar a porta a partir do arquivo .env ou usar um valor padrão
 const PORTA = process.env.PORTA || 3000;
 
