@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify-icons/ph": "^1.2.5",
+    "@iconify/icons-fluent": "^1.2.38",
+    "@iconify/icons-mdi": "^1.2.48",
+    "@iconify/react": "^5.0.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
