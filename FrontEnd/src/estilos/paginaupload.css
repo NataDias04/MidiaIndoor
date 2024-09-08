@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #d8cfc4;
+    filter: blur(8px);
+    z-index: -1;
+  }
+
+.dashbord {
+    background-color: white;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 40px);
+    display: flex; 
+    flex-direction: column;
+  }
+
+  .cabecalho,
+  .rodape {
+    height: 75px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .cabecalho{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .rodape{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .secao {
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+    display: flex; /* Adiciona flexbox para as seções */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: flex-start;
+  }
+  
+  .secao:last-child {
+    border-bottom: none;
+  }
+
+  .imagem, .video, .texto{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+  }
+
+  .botao-imagem{
+    display: block;
+    align-items: center;
+    justify-content: center;
+  }
+  

@@ -1,7 +1,7 @@
 import { response } from 'express'
 import Imagem from '../modelos/imagem.js'
 
-import fs from 'fs'
+//import fs from 'fs'
 
 const create = async (request, response) =>{
     try {
