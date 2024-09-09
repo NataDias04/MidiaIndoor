@@ -96,6 +96,20 @@ body::before {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.modal-especial{
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 700px;
+  z-index: 1000;
+  display: flex;
+  position: fixed;
+  border-radius: 10px;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .overlay {
   top: 0;
   left: 0;
@@ -104,4 +118,40 @@ body::before {
   z-index: 1000;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-imagem, .modal-video, .modal-texto {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-imagem h2, .modal-video h2, .modal-texto h2{
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.ck-editor__editable {
+  margin: 0 auto;
+  min-width: 500px;
+  max-width: 600px;
+  min-height: 500px;
+  max-height: 600px;
+}
+
+.botao-container {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.botao-salvar-imagem, .botao-salvar-video, .botao-salvar-texto{
+  margin-bottom: 20px;
+}
+.botao-modal-imagem, .botao-modal-video, .botao-modal-texto{
+  margin-bottom: 20px;
 }

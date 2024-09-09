@@ -7,8 +7,13 @@ const ModalVideo = ({ fecharModal }) => {
       <div className="overlay"></div>
       <div className="modal">
         <div className="modal-video">
-          <h2>Conteúdo do Modal Vídeo</h2>
-          <button className='botao-modal-video' onClick={fecharModal}>Fechar</button>
+            <h2>Conteúdo do Modal Vídeo</h2>
+
+            <div className="botao-container">
+              <button className='botao-salvar-video'>Salvar</button>
+              <button className='botao-modal-video' onClick={fecharModal}>Fechar</button>
+            </div>
+
         </div>
       </div>
     </>
