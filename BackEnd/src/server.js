@@ -5,6 +5,9 @@ import './db.js';
 import ImagemRota from './rotas/imagem.js';
 import ImagemRotaLink from './rotas/imagem_link.js';
 import VideoRota from './rotas/video.js';
+import videoLinkRota from './rotas/video.js';
+import TextoSimplesRota from './rotas/texto_simples.js'
+import HtmlRota from './rotas/html.js'
 
 // Carregar variáveis de ambiente
 dotenv.config();
@@ -30,6 +33,9 @@ const PORTA = process.env.PORTA || 3000;
 app.use("/imagem", ImagemRota)
 app.use("/imagem_link", ImagemRotaLink);
 app.use("/video", VideoRota);
+app.use('/video_link', videoLinkRota);
+app.use('/texto', TextoSimplesRota);
+app.use('/html', HtmlRota);
 
 // Iniciar o servidor
 app.listen(PORTA, () => {
