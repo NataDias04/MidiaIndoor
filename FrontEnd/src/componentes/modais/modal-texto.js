@@ -35,6 +35,7 @@ const ModalTexto = ({ fecharModal }) => {
             }}
           />
           <div className="botao-container">
+          <button className='botao-exclui-texto'>Excluir</button>
             <button className='botao-salvar-texto'>Salvar</button>
             <button className='botao-modal-texto' onClick={fecharModal}>Fechar</button>
           </div>

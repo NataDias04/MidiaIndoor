@@ -13,4 +13,5 @@ router.get("/:id", ImagemControle.findOne);
 
 router.get("/", ImagemControle.findAll)
 
+
 export default router
