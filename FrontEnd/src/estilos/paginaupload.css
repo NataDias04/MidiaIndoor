@@ -155,3 +155,6 @@ body::before {
 .botao-modal-imagem, .botao-modal-video, .botao-modal-texto{
   margin-bottom: 20px;
 }
+.botao-excluir-imagem, .botao-excluir-texto, .botao-excluir-video{
+  margin-bottom: 40px;
+}
