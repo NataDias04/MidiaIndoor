@@ -10,7 +10,7 @@ const ModalImagem = ({ fecharModal }) => {
             <h2>Conteúdo do Modal Imagem</h2>
 
             <div className="botao-container">
-              <button className='botao-excluir-imagem' onClick={excluirImagem}>Excluir</button>
+              <button className='botao-excluir-imagem'>Excluir</button>
               <button className='botao-salvar-imagem'>Salvar</button>
               <button className='botao-modal-imagem' onClick={fecharModal}>Fechar</button>
             </div>
