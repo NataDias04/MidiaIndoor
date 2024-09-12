@@ -3,7 +3,7 @@
 // Função para salvar texto simples
 export async function salvarTextoSimples(conteudo) {
     try {
-      const response = await fetch('localhost:5000/texto_simples', {
+      const response = await fetch('http://localhost:5000/texto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
