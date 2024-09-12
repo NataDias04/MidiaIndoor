@@ -30,31 +30,34 @@ const PaginaUpload = () => {
     <div className="dashbord">
       <div className="cabecalho">cabeçalho</div>
 
-      <div className='secao'>
-        <div className='imagem'>
-          <Icon icon={IconeImagem} className="imagem-icone" />
-          <button className="botao-imagem" onClick={abrirModalImagem}>arquivo</button>
+      <div className='linha'>
+
+        <div className='column1'>
+          <div className='imagem'>
+            <Icon icon={IconeImagem} className="imagem-icone" />
+            <button className="botao-imagem" onClick={abrirModalImagem}>arquivo</button>
+
+            {modalImagemAberto && <ModalImagem fecharModal={fecharModalImagem} />}
+          </div>
+
+          <div className='video'>
+            <Icon icon={IconeVideo} className="video-icone" />
+            <button className="botao-video" onClick={abrirModalVideo}>arquivo</button>
+
+            {modalVideoAberto && <ModalVideo fecharModal={fecharModalVideo} />}
+          </div>
+
+          <div className='texto'>
+            <Icon icon={IconeTexto} className="texto-icone" />
+            <button className="botao-texto" onClick={abrirModalTexto}>arquivo</button>
+
+            {modalTextoAberto && <ModalTexto fecharModal={fecharModalTexto} />}
+          </div>
         </div>
 
-        {modalImagemAberto && <ModalImagem fecharModal={fecharModalImagem} />}
-      </div>
-
-      <div className='secao'>
-        <div className='video'>
-          <Icon icon={IconeVideo} className="video-icone" />
-          <button className="botao-video" onClick={abrirModalVideo}>arquivo</button>
+        <div className='column2'>
+          <div className='previews'></div>
         </div>
-
-        {modalVideoAberto && <ModalVideo fecharModal={fecharModalVideo} />}
-      </div>
-
-      <div className='secao'>
-        <div className='texto'>
-          <Icon icon={IconeTexto} className="texto-icone" />
-          <button className="botao-texto" onClick={abrirModalTexto}>arquivo</button>
-        </div>
-
-        {modalTextoAberto && <ModalTexto fecharModal={fecharModalTexto} />}
       </div>
 
       <div className="rodape">rodapé</div>
