@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #ffffff;
+    background-color: #d8cfc4;
 }
 
 .container {
@@ -45,6 +45,7 @@ body {
 
 .form-group {
     margin-bottom: 15px;
+    margin-right: 25px;
 }
 
 input[type="email"],
