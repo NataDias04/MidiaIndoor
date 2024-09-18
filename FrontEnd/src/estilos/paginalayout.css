@@ -2,11 +2,11 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100Svh;
+    height: 100vh;
     overflow: hidden;
-}
-
-body::before {
+    }
+  
+  body::before {
     top: 0;
     left: 0;
     right: 0;
@@ -16,17 +16,19 @@ body::before {
     position: fixed;
     filter: blur(8px);
     background-color: #d8cfc4;
-}
-
-.dashbord {
+  }
+  
+  .dashbord {
     margin: 20px;
     display: flex; 
     border-radius: 10px;
     flex-direction: column;
+    width: calc(100vw - 40px);
     background-color: white;
     height: calc(100vh - 40px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+  }
+  
 
 .secao {
     gap: 15px;
