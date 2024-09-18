@@ -25,7 +25,7 @@ body {
     flex-direction: column;
     width: calc(100vw - 40px);
     background-color: white;
-    height: 100vh;
+    height: calc(100vh - 40px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   

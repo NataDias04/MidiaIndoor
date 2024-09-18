@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="App">
       
-      <PaginaLayout /> {/* Renderizando a página de upload */}
+      <PaginaUpload /> {/* Renderizando a página de upload */}
     </div>
   );
 };
