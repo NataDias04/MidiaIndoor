@@ -5,12 +5,13 @@ import PaginaLogin from './componentes/paginalogin.js';
 
 // <PaginaLayout />
 // <PaginaUpload />
+// <PaginaLogin/>
 
 const App = () => {
   return (
     <div className="App">
       
-        <PaginaLogin/>{/* Renderizando a página de upload */}
+      <PaginaLayout /> {/* Renderizando a página de upload */}
     </div>
   );
 };

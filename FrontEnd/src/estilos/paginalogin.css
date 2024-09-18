@@ -1,20 +1,23 @@
 /* Estilos gerais */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
+    align-items: center;
+    justify-content: center;
     background-color: #ffffff;
+    font-family: Arial, sans-serif;
 }
 
-.container {
-    width: 100%;
-    max-width: 400px;
+.dashbord {
     padding: 20px;
+    display: flex;
+    align-items: center;
     box-sizing: border-box;
+    justify-content: center;
+    width: calc(100vw - 1200px);
+    height: calc(100vh - 200px);
 }
 
 /* Estilos do logo */
@@ -30,26 +33,27 @@ body {
 }
 
 /* Estilos do formulário */
-.login-form {
-    background-color: #ffffff;
+.formulario-login {
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
+    width: 300px;
+    background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-form h2 {
+.formulario-login h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-.form-group {
+.grupo-formulario {
     margin-bottom: 15px;
 }
 
 input[type="email"],
 input[type="password"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -57,7 +61,7 @@ input[type="password"] {
 }
 
 button {
-    width: 100%;
+    width: 97%;
     padding: 10px;
     background-color: #00ffbf;
     color: #000;
@@ -73,23 +77,23 @@ button:hover {
 }
 
 /* Estilos das opções adicionais */
-.additional-options {
+.opcoes-adicionais {
     text-align: center;
     margin-top: 20px;
 }
 
-.forgot-password,
-.register {
+.esqueceu-senha,
+.registrar {
     color: #00ffbf;
     text-decoration: none;
 }
 
-.forgot-password:hover,
-.register:hover {
+.esqueceu-senha:hover,
+.registrar:hover {
     text-decoration: underline;
 }
 
-.additional-options p {
+.opcoes-adicionais p {
     margin-top: 10px;
     font-size: 14px;
     color: #666;
