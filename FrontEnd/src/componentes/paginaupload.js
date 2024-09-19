@@ -22,36 +22,36 @@ const PaginaUpload = () => {
 
   return (
     <div className="dashbord-upload">
-      <div className="cabecalho">cabeçalho</div>
+      <div className="cabecalho-upload">cabeçalho</div>
 
-      <div className='linha'>
+      <div className='linha-upload'>
 
-        <div className='column1'>
-          <div className='imagem'>
-            <button className="botao-imagem" onClick={abrirModalImagem}>arquivo</button>
+        <div className='column1-upload'>
+          <div className='imagem-upload'>
+            <button className="botao-imagem-upload" onClick={abrirModalImagem}>arquivo</button>
 
             {modalImagemAberto && <ModalImagem fecharModal={fecharModalImagem} />}
           </div>
 
-          <div className='video'>
-            <button className="botao-video" onClick={abrirModalVideo}>arquivo</button>
+          <div className='video-upload'>
+            <button className="botao-video-upload" onClick={abrirModalVideo}>arquivo</button>
 
             {modalVideoAberto && <ModalVideo fecharModal={fecharModalVideo} />}
           </div>
 
-          <div className='texto'>
-            <button className="botao-texto" onClick={abrirModalTexto}>arquivo</button>
+          <div className='texto-upload'>
+            <button className="botao-texto-upload" onClick={abrirModalTexto}>arquivo</button>
 
             {modalTextoAberto && <ModalTexto fecharModal={fecharModalTexto} />}
           </div>
         </div>
 
-        <div className='column2'>
-          <div className='previews'></div>
+        <div className='column2-upload'>
+          <div className='previews-upload'></div>
         </div>
       </div>
 
-      <div className="rodape">rodapé</div>
+      <div className="rodape-upload">rodapé</div>
     </div>
   );
 };
