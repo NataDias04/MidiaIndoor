@@ -1,0 +1,13 @@
+# Ignorar node_modules
+node_modules/
+
+# Ignorar diretórios de build ou produção
+dist/
+build/
+
+# Ignorar arquivos de logs
+*.log
+
+# Ignorar pastas de uploads ou arquivos temporários
+uploads/
+temp/
