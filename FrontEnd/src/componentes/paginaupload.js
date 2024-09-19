@@ -21,7 +21,7 @@ const PaginaUpload = () => {
   const fecharModalTexto = () => setModalTextoAberto(false);
 
   return (
-    <div className="dashbord">
+    <div className="dashbord-upload">
       <div className="cabecalho">cabeçalho</div>
 
       <div className='linha'>

@@ -17,7 +17,7 @@ body::before {
   background-color: #d8cfc4;
 }
 
-.dashbord {
+.dashbord-upload {
   margin: 20px;
   display: flex; 
   border-radius: 10px;
@@ -93,15 +93,6 @@ body::before {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.imagem-icone, .video-icone, .texto-icone{
-  width: 50px;
-  height: 50px;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .botao-imagem, .botao-video, .botao-texto{
