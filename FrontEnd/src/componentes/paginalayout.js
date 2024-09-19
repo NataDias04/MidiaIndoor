@@ -4,7 +4,7 @@ import '../estilos/paginalayout.css';
 const PaginaLayout = () => {
 
     return(
-        <div className="dashbord">
+        <div className="dashbord-layout">
             <div className="cabecalho">cabeçalho</div>
             <div className='secao'>
                 <div className='layout1'>

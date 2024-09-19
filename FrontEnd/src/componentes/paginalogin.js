@@ -11,7 +11,7 @@ function PaginaLogin() {
   };
 
   return (
-    <div className="dashbord">
+    <div className="dashbord-login">
 
       <div className="logo">
         <h1>GNHD TV</h1>

@@ -18,7 +18,7 @@ body {
     background-color: #d8cfc4;
   }
   
-  .dashbord {
+  .dashbord-layout {
     margin: 20px;
     display: flex; 
     border-radius: 10px;
