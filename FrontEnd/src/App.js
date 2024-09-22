@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="App">
       
-      <PaginaPlaylist/> {/* Renderizando a página de upload */}
+      <PaginaLogin/> {/* Renderizando a página de upload */}
     </div>
   );
 };
