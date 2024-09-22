@@ -21,12 +21,12 @@ body {
 }
 
 /* Estilos do logo */
-.logo {
+.logo-login {
     text-align: center;
     margin-bottom: 30px;
 }
 
-.logo h1 {
+.logo-login h1 {
     color: #00ffbf;
     font-size: 2.5rem;
     font-weight: bold;
@@ -47,7 +47,7 @@ body {
     margin-bottom: 20px;
 }
 
-.grupo-formulario {
+.grupo-formulario-login {
     margin-bottom: 15px;
 }
 
@@ -60,7 +60,7 @@ input[type="password"] {
     font-size: 16px;
 }
 
-button {
+.button-entrar-login {
     width: 97%;
     padding: 10px;
     background-color: #00ffbf;
@@ -72,28 +72,28 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+.button-entrar-login :hover {
     background-color: #00e6ac;
 }
 
 /* Estilos das opções adicionais */
-.opcoes-adicionais {
+.opcoes-adicionais-login {
     text-align: center;
     margin-top: 20px;
 }
 
-.esqueceu-senha,
-.registrar {
+.esqueceu-senha-login,
+.registrar-login {
     color: #00ffbf;
     text-decoration: none;
 }
 
-.esqueceu-senha:hover,
-.registrar:hover {
+.esqueceu-senha-login:hover,
+.registrar-login:hover {
     text-decoration: underline;
 }
 
-.opcoes-adicionais p {
+.opcoes-adicionais-login p {
     margin-top: 10px;
     font-size: 14px;
     color: #666;

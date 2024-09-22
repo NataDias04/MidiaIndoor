@@ -13,7 +13,7 @@ function PaginaLogin() {
   return (
     <div className="dashbord-login">
 
-      <div className="logo">
+      <div className="logo-login">
         <h1>GNHD TV</h1>
       </div>
 
@@ -21,7 +21,7 @@ function PaginaLogin() {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
 
-          <div className="grupo-formulario">
+          <div className="grupo-formulario-login">
             <input
               type="email"
               id="email"
@@ -32,7 +32,7 @@ function PaginaLogin() {
             />
           </div>
 
-          <div className="grupo-formulario">
+          <div className="grupo-formulario-login">
             <input
               type="password"
               id="senha"
@@ -43,12 +43,12 @@ function PaginaLogin() {
             />
           </div>
 
-          <button type="submit">Entrar</button>
+          <button className={'button-entrar-login'}type="submit">Entrar</button>
         </form>
 
-        <div className="opcoes-adicionais">
-          <a href="#" className="esqueceu-senha">Esqueceu a senha?</a>
-          <p>Não tem uma conta? <a href="#" className="registrar">Registre-se</a></p>
+        <div className="opcoes-adicionais-login">
+          <a href="#" className="esqueceu-senha-login">Esqueceu a senha?</a>
+          <p>Não tem uma conta? <a href="#" className="registrar-login">Registre-se</a></p>
         </div>
       </div>
     </div>

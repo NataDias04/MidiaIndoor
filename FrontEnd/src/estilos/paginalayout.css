@@ -30,7 +30,7 @@ body {
   }
   
 
-.secao {
+.secao-layout {
     gap: 15px;
     flex-grow: 1;
     display: flex;
@@ -38,23 +38,23 @@ body {
     justify-content: center;
 }
 
-.cabecalho, .rodape {
+.cabecalho-layout, .rodape-layout {
     height: 75px;
     background-color: #f0f0f0;
     border-bottom: 1px solid #ddd;
 }
 
-.cabecalho{
+.cabecalho-layout{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-.rodape{
+.rodape-layout{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.overlay {
+.overlay-layout {
     top: 0;
     left: 0;
     width: 100%;
@@ -64,7 +64,7 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.layout1, .layout2, .layout3{
+.layout1-layout, .layout2-layout, .layout3-layout{
     width: 480px;
     height: 450px;
     display: flex;
@@ -75,7 +75,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.background-layout1{
+.background-layout1-layout{
     width: 450px;
     height: 250px;
     display: flex;
@@ -84,13 +84,13 @@ body {
     background-color: white;
 }
 
-.linha-layout1 {
+.linha-layout1-layout {
     display: flex;
     margin-top: 5px;
     justify-content: flex-start;
 }
 
-.borda1-layout1{
+.borda1-layout1-layout{
     width: 385px;
     height: 160px;
     margin-left: 5px;
@@ -99,7 +99,7 @@ body {
     background-color: transparent;
 }
 
-.borda2-layout1{
+.borda2-layout1-layout{
     width: 50px;
     height: 160px;
     margin-left: 5px;
@@ -109,7 +109,7 @@ body {
     background-color: transparent;
 }
 
-.borda3-layout1{
+.borda3-layout1-layout{
     width: 438px;
     height: 50px;
     margin-left: 5px;
@@ -118,7 +118,7 @@ body {
     background-color: transparent;
 }
 
-.background-layout2{
+.background-layout2-layout{
     width: 450px;
     height: 250px;
     display: flex;
@@ -127,13 +127,13 @@ body {
     background-color: white;
 }
 
-.linha-layout2 {
+.linha-layout2-layout {
     display: flex;
     margin-top: 5px;
     justify-content: flex-start;
 }
 
-.borda1-layout2{
+.borda1-layout2-layout{
     width: 50px;
     height: 160px;
     margin-left: 5px;
@@ -142,7 +142,7 @@ body {
     background-color: transparent;
 }
 
-.borda2-layout2{
+.borda2-layout2-layout{
     width: 385px;
     height: 160px;
     margin-left: 5px;
@@ -152,7 +152,7 @@ body {
     background-color: transparent;
 }
 
-.borda3-layout2{
+.borda3-layout2-layout{
     width: 438px;
     height: 50px;
     margin-left: 5px;
@@ -161,7 +161,7 @@ body {
     background-color: transparent;
 }
 
-.background-layout3{
+.background-layout3-layout{
     width: 450px;
     height: 250px;
     display: flex;
@@ -170,13 +170,13 @@ body {
     background-color: white;
 }
 
-.linha-layout3 {
+.linha-layout3-layout {
     display: flex;
     margin-top: 5px;
     justify-content: flex-start;
 }
 
-.borda1-layout3{
+.borda1-layout3-layout{
     width: 385px;
     height: 160px;
     margin-left: 5px;
@@ -186,12 +186,12 @@ body {
     background-color: transparent;
 }
 
-.column-layout3 {
+.column-layout3-layout {
     display: flex;
     flex-direction: column;
 }
 
-.borda2-layout3{
+.borda2-layout3-layout{
     width: 50px;
     height: 50px;
     margin-top: 25px;
@@ -200,7 +200,7 @@ body {
     background-color: transparent;
 }
 
-.borda3-layout3{
+.borda3-layout3-layout{
     width: 50px;
     height: 104px;
     margin-top: 5px;
@@ -209,12 +209,12 @@ body {
     background-color: transparent;
 }
 
-.row-layout3{
+.row-layout3-layout{
     display: flex;
     flex-direction: row;
 }
 
-.borda4-layout3{
+.borda4-layout3-layout{
     width: 50px;
     height: 50px;
     margin-left: 5px;
@@ -222,7 +222,7 @@ body {
     background-color: transparent;
 }
 
-.borda5-layout3{
+.borda5-layout3-layout{
     width: 382px;
     height: 50px;
     margin-left: 5px;

@@ -28,48 +28,48 @@ body::before {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.cabecalho, .rodape {
+.cabecalho-upload, .rodape-upload {
   height: 75px;
   background-color: #f0f0f0;
   border-bottom: 1px solid #ddd;
 }
 
-.cabecalho{
+.cabecalho-upload{
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.rodape{
+.rodape-upload{
   margin-top: auto;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-.linha {
+.linha-upload {
   flex: 1;
   display: flex;
 }
 
-.column1, .column2{
+.column1-upload, .column2-upload{
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
 }
 
-.column1{   
+.column1-upload{   
   gap: 20px;
   width: 190px;
   align-items: flex-start;
   justify-content: center;
 }
 
-.column2{
+.column2-upload{
   flex: 1;
   align-items: center;
   justify-content: center;
 }
 
-.imagem, .video, .texto{
+.imagem-upload, .video-upload, .texto-upload{
   width: 150px;
   height: 150px;
   display: flex;
@@ -83,7 +83,7 @@ body::before {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.previews{
+.previews-upload{
   width: 95%;
   height: 90%;
   margin-left: 10px;
@@ -95,7 +95,11 @@ body::before {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.botao-imagem, .botao-video, .botao-texto{
+.botao-video-upload{
+  justify-content: flex-end;
+  
+}
+.botao-texto-upload{
   justify-content: flex-end;
 }
 
