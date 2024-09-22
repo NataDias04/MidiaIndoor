@@ -18,6 +18,7 @@ function PaginaLogin() {
         <div className="logo-login">
           <h1>GNHD TV</h1>
         </div>
+        
 
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
