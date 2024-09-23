@@ -14,7 +14,6 @@ import PaginaCentral from './componentes/paginacentral.js';
 
 const App = () => {
   return (
-
       <Router>
 
       <div className="App">
@@ -31,8 +30,6 @@ const App = () => {
       </div>
       </Router>
 
-
-  );
 };
 
 export default App;
