@@ -32,6 +32,7 @@ const PaginaLayout = () => {
                 <div className='layout3-layout'>
                     <div className='background-layout3-layout'>
                         <div className='linha-layout3-layout'>
+                            <div className='borda1-layout3-layout'></div>
                             <div className='column-layout3-layout'>
                                 <div className='borda2-layout3-layout'></div>
                                 <div className='borda3-layout3-layout'></div>

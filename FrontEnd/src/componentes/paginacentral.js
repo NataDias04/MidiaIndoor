@@ -22,12 +22,12 @@ const PaginaCentral = () => {
             <div className='secao-central'>
                 <div className='layout1-central'>
 
-                <button className="botao-pagina-upload" onClick= {irParaUpload} >anterior</button>
+                <button className="botao-pagina-upload" onClick= {irParaUpload} >avançar</button>
 
                 </div>
                 <div className='layout2-layout'>
 
-                <button className="botao-pagina-upload" onClick= {irParaPlaylist} >anterior</button>
+                <button className="botao-pagina-upload" onClick= {irParaPlaylist} >avançar</button>
  
                 </div>
                 <div className='layout3-layout'>
