@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../estilos/paginalogin.css';
 
+import { useNavigate } from 'react-router-dom';
+
 function PaginaLogin() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -9,6 +11,12 @@ function PaginaLogin() {
     e.preventDefault();
     console.log('Tentativa de login com:', email, senha);
   };
+
+  const navigate = useNavigate();
+
+  const irParaCentral = () => {
+    navigate('/central'); // Redireciona para a página central
+};
 
   return (
     <div className="dashbord-login">
@@ -45,7 +53,7 @@ function PaginaLogin() {
             />
           </div>
 
-          <button className={'button-entrar-login'}type="submit">Entrar</button>
+          <button className={'button-entrar-login'}type="submit" onClick={irParaCentral}>Entrar</button>
         </form>
 
         <div className="opcoes-adicionais-login">

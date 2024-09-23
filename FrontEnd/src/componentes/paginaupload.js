@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../estilos/paginaupload.css';
 
+import { useNavigate } from 'react-router-dom';
+
 import ModalImagem from './modais/modal-imagem.js';
 import ModalVideo from './modais/modal-video.js';
 import ModalTexto from './modais/modal-texto.js';
@@ -19,6 +21,12 @@ const PaginaUpload = () => {
 
   const abrirModalTexto = () => setModalTextoAberto(true);
   const fecharModalTexto = () => setModalTextoAberto(false);
+
+  const navigate = useNavigate(); // useNavigate é usado para redirecionar o usuário
+
+  const irParaCentral = () => {
+    navigate('/central'); // Redireciona para a página de playlist
+};
 
   return (
     <div className="dashbord-upload">
@@ -51,7 +59,9 @@ const PaginaUpload = () => {
         </div>
       </div>
 
-      <div className="rodape-upload">rodapé</div>
+      <div className="rodape-upload">
+      <button className="botao-anterior-central" onClick= {irParaCentral} >anterior</button>
+      </div>
     </div>
   );
 };
