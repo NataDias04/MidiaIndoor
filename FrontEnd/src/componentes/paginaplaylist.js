@@ -8,7 +8,11 @@ const PaginaPlaylist = () => {
   const navigate = useNavigate();
 
   const irParaLayout = () => {
-    navigate('/layout'); // Redireciona para a página de upload
+    navigate('/layout'); 
+  };
+
+  const irParaCentral = () => {
+    navigate('/central'); 
   };
 
   return (
@@ -17,8 +21,8 @@ const PaginaPlaylist = () => {
       <div className="cabecalho-playlist">cabeçalho</div>
       
       <div className="rodape-playlist">
-      
-      <button className='' onClick={irParaLayout}>proximo</button>
+        <button className='' onClick={irParaCentral}>anterior</button>
+        <button className='' onClick={irParaLayout}>proximo</button>
       </div>
       
     </div>

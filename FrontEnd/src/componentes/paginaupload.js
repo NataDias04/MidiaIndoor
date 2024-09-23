@@ -23,10 +23,10 @@ const PaginaUpload = () => {
   const fecharModalTexto = () => setModalTextoAberto(false);
 
   const navigate = useNavigate(); // useNavigate é usado para redirecionar o usuário
-  
-  const irParaPlaylist = () => {
-      navigate('/playlist'); // Redireciona para a página de upload
-  };
+
+  const irParaCentral = () => {
+    navigate('/central'); // Redireciona para a página de playlist
+};
 
   return (
     <div className="dashbord-upload">
@@ -60,7 +60,7 @@ const PaginaUpload = () => {
       </div>
 
       <div className="rodape-upload">
-        <button className="botao-proximo-upload" onClick= {irParaPlaylist} >arquivo</button>
+      <button className="botao-anterior-central" onClick= {irParaCentral} >anterior</button>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ const PaginaLayout = () => {
                         <div className='linha-layout1-layout'>
                             <div className='borda1-layout1-layout'> </div>
                             <div className='borda2-layout1-layout'> </div>
+                        </div>
                         <div className='linha-layout1-layout'>
                             <div className='borda3-layout1-layout'> </div>
                         </div>

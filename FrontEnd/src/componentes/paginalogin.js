@@ -14,8 +14,8 @@ function PaginaLogin() {
 
   const navigate = useNavigate();
 
-  const irParaUpload = () => {
-    navigate('/upload'); // Redireciona para a página de upload
+  const irParaCentral = () => {
+    navigate('/central'); // Redireciona para a página central
 };
 
   return (
@@ -51,7 +51,7 @@ function PaginaLogin() {
             />
           </div>
 
-          <button className={'button-entrar-login'}type="submit" onClick={irParaUpload}>Entrar</button>
+          <button className={'button-entrar-login'}type="submit" onClick={irParaCentral}>Entrar</button>
         </form>
 
         <div className="opcoes-adicionais-login">
