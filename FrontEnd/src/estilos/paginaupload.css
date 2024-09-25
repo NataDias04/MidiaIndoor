@@ -40,7 +40,11 @@ body::before {
 }
 
 .rodape-upload{
+  gap: 20px;
+  display: flex;
   margin-top: auto;
+  align-items: center;
+  justify-content: center;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -121,7 +125,7 @@ body::before {
   top: 50%;
   left: 50%;
   width: 700px;
-  height: 0px;
+  height: 700px;
   z-index: 1000;
   display: flex;
   position: fixed;

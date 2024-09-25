@@ -11,8 +11,12 @@ const PaginaCentral = () => {
       navigate('/upload'); 
     };
 
-    const irParaPlaylist = () => {
-        navigate('/playlist'); 
+    const irParaLayout= () => {
+        navigate('/layout'); 
+    };
+
+    const irParaVerPlaylist= () =>{
+        navigate('/verplaylist')
     };
 
     return(
@@ -22,17 +26,17 @@ const PaginaCentral = () => {
             <div className='secao-central'>
                 <div className='layout1-central'>
 
-                <button className="botao-pagina-upload" onClick= {irParaUpload} >avançar</button>
+                    <button className="botao-pagina-central" onClick= {irParaUpload} >avançar</button>
 
                 </div>
-                <div className='layout2-layout'>
+                <div className='layout2-central'>
 
-                <button className="botao-pagina-upload" onClick= {irParaPlaylist} >avançar</button>
+                 <button className="botao-pagina-central" onClick= {irParaLayout} >avançar</button>
  
                 </div>
-                <div className='layout3-layout'>
+                <div className='layout3-central'>
 
-                {/* <button className="botao-pagina-upload" onClick= {irParaPlaylist} >anterior</button>*/}
+                    <button className="botao-pagina-central" onClick= {irParaVerPlaylist} >avançar</button>
 
                 </div>
                 

@@ -21,8 +21,8 @@ const PaginaPlaylist = () => {
       <div className="cabecalho-playlist">cabeçalho</div>
       
       <div className="rodape-playlist">
-        <button className='' onClick={irParaCentral}>anterior</button>
-        <button className='' onClick={irParaLayout}>proximo</button>
+        <button className='' onClick={irParaLayout}>cancelar</button>
+        <button className='' onClick={irParaCentral}>salvar</button>
       </div>
       
     </div>

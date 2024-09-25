@@ -67,8 +67,12 @@ body {
     height: 450px;
     display: flex;
     border-radius: 10px;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     background-color: #d8cfc4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.botao-pagina-central{
+  margin-bottom: 20px;
 }
