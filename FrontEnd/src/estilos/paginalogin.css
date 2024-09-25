@@ -27,23 +27,23 @@ body {
 }
 
 .logo-login h1 {
-    color: #00ffbf;
+    color: #7EC8E3;
     font-size: 2.5rem;
     font-weight: bold;
 }
 
 /* Estilos do formulário */
 .formulario-login {
+    width: 300px;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .formulario-login h2 {
-    text-align: center;
     color: #333;
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -55,36 +55,36 @@ input[type="email"],
 input[type="password"] {
     width: 90%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
     font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }
 
 .button-entrar-login {
     width: 97%;
-    padding: 10px;
-    background-color: #00ffbf;
-    color: #000;
     border: none;
-    border-radius: 4px;
+    padding: 10px;
+    color: #000;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 4px;
+    background-color: #7EC8E3;
     transition: background-color 0.3s;
 }
 
 .button-entrar-login :hover {
-    background-color: #00e6ac;
+    background-color: #7EC8E3;
 }
 
 /* Estilos das opções adicionais */
 .opcoes-adicionais-login {
-    text-align: center;
     margin-top: 20px;
+    text-align: center;
 }
 
 .esqueceu-senha-login,
 .registrar-login {
-    color: #00ffbf;
+    color: #7EC8E3;
     text-decoration: none;
 }
 
@@ -94,7 +94,7 @@ input[type="password"] {
 }
 
 .opcoes-adicionais-login p {
-    margin-top: 10px;
-    font-size: 14px;
     color: #666;
+    font-size: 14px;
+    margin-top: 10px;
 }

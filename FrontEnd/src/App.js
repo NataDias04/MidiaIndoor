@@ -5,12 +5,14 @@ import PaginaLayout from './componentes/paginalayout.js';
 import PaginaLogin from './componentes/paginalogin.js';
 import PaginaPlaylist from './componentes/paginaplaylist.js';
 import PaginaCentral from './componentes/paginacentral.js';
+import PaginaVerPlaylist from './componentes/paginaverplaylist.js';
 
 // <PaginaLayout />
 // <PaginaUpload />
 // <PaginaLogin/>
 // <PaginaPlaylist/>
 // <PaginaCentral/>
+// <PaginaVerPlaylist/>
 
 const App = () => {
   return (
@@ -25,6 +27,7 @@ const App = () => {
           <Route path="/layout" element={<PaginaLayout />} /> {/* Página de layout */}
           <Route path="/login" element={<PaginaLogin />} /> {/* Página de login */}
           <Route path="/playlist" element={<PaginaPlaylist />} /> {/* Página de playlist */}
+          <Route path="/verplaylist" element={<PaginaVerPlaylist/>} />
         </Routes>
 
       </div>

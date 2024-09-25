@@ -66,9 +66,30 @@ body {
     width: 480px;
     height: 450px;
     display: flex;
+    position: relative;
     border-radius: 10px;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     background-color: #d8cfc4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container-central {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout1-central svg, .layout2-central svg, .layout3-central svg {
+  width: 50px;
+  height: 50px;
+  color: #7EC8E3;
+}
+
+.botao-pagina-central{
+  bottom: 20px;
+  margin-bottom: 0;
+  position: absolute;
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import '../estilos/paginacentral.css';
 
+import { FaFileUpload, FaPlus, FaListUl } from 'react-icons/fa';
+
 import { useNavigate } from 'react-router-dom';
 
 const PaginaCentral = () => {
@@ -11,8 +13,12 @@ const PaginaCentral = () => {
       navigate('/upload'); 
     };
 
-    const irParaPlaylist = () => {
-        navigate('/playlist'); 
+    const irParaLayout= () => {
+        navigate('/layout'); 
+    };
+
+    const irParaVerPlaylist= () =>{
+        navigate('/verplaylist')
     };
 
     return(
@@ -21,18 +27,29 @@ const PaginaCentral = () => {
 
             <div className='secao-central'>
                 <div className='layout1-central'>
+                    <div className="icon-container-central">
+                        <FaFileUpload/>
+                    </div>
 
-                <button className="botao-pagina-upload" onClick= {irParaUpload} >avançar</button>
+                    <button className="botao-pagina-central" onClick= {irParaUpload} >avançar</button>
 
                 </div>
-                <div className='layout2-layout'>
+                <div className='layout2-central'>
 
-                <button className="botao-pagina-upload" onClick= {irParaPlaylist} >avançar</button>
+                    <div className="icon-container-central">
+                        <FaPlus/>
+                    </div>
+
+                 <button className="botao-pagina-central" onClick= {irParaLayout} >avançar</button>
  
                 </div>
-                <div className='layout3-layout'>
+                <div className='layout3-central'>
 
-                {/* <button className="botao-pagina-upload" onClick= {irParaPlaylist} >anterior</button>*/}
+                    <div className="icon-container-central">
+                        <FaListUl/>
+                    </div>
+
+                    <button className="botao-pagina-central" onClick= {irParaVerPlaylist} >avançar</button>
 
                 </div>
                 

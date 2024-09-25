@@ -3,6 +3,8 @@ import '../estilos/paginaupload.css';
 
 import { useNavigate } from 'react-router-dom';
 
+import { FaRegImage , FaRegFileAlt, FaRegPlayCircle} from 'react-icons/fa';
+
 import ModalImagem from './modais/modal-imagem.js';
 import ModalVideo from './modais/modal-video.js';
 import ModalTexto from './modais/modal-texto.js';
@@ -36,18 +38,32 @@ const PaginaUpload = () => {
 
         <div className='column1-upload'>
           <div className='imagem-upload'>
+
+            <div className="icon-container-upload">
+              <FaRegImage />
+            </div>
+
             <button className="botao-imagem-upload" onClick={abrirModalImagem}>arquivo</button>
 
             {modalImagemAberto && <ModalImagem fecharModal={fecharModalImagem} />}
           </div>
 
           <div className='video-upload'>
+
+            <div className="icon-container-upload">
+              <FaRegPlayCircle />
+            </div>
+
             <button className="botao-video-upload" onClick={abrirModalVideo}>arquivo</button>
 
             {modalVideoAberto && <ModalVideo fecharModal={fecharModalVideo} />}
           </div>
 
           <div className='texto-upload'>
+            <div className="icon-container-upload">
+              <FaRegFileAlt />
+            </div>
+
             <button className="botao-texto-upload" onClick={abrirModalTexto}>arquivo</button>
 
             {modalTextoAberto && <ModalTexto fecharModal={fecharModalTexto} />}
@@ -60,7 +76,8 @@ const PaginaUpload = () => {
       </div>
 
       <div className="rodape-upload">
-      <button className="botao-anterior-central" onClick= {irParaCentral} >anterior</button>
+      <button className="botao-anterior-central" onClick= {irParaCentral} >cancelar</button>
+      <button className="botao-anterior-central" onClick= {irParaCentral} >salvar</button>
       </div>
     </div>
   );
