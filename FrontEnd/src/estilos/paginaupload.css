@@ -30,8 +30,6 @@ body::before {
 
 .cabecalho-upload, .rodape-upload {
   height: 75px;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ddd;
 }
 
 .cabecalho-upload{
@@ -57,7 +55,6 @@ body::before {
 .column1-upload, .column2-upload{
   display: flex;
   flex-direction: column;
-  border: 1px solid #ddd;
 }
 
 .column1-upload{   
@@ -85,6 +82,19 @@ body::before {
   background-color: white;
   justify-content: space-between;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container-upload {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagem-upload svg, .video-upload svg, .texto-upload svg {
+  width: 50px;
+  height: 50px;
+  color: #7EC8E3;
 }
 
 .previews-upload{
@@ -161,11 +171,11 @@ body::before {
 }
 
 .linha-check-box{
+  gap: 10px;
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  gap: 10px;
 }
 
 #checkboxInput {
@@ -173,40 +183,41 @@ body::before {
 }
 
 .toggleSwitch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
   width: 35px;
   height: 18px;
-  background-color: rgb(82, 82, 82);
-  border-radius: 20px;
+  display: flex;
   cursor: pointer;
+  position: relative;
+  align-items: center;
+  border-radius: 20px;
+  justify-content: center;
   transition-duration: .2s;
+  background-color: rgb(82, 82, 82);
 }
 
 .toggleSwitch::after {
+  left: 3px;
+  width: 6px;
+  height: 6px;
   content: "";
   position: absolute;
-  height: 6px;
-  width: 6px;
-  left: 3px;
-  background-color: transparent;
   border-radius: 50%;
   transition-duration: .2s;
-  box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
   border: 5px solid white;
+  background-color: transparent;
+  box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
+
 }
 
 #checkboxInput:checked+.toggleSwitch::after {
-  transform: translateX(100%);
   transition-duration: .2s;
   background-color: white;
+  transform: translateX(100%);
 }
 /* Switch background change */
 #checkboxInput:checked+.toggleSwitch {
-  background-color: rgb(148, 118, 255);
   transition-duration: .2s;
+  background-color: rgb(148, 118, 255);
 }
 
 .ck-editor__editable {
