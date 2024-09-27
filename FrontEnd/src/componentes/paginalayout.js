@@ -7,8 +7,16 @@ const PaginaLayout = () => {
 
     const navigate = useNavigate();
 
-    const irParaPlaylist = () => {
-        navigate('/playlist'); 
+    const irParaPlaylistlayout1 = () => {
+        navigate('/playlistlayout1'); 
+    };
+
+    const irParaPlaylistlayout2 = () => {
+        navigate('/playlistlayout2'); 
+    };
+
+    const irParaPlaylistlayout3 = () => {
+        navigate('/playlistlayout3');
     };
 
     const irParaCentral = () => {
@@ -30,7 +38,7 @@ const PaginaLayout = () => {
                         </div>
                     </div>
 
-                    <button className='botao-pagina-layout' onClick= {irParaPlaylist} >avançar</button>
+                    <button className='botao-pagina-layout' onClick= {irParaPlaylistlayout1} >avançar</button>
                 </div>
                 <div className='layout2-layout'>
                     <div className='background-layout2-layout'>
@@ -43,7 +51,7 @@ const PaginaLayout = () => {
                         </div>
                     </div>
 
-                    <button className='botao-pagina-layout' onClick= {irParaPlaylist} >avançar</button>
+                    <button className='botao-pagina-layout' onClick= {irParaPlaylistlayout2} >avançar</button>
                 </div>
                 <div className='layout3-layout'>
                     <div className='background-layout3-layout'>
@@ -62,7 +70,7 @@ const PaginaLayout = () => {
                         </div>
                     </div>
 
-                    <button className='botao-pagina-layout' onClick= {irParaPlaylist} >avançar</button>
+                    <button className='botao-pagina-layout' onClick= {irParaPlaylistlayout3} >avançar</button>
                 </div>
                 
             </div>
