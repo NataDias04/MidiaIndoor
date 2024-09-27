@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../estilos/paginaplaylistlayout3.css'
 
+import {FaPlus} from 'react-icons/fa';
+
 import { useNavigate } from 'react-router-dom';
 
 const PaginaPlaylistLayout3 = () => {
@@ -23,16 +25,26 @@ const PaginaPlaylistLayout3 = () => {
       <div className='secao-layout3'>
 
         <div className='linha-layout3-layout3'>
-            <div className='borda1-layout3-layout3'></div>
+            <div className='borda1-layout3-layout3'>
+              <FaPlus/>
+            </div>
             <div className='column-layout3-layout3'>
-                <div className='borda2-layout3-layout3'></div>
-                <div className='borda3-layout3-layout3'></div>
+                <div className='borda2-layout3-layout3'>
+                  <FaPlus/>
+                </div>
+                <div className='borda3-layout3-layout3'>
+                  <FaPlus/>
+                </div>
             </div>
         </div>
         <div className='linha-layout3-layout3'>
             <div className='row-layout3-layout3'>
-                <div className='borda4-layout3-layout3'></div>
-                <div className='borda5-layout3-layout3'></div>
+                <div className='borda4-layout3-layout3'>
+                  <FaPlus/>
+                </div>
+                <div className='borda5-layout3-layout3'>
+                  <FaPlus/>
+                </div>
             </div>
         </div>
 

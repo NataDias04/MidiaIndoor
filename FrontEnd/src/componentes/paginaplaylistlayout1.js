@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../estilos/paginaplaylistlayout1.css'
 
-import { FaFileUpload, FaPlus, FaListUl } from 'react-icons/fa';
+import {FaPlus} from 'react-icons/fa';
 
 import { useNavigate } from 'react-router-dom';
 
