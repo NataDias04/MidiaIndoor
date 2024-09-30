@@ -138,3 +138,67 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.ordem-playlist-posicao1-layou1{
+  width: 95%;
+  height: 80%;
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #d8cfc4;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.midia-item {
+  width: 200px; /* Largura da div da mídia */
+  height: 200px; /* Altura da div da mídia */
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column; /* Organiza os elementos verticalmente */
+  align-items: center;    /* Centraliza horizontalmente */
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.midia-nome {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center; /* Centraliza o texto do nome */
+  margin-bottom: 10px; /* Espaçamento entre o nome e o campo de entrada */
+}
+
+.campo-tempo {
+  display: flex;
+  flex-direction: column; /* Organiza o label e o input verticalmente */
+  align-items: center;    /* Centraliza horizontalmente */
+  width: 100%; /* Garante que o label e o input fiquem alinhados */
+}
+
+.input-tempo {
+  width: 60px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.adicionar-midia-posicao1-layou1 {
+  width: 200px;
+  height: 200px;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
