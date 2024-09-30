@@ -68,9 +68,12 @@ body {
 .borda1-layout3-layout3{
     width: 1380px; /*base 385*/
     height: 400px; /*base 160px*/
+    display: flex;
     margin-left: 5px;
     margin-top: 25px;
     margin-right: 5px;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
     background-color: transparent;
 }
@@ -83,8 +86,11 @@ body {
 .borda2-layout3-layout3{
     width: 125px; /*base 50*/
     height: 125px; /*base 50*/
+    display: flex;
     margin-top: 25px;
     margin-right: 5px;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
     background-color: transparent;
 }
@@ -92,8 +98,11 @@ body {
 .borda3-layout3-layout3{
     width: 125px; /*base 50*/
     height: 268px; /* base 104px*/
+    display: flex;
     margin-top: 5px;
     margin-right: 5px;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
     background-color: transparent;
 }
@@ -106,6 +115,9 @@ body {
 .borda4-layout3-layout3{
     width: 125px; /*base 50*/
     height: 125px; /*base 50px*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
     background-color: transparent;
 }
@@ -113,7 +125,16 @@ body {
 .borda5-layout3-layout3{
     width: 1380px;
     height: 125px; /*base 50px*/
+    display: flex;
     margin-left: 5px;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
     background-color: transparent;
+}
+
+.borda1-layout3-layout3 svg, .borda2-layout3-layout3 svg, .borda3-layout3-layout3 svg, .borda4-layout3-layout3 svg, .borda5-layout3-layout3 svg{
+  width: 25px;
+  height: 25px;
+  color: #7EC8E3;
 }
