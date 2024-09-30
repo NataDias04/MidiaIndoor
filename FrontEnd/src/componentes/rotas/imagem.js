@@ -24,39 +24,6 @@ export async function salvarImagem(imagemData, imagemArquivo) {
   }
 }
 
-// Função para salvar imagem a partir de uma URL externa
-export async function salvarImagemLink(nomeImagem, externalUrl) {
-  try {
-    // Verifica se nomeImagem é uma string
-    if (typeof nomeImagem !== 'string') {
-      throw new Error('O campo name deve ser uma string');
-    }
-    
-    const response = await fetch('http://localhost:5000/imagem_link', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: nomeImagem,
-        externalUrl: externalUrl,  // Envia a URL externa da imagem
-      }),
-    });
-
-    if (!response.ok) {
-      const errorMessage = await response.text(); // Captura o texto da resposta
-      throw new Error(`Erro ao salvar o link da imagem: ${errorMessage}`);
-    }
-
-    const resultado = await response.json();
-    console.log('Link da imagem salvo com sucesso:', resultado);
-    return resultado;
-  } catch (erro) {
-    console.error('Erro ao salvar o link da imagem:', erro);
-    throw erro; // Rejoga o erro para tratamento posterior
-  }
-}
-
 // Função para deletar imagem
 export async function deletarImagem(imagemId) {
   try {
@@ -77,10 +44,35 @@ export async function deletarImagem(imagemId) {
   }
 }
 
-// Função para deletar link de imagem
-export async function deletarImagemLink(imagemLinkId) {
+// Função para salvar link de imagem
+export async function salvarImagemLink(imagemData) {
   try {
-    const response = await fetch(`http://localhost:5000/imagem_link/${imagemLinkId}`, {
+    const response = await fetch('http://localhost:5000/imagem_link', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(imagemData), // Envia os dados como JSON
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao salvar o link da imagem: ${errorMessage}`);
+    }
+
+    const resultado = await response.json();
+    console.log('Link da imagem salvo com sucesso:', resultado);
+    return resultado;
+  } catch (erro) {
+    console.error('Erro ao salvar o link da imagem:', erro);
+    throw erro;  // Rejoga o erro para tratamento posterior
+  }
+}
+
+// Função para deletar link de imagem
+export async function deletarImagemLink(imagemId) {
+  try {
+    const response = await fetch(`http://localhost:5000/imagem_link/${imagemId}`, {
       method: 'DELETE',
     });
 
@@ -90,6 +82,7 @@ export async function deletarImagemLink(imagemLinkId) {
     }
 
     const resultado = await response.json();
+    console.log('Link da imagem deletado com sucesso:', resultado);
     return resultado;
   } catch (erro) {
     console.error('Erro ao deletar o link da imagem:', erro);
