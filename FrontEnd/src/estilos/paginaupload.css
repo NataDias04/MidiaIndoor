@@ -240,3 +240,18 @@ body::before {
 .botao-modal-imagem, .botao-modal-video, .botao-modal-texto{
   margin-bottom: 20px;
 }
+
+.previews-upload {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.preview-item {
+  margin: 10px;
+}
+
+.preview-imagem {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}

@@ -13,7 +13,7 @@ const ModalPosicao1Layout = ({ fecharModal }) => {
       id: midias.length + 1,
       nome: `Mídia ${midias.length + 1}`,
     };
-    setMidias([...midias, novaMidia]); // Adiciona a nova mídia à lista
+    setMidias([...midias, novaMidia]);
   };
 
   return (
@@ -31,9 +31,7 @@ const ModalPosicao1Layout = ({ fecharModal }) => {
 
               {midias.map((midia) => (
                 <div key={midia.id} className="midia-item">
-                <span>{midia.nome}</span> {/* Nome da mídia */}
-                
-                {/* Campo para digitar o tempo */}
+                <span>{midia.nome}</span>
 
                 <div>
                   <label htmlFor={`tempo-${midia.id}`}>tempo (seg.): </label>
@@ -41,8 +39,8 @@ const ModalPosicao1Layout = ({ fecharModal }) => {
                     type="number"
                     id={`tempo-${midia.id}`}
                     name={`tempo-${midia.id}`}
-                    step="any"  // Permite números inteiros e decimais
-                    min="0"     // Valor mínimo permitido
+                    step="any"
+                    min="0"
                     className="input-tempo"
                     onChange={(e) => {
                       // Função para lidar com a alteração do valor do tempo

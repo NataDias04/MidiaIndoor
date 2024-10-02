@@ -25,12 +25,12 @@ const App = () => {
       <div className="App">
 
         <Routes>
-          <Route path="/" element={<PaginaLogin />} /> {/* Página inicial - login */}
-          <Route path="/central" element={<PaginaCentral/>} /> {/* Página de central */}
-          <Route path="/upload" element={<PaginaUpload />} /> {/* Página de upload */}
-          <Route path="/layout" element={<PaginaLayout />} /> {/* Página de layout */}
-          <Route path="/login" element={<PaginaLogin />} /> {/* Página de login */}  
-          <Route path="/playlistlayout1" element={<PaginaPlaylistLayout1 />} /> {/* Página de playlist */}
+          <Route path="/" element={<PaginaLogin />} />
+          <Route path="/central" element={<PaginaCentral/>} />
+          <Route path="/upload" element={<PaginaUpload />} />
+          <Route path="/layout" element={<PaginaLayout />} />
+          <Route path="/login" element={<PaginaLogin />} />
+          <Route path="/playlistlayout1" element={<PaginaPlaylistLayout1 />} />
           <Route path="/playlistlayout2" element={<PaginaPlaylistLayout2 />} />
           <Route path="/playlistlayout3" element={<PaginaPlaylistLayout3 />} />
           <Route path="/verplaylist" element={<PaginaVerPlaylist/>} />

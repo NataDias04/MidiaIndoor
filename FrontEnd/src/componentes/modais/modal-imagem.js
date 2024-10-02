@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+
 import '../../estilos/paginaupload.css';
-import { salvarImagem, salvarImagemLink } from '../rotas/imagem'; // Certifique-se que essas funções estão corretas
+
+import { salvarImagem, salvarImagemLink } from '../rotas/imagem';
 
 const ModalImagem = ({ fecharModal }) => {
-  const [isChecked, setIsChecked] = useState(false); // Estado da checkbox
-  const [imagemFile, setImagemFile] = useState(null); // Estado para o arquivo de imagem
-  const [imagemLink, setImagemLink] = useState(''); // Estado para o link da imagem
-  const [nomeImagem, setNomeImagem] = useState(''); // Estado para o nome da imagem
-  const [erro, setErro] = useState(''); // Estado para erros
+  const [isChecked, setIsChecked] = useState(false);
+  const [imagemFile, setImagemFile] = useState(null);
+  const [imagemLink, setImagemLink] = useState('');
+  const [nomeImagem, setNomeImagem] = useState('');
+  const [erro, setErro] = useState('');
 
   // Função para lidar com a mudança de arquivo de imagem
   const handleFileChange = (e) => {
@@ -52,6 +54,11 @@ const ModalImagem = ({ fecharModal }) => {
       console.error('Erro ao salvar a imagem:', error);
       setErro('Erro ao salvar a imagem. Tente novamente.');
     }
+  };
+
+  const onSaveAndClose = async () => {
+    await handleSave();  // Espera `handleSave` terminar
+    fecharModal();  // Depois, fecha o modal
   };
 
   return (
@@ -108,7 +115,7 @@ const ModalImagem = ({ fecharModal }) => {
           {erro && <p className="erro-mensagem">{erro}</p>}
 
           <div className="botao-container">
-            <button className="botao-salvar-imagem" onClick={handleSave}>Salvar</button>
+            <button className="botao-salvar-imagem" onClick={onSaveAndClose}>Salvar</button>
             <button className="botao-modal-imagem" onClick={fecharModal}>Fechar</button>
           </div>
         </div>

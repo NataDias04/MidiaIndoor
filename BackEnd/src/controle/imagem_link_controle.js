@@ -48,17 +48,18 @@ const create = async (request, response) => {
 
 const findAll = async (request, response) => {
   try {
-
+    // Buscar as imagens no banco de dados
     const imagens = await ImagemLink.find();
 
-    response.json(imagens);
+    // Retornar as imagens encontradas com status 200 (sucesso)
+    response.status(200).json(imagens);
 
   } catch (error) {
-
+    // Retornar erro com status 500 (erro interno) e mensagem de erro
     response.status(500).json({ mensagem: 'Erro ao buscar imagens ou links', erro: error.message });
-
   }
 };
+
 
 const findOne = async (request, response) => {
   try {
@@ -86,12 +87,10 @@ const remove = async (request, response) => {
       return response.status(404).json({ mensagem: 'Imagem ou link não encontrado' });
     }
 
-    // Excluir o arquivo físico
     if (imagemLink.src && fs.existsSync(imagemLink.src)) {
       fs.unlinkSync(imagemLink.src);
     }
 
-    // Excluir o documento da base de dados
     await ImagemLink.findByIdAndDelete(request.params.id);
 
     response.json({ mensagem: 'Imagem ou link removido com sucesso' });

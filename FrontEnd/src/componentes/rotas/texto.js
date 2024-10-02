@@ -1,5 +1,3 @@
-// texto_simples.js
-
 // Função para salvar texto simples
 export async function salvarTextoSimples(conteudo) {
     try {
@@ -41,22 +39,43 @@ export async function salvarTextoSimples(conteudo) {
       throw erro;
     }
   }
-  
-// html.js
+
+  // Função para buscar todos os textos simples
+export async function buscarTextosSimples() {
+  try {
+    const response = await fetch('http://localhost:5000/texto', {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar textos simples: ${errorMessage}`);
+    }
+
+    const textosSimples = await response.json();
+    console.log('Textos simples buscados com sucesso:', textosSimples);
+    return textosSimples;
+  } catch (erro) {
+    console.error('Erro ao buscar textos simples:', erro);
+    throw erro;
+  }
+}
+
 
 // Função para salvar conteúdo HTML
-export async function salvarHtml(conteudoHtml) {
+export async function salvarHtml(conteudoHtml, titulo) {
     try {
       const response = await fetch('http://localhost:5000/html', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ conteudoHtml }),
+        body: JSON.stringify({ conteudoHtml,  titulo})
       });
   
       if (!response.ok) {
-        throw new Error('Erro ao salvar conteúdo HTML');
+        const errorData = await response.json(); // Captura a resposta de erro
+      throw new Error(`Erro ${response.status}: ${errorData.error}`);
       }
   
       const resultado = await response.json();
@@ -86,10 +105,32 @@ export async function salvarHtml(conteudoHtml) {
     }
   }
 
-    // Exporta todas as funções
+  // Função para buscar todos os conteúdos HTML
+export async function buscarHtmls() {
+  try {
+    const response = await fetch('http://localhost:5000/html', {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar conteúdos HTML: ${errorMessage}`);
+    }
+
+    const htmls = await response.json();
+    console.log('Conteúdos HTML buscados com sucesso:', htmls);
+    return htmls;
+  } catch (erro) {
+    console.error('Erro ao buscar conteúdos HTML:', erro);
+    throw erro;
+  }
+}
+
     export default {
         salvarTextoSimples,
         salvarHtml,
         deletarTextoSimples,
+        buscarTextosSimples,
         deletarHtml,
+        buscarHtmls,
       };

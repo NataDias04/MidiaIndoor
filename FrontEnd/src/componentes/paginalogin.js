@@ -15,7 +15,7 @@ function PaginaLogin() {
   const navigate = useNavigate();
 
   const irParaCentral = () => {
-    navigate('/central'); // Redireciona para a página central
+    navigate('/central');
 };
 
   return (

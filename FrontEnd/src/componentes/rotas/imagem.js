@@ -2,16 +2,16 @@
 export async function salvarImagem(imagemData, imagemArquivo) {
   try {
     const formData = new FormData();
-    formData.append('name', imagemData.name);  // Adiciona o nome
-    formData.append('file', imagemArquivo);    // Adiciona o arquivo da imagem
+    formData.append('name', imagemData.name);
+    formData.append('file', imagemArquivo);
 
     const response = await fetch('http://localhost:5000/imagem', {
       method: 'POST',
-      body: formData,  // O corpo da requisição agora é o formData
+      body: formData,
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text(); // Captura o texto da resposta
+      const errorMessage = await response.text();
       throw new Error(`Erro ao fazer o upload da imagem: ${errorMessage}`);
     }
 
@@ -20,7 +20,7 @@ export async function salvarImagem(imagemData, imagemArquivo) {
     return resultado;
   } catch (erro) {
     console.error('Erro ao salvar imagem:', erro);
-    throw erro;  // Rejoga o erro para tratamento posterior
+    throw erro;
   }
 }
 
@@ -32,7 +32,7 @@ export async function deletarImagem(imagemId) {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text(); // Captura o texto da resposta
+      const errorMessage = await response.text();
       throw new Error(`Erro ao deletar a imagem: ${errorMessage}`);
     }
 
@@ -40,7 +40,28 @@ export async function deletarImagem(imagemId) {
     return resultado;
   } catch (erro) {
     console.error('Erro ao deletar imagem:', erro);
-    throw erro; // Rejoga o erro para tratamento posterior
+    throw erro;
+  }
+}
+
+// Função para buscar todas as imagens
+export async function buscarImagens() {
+  try {
+    const response = await fetch('http://localhost:5000/imagem', {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar imagens: ${errorMessage}`);
+    }
+
+    const imagens = await response.json();
+    console.log('Imagens buscadas com sucesso:', imagens);
+    return imagens;
+  } catch (erro) {
+    console.error('Erro ao buscar imagens:', erro);
+    throw erro;
   }
 }
 
@@ -52,7 +73,7 @@ export async function salvarImagemLink(imagemData) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(imagemData), // Envia os dados como JSON
+      body: JSON.stringify(imagemData),
     });
 
     if (!response.ok) {
@@ -65,7 +86,7 @@ export async function salvarImagemLink(imagemData) {
     return resultado;
   } catch (erro) {
     console.error('Erro ao salvar o link da imagem:', erro);
-    throw erro;  // Rejoga o erro para tratamento posterior
+    throw erro;
   }
 }
 
@@ -77,7 +98,7 @@ export async function deletarImagemLink(imagemId) {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text(); // Captura o texto da resposta
+      const errorMessage = await response.text();
       throw new Error(`Erro ao deletar o link da imagem: ${errorMessage}`);
     }
 
@@ -86,14 +107,36 @@ export async function deletarImagemLink(imagemId) {
     return resultado;
   } catch (erro) {
     console.error('Erro ao deletar o link da imagem:', erro);
-    throw erro; // Rejoga o erro para tratamento posterior
+    throw erro;
   }
 }
 
-// Exporta todas as funções
+// Função para buscar todos os links de imagens
+export async function buscarImagensLink() {
+  try {
+    const response = await fetch('http://localhost:5000/imagem_link', {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar links de imagens: ${errorMessage}`);
+    }
+
+    const imagensLinks = await response.json();
+    console.log('Links de imagens buscados com sucesso:', imagensLinks);
+    return imagensLinks;
+  } catch (erro) {
+    console.error('Erro ao buscar links de imagens:', erro);
+    throw erro;
+  }
+}
+
 export default {
   salvarImagem,
   salvarImagemLink,
+  buscarImagens,
+  buscarImagensLink,
   deletarImagem,
   deletarImagemLink,
 };

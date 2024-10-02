@@ -65,8 +65,8 @@ body {
 }
 
 .borda1-layout2-layout2{
-    width: 125px; /*base 50*/
-    height: 400px; /*base 160px*/
+    width: 125px;
+    height: 400px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -77,8 +77,8 @@ body {
 }
 
 .borda2-layout2-layout2{
-    width: 1380px; /*base 385*/
-    height: 400px; /*base 160px*/
+    width: 1380px;
+    height: 400px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -90,8 +90,8 @@ body {
 }
 
 .borda3-layout2-layout2{
-    width: 1514px; /*base 438*/
-    height: 125px; /*base 50px*/
+    width: 1514px;
+    height: 125px;
     display: flex;
     margin-bottom: 10px;
     align-items: center;

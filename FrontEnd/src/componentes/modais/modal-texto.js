@@ -1,32 +1,61 @@
 import React, { useState } from 'react';
+import '../../estilos/paginaupload.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '../../estilos/paginaupload.css';
-import {salvarTextoSimples , salvarHtml} from '../rotas/texto';
+import { salvarTextoSimples, salvarHtml } from '../rotas/texto';
 
 const ModalTexto = ({ fecharModal }) => {
-
   const [editorData, setEditorData] = useState('');
-  const [isChecked, setIsChecked] = useState(false); // Estado da checkbox
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleSave = () => {
-    const saveFunction = isChecked 
-      ? salvarTextoSimples 
-      : salvarHtml ;
 
-    saveFunction(editorData)
+    // Função para descodificar entidades HTML
+    
+    const descodificado = (text) => {
+      return text.replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&amp;/g, '&')
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'");
+    };
+
+     // Função para extrair o conteúdo da tag <title> usando expressão regular
+     const extrairTituloDoHtml = (htmlString) => {
+      const match = htmlString.match(/<title>(.*?)<\/title>/i);
+      return match ? match[1] : 'Sem título'; // Retorna 'Sem título' se não encontrar a tag <title>
+    };
+
+    const htmldescodificado = descodificado(editorData)
+
+    // Extraindo o título do HTML do CKEditor
+    const titulo = extrairTituloDoHtml(htmldescodificado);
+
+    console.log('editorData:', editorData);
+
+    console.log('Título extraído:', titulo);
+
+    if (!titulo || titulo.trim() === '') {
+      console.error('Título não definido ou vazio');
+      return;
+    }
+
+    const saveFunction = isChecked 
+      ? () => salvarTextoSimples(editorData)
+      : () => salvarHtml(editorData, titulo);
+
+    saveFunction() 
       .then(response => {
-        // Lidar com a resposta
-        return response.json(); // Supondo que você está lidando com JSON
-      })
-      .then(data => {
-        // Processar os dados da resposta
-        console.log(data);
+        console.log('Salvo com sucesso:', response);
       })
       .catch(error => {
-        // Lidar com erros
-        console.error('Erro:', error);
+        console.error('Erro ao salvar:', error);
       });
+  };
+
+  const onSaveAndClose = async () => {
+    await handleSave();  // Espera `handleSave` terminar
+    fecharModal();  // Depois, fecha o modal
   };
 
   const editorConfiguration = {
@@ -51,19 +80,15 @@ const ModalTexto = ({ fecharModal }) => {
 
           <div>
             <label>
-
               <div className='linha-check-box'>
-                  Html
+                Html
                 <input 
                   type="checkbox" 
                   id="checkboxInput"
                   checked={isChecked} 
                   onChange={(e) => setIsChecked(e.target.checked)} 
                 />
-                
-                <label for="checkboxInput" class="toggleSwitch">
-                </label>
-
+                <label htmlFor="checkboxInput" className="toggleSwitch"></label>
                 Texto
               </div>
             </label>
@@ -76,13 +101,14 @@ const ModalTexto = ({ fecharModal }) => {
             onChange={(event, editor) => {
               const data = editor.getData();
               setEditorData(data);
+              console.log('Editor Data atualizado:', data);
             }}
           />
+
           <div className="botao-container">
-            <button className='botao-salvar-texto' onClick={handleSave}>Salvar</button>
+            <button className='botao-salvar-texto' onClick={onSaveAndClose}>Salvar</button>
             <button className='botao-modal-texto' onClick={fecharModal}>Fechar</button>
           </div>
-
         </div>
       </div>
     </>

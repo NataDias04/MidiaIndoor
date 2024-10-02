@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../estilos/paginaupload.css';
+
 import { salvarVideo, salvarVideoLink } from '../rotas/video';
 
 const ModalVideo = ({ fecharModal }) => {
@@ -13,10 +14,10 @@ const ModalVideo = ({ fecharModal }) => {
     const selectedFile = e.target.files[0]; // Captura o primeiro arquivo selecionado
     if (selectedFile) {
       setVideoFile(selectedFile); // Atualiza o estado com o arquivo selecionado
-      console.log('Arquivo de vídeo selecionado:', selectedFile); // Log para verificação
-      setVideoName(selectedFile.name); // Define o nome do vídeo a partir do arquivo
+      console.log('Arquivo de vídeo selecionado:', selectedFile);
+      setVideoName(selectedFile.name);
     }
-    setErro(''); // Limpa qualquer erro anterior
+    setErro('')
   };
 
   const handleLinkChange = (e) => {
@@ -31,20 +32,23 @@ const ModalVideo = ({ fecharModal }) => {
 
   const handleSave = () => {
     const saveFunction = isChecked 
-      ? () => salvarVideo(videoFile, videoFile.name) // Passa o arquivo de vídeo e o nome
-      : () => salvarVideoLink(videoName, videoLink);  // Passa o nome e o link do vídeo
+      ? () => salvarVideo(videoFile, videoFile.name)
+      : () => salvarVideoLink(videoName, videoLink);
 
     // Chama a função correspondente (salvar vídeo ou link)
     saveFunction()
       .then(response => {
-        // Lida com a resposta
         console.log('Salvo com sucesso:', response);
       })
       .catch(error => {
-        // Lida com erros
         console.error('Erro ao salvar:', error);
         setErro('Erro ao salvar. Tente novamente.');
       });
+  };
+
+  const onSaveAndClose = async () => {
+    await handleSave();  // Espera `handleSave` terminar
+    fecharModal();  // Depois, fecha o modal
   };
 
   return (
@@ -66,9 +70,7 @@ const ModalVideo = ({ fecharModal }) => {
             Arquivo
           </div>
 
-          {/* Mostrar input baseado no estado do checkbox */}
           {isChecked ? (
-            // Campo para upload de arquivo de vídeo
             <input
               type="file"
               accept="video/*"
@@ -77,14 +79,13 @@ const ModalVideo = ({ fecharModal }) => {
             />
           ) : (
             <>
-              {/* Campo para inserir o nome do vídeo */}
               <input
                 type="text"
                 placeholder="Insira o nome do vídeo"
                 value={videoName}
                 onChange={handleNameChange}
               />
-              {/* Campo para inserir o link do vídeo */}
+
               <input
                 type="text"
                 placeholder="Insira o link do vídeo"
@@ -94,11 +95,10 @@ const ModalVideo = ({ fecharModal }) => {
             </>
           )}
 
-          {/* Mostra o erro, se houver */}
           {erro && <p className="erro-mensagem">{erro}</p>}
 
           <div className="botao-container">
-            <button className="botao-salvar-video" onClick={handleSave}>Salvar</button>
+            <button className="botao-salvar-video" onClick={onSaveAndClose}>Salvar</button>
             <button className="botao-modal-video" onClick={fecharModal}>Fechar</button>
           </div>
         </div>

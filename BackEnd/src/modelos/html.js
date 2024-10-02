@@ -5,6 +5,10 @@ const HtmlSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  titulo: {
+    type: String,
+    required: true,
+  },
   dataCriacao: {
     type: Date,
     default: Date.now,

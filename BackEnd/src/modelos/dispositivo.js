@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const DispositivoSchema = new mongoose.Schema({
-  nome: { type: String, required: true }, // Nome ou identificador do dispositivo
-  localizacao: { type: String }, // Local onde o dispositivo está (opcional)
+  nome: { type: String, required: true },
+  localizacao: { type: String },
   playlist: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Playlist', // Referência à playlist atual que o dispositivo deve exibir
