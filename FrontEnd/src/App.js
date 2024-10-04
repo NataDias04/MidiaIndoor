@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className="App">
       
-        <PaginaLogin/>{/* Renderizando a página de upload */}
+        <PaginaUpload/>{/* Renderizando a página de upload */} 
     </div>
   );
 };
