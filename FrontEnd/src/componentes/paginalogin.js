@@ -5,55 +5,52 @@ function PaginaLogin() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  // Função para lidar com o envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Tentativa de login com:', email, senha);
   };
 
   return (
-    <div className="container">
-      {/* Seção do Logo */}
-      <div className="logo">
-        <h1>GNHD TV</h1>
-      </div>
+    <div className="dashbord-login">
 
-      {/* Formulário de Login */}
-      <div className="login-form">
+      <div className="formulario-login">
+
+        <div className="logo-login">
+          <h1>GNHD TV</h1>
+        </div>
+        
+
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-          {/* Campo de Email */}
-          <div className="form-group">
+
+          <div className="grupo-formulario-login">
             <input
               type="email"
               id="email"
               placeholder="Email"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Atualiza o estado do email
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          {/* Campo de Senha */}
-          <div className="form-group">
+          <div className="grupo-formulario-login">
             <input
               type="password"
               id="senha"
               placeholder="Senha"
               required
               value={senha}
-              onChange={(e) => setSenha(e.target.value)} // Atualiza o estado da senha
+              onChange={(e) => setSenha(e.target.value)}
             />
           </div>
 
-          {/* Botão de Envio */}
-          <button type="submit">Entrar</button>
+          <button className={'button-entrar-login'}type="submit">Entrar</button>
         </form>
 
-        {/* Opções adicionais */}
-        <div className="additional-options">
-          <a href="#" className="forgot-password">Esqueceu a senha?</a>
-          <p>Não tem uma conta? <a href="#" className="register">Registre-se</a></p>
+        <div className="opcoes-adicionais-login">
+          <a href="#" className="esqueceu-senha-login">Esqueceu a senha?</a>
+          <p>Não tem uma conta? <a href="#" className="registrar-login">Registre-se</a></p>
         </div>
       </div>
     </div>

@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import '../estilos/paginaupload.css';
 
-import { Icon } from '@iconify/react';
-
-import IconeImagem from '@iconify-icons/ph/image-light';
-import IconeVideo from '@iconify/icons-mdi/video-outline';
-import IconeTexto from '@iconify/icons-fluent/text-t-12-filled';
-
 import ModalImagem from './modais/modal-imagem.js';
 import ModalVideo from './modais/modal-video.js';
 import ModalTexto from './modais/modal-texto.js';
@@ -27,40 +21,37 @@ const PaginaUpload = () => {
   const fecharModalTexto = () => setModalTextoAberto(false);
 
   return (
-    <div className="dashbord">
-      <div className="cabecalho">cabeçalho</div>
+    <div className="dashbord-upload">
+      <div className="cabecalho-upload">cabeçalho</div>
 
-      <div className='linha'>
+      <div className='linha-upload'>
 
-        <div className='column1'>
-          <div className='imagem'>
-            <Icon icon={IconeImagem} className="imagem-icone" />
-            <button className="botao-imagem" onClick={abrirModalImagem}>arquivo</button>
+        <div className='column1-upload'>
+          <div className='imagem-upload'>
+            <button className="botao-imagem-upload" onClick={abrirModalImagem}>arquivo</button>
 
             {modalImagemAberto && <ModalImagem fecharModal={fecharModalImagem} />}
           </div>
 
-          <div className='video'>
-            <Icon icon={IconeVideo} className="video-icone" />
-            <button className="botao-video" onClick={abrirModalVideo}>arquivo</button>
+          <div className='video-upload'>
+            <button className="botao-video-upload" onClick={abrirModalVideo}>arquivo</button>
 
             {modalVideoAberto && <ModalVideo fecharModal={fecharModalVideo} />}
           </div>
 
-          <div className='texto'>
-            <Icon icon={IconeTexto} className="texto-icone" />
-            <button className="botao-texto" onClick={abrirModalTexto}>arquivo</button>
+          <div className='texto-upload'>
+            <button className="botao-texto-upload" onClick={abrirModalTexto}>arquivo</button>
 
             {modalTextoAberto && <ModalTexto fecharModal={fecharModalTexto} />}
           </div>
         </div>
 
-        <div className='column2'>
-          <div className='previews'></div>
+        <div className='column2-upload'>
+          <div className='previews-upload'></div>
         </div>
       </div>
 
-      <div className="rodape">rodapé</div>
+      <div className="rodape-upload">rodapé</div>
     </div>
   );
 };
