@@ -8,6 +8,7 @@ import PaginaPlaylistLayout2 from './componentes/paginaplaylistlayout2.js';
 import PaginaPlaylistLayout3 from './componentes/paginaplaylistlayout3.js';
 import PaginaCentral from './componentes/paginacentral.js';
 import PaginaVerPlaylist from './componentes/paginaverplaylist.js';
+import PaginaDispositivo from './componentes/paginadispositivo.js';
 
 // <PaginaLayout />
 // <PaginaUpload />
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/" element={<PaginaLogin />} />
           <Route path="/central" element={<PaginaCentral/>} />
           <Route path="/upload" element={<PaginaUpload />} />
+          <Route path="/dispositivo" element={<PaginaDispositivo/>} />
           <Route path="/layout" element={<PaginaLayout />} />
           <Route path="/login" element={<PaginaLogin />} />
           <Route path="/playlistlayout1" element={<PaginaPlaylistLayout1 />} />

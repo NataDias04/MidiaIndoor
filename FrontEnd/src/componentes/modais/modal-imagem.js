@@ -1,64 +1,52 @@
 import React, { useState } from 'react';
-
 import '../../estilos/paginaupload.css';
-
 import { salvarImagem, salvarImagemLink } from '../rotas/imagem';
 
 const ModalImagem = ({ fecharModal }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [imagemFile, setImagemFile] = useState(null);
   const [imagemLink, setImagemLink] = useState('');
-  const [nomeImagem, setNomeImagem] = useState('');
+  const [imagemName, setImagemName] = useState('');
   const [erro, setErro] = useState('');
 
-  // Função para lidar com a mudança de arquivo de imagem
   const handleFileChange = (e) => {
-    setImagemFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImagemFile(selectedFile);
+      console.log('Arquivo de imagem selecionado:', selectedFile);
+      setImagemName(selectedFile.name);
+    }
     setErro('');
   };
 
-  // Função para lidar com a mudança do link da imagem
   const handleLinkChange = (e) => {
     setImagemLink(e.target.value);
     setErro('');
   };
 
-  // Função para lidar com a mudança do nome da imagem
-  const handleNomeChange = (e) => {
-    setNomeImagem(e.target.value);
+  const handleNameChange = (e) => {
+    setImagemName(e.target.value);
     setErro('');
   };
 
-  // Função para salvar dependendo do estado do checkbox
   const handleSave = async () => {
-    setErro('');
-
     try {
-      if (isChecked && imagemFile) {
-        const formData = new FormData();
-        formData.append('file', imagemFile); // O arquivo a ser enviado
+      const saveFunction = isChecked
+        ? () => salvarImagem(imagemFile, imagemFile.name)
+        : () => salvarImagemLink(imagemName, imagemLink);
 
-        const response = await salvarImagem({ name: nomeImagem }, imagemFile); // Função para salvar a imagem
-        console.log('Imagem salva com sucesso:', response);
-        setImagemFile(null);
-        setNomeImagem('');
-      } else if (!isChecked && imagemLink) {
-        const response = await salvarImagemLink({ name: nomeImagem, externalUrl: imagemLink });
-        console.log('Link da imagem salvo com sucesso:', response);
-        setImagemLink('');
-        setNomeImagem('');
-      } else {
-        setErro('Por favor, selecione um arquivo ou insira um link.');
-      }
+      const response = await saveFunction();
+      console.log('Salvo com sucesso:', response);
+      setErro(''); // Limpa a mensagem de erro após salvar com sucesso
     } catch (error) {
-      console.error('Erro ao salvar a imagem:', error);
-      setErro('Erro ao salvar a imagem. Tente novamente.');
+      console.error('Erro ao salvar:', error);
+      setErro('Erro ao salvar. Tente novamente.');
     }
   };
 
   const onSaveAndClose = async () => {
-    await handleSave();  // Espera `handleSave` terminar
-    fecharModal();  // Depois, fecha o modal
+    await handleSave(); // Espera `handleSave` terminar
+    fecharModal(); // Depois, fecha o modal
   };
 
   return (
@@ -84,31 +72,24 @@ const ModalImagem = ({ fecharModal }) => {
             <input
               type="file"
               accept="image/*"
+              name="imagem"
               onChange={handleFileChange}
             />
           ) : (
             <>
-              <div>
-                <label htmlFor="nomeImagem">Nome da Imagem:</label>
-                <input
-                  id="nomeImagem"
-                  type="text"
-                  placeholder="Insira o nome da imagem"
-                  value={nomeImagem}
-                  onChange={handleNomeChange}
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Insira o nome da imagem"
+                value={imagemName}
+                onChange={handleNameChange}
+              />
 
-              <div>
-                <label htmlFor="imagemLink">Link da Imagem:</label>
-                <input
-                  id="imagemLink"
-                  type="text"
-                  placeholder="Insira o link da imagem"
-                  value={imagemLink}
-                  onChange={handleLinkChange}
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Insira o link da imagem"
+                value={imagemLink}
+                onChange={handleLinkChange}
+              />
             </>
           )}
 

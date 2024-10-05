@@ -1,9 +1,9 @@
 // Define a função salvarVideo
-export const salvarVideo = async (file, name) => {
+export const salvarVideo = async (file, nome) => {
   const formData = new FormData();
 
   formData.append('video' , file);
-  formData.append('name' , name);
+  formData.append('nome' , nome);
 
   try {
     const response = await fetch('http://localhost:5000/video', {
@@ -63,7 +63,7 @@ export const buscarVideos = async () => {
 };
 
 // Define a função salvarVideoLink
-export const salvarVideoLink = async (name, url) => {
+export const salvarVideoLink = async (nome, url) => {
 
   try {
     const response = await fetch('http://localhost:5000/video_link', {
@@ -71,7 +71,7 @@ export const salvarVideoLink = async (name, url) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, url }),
+      body: JSON.stringify({ nome, url }),
     });
 
     if (!response.ok) {

@@ -1,8 +1,9 @@
 import mongoose, { Schema, Types } from 'mongoose';
 
 const ImagemSchema = new Schema({
-  name: {type: String, require: true},
-  src: {type: String, require: true},
+  nome: { type: String, required: true },
+  url: { type: String, required: true },
+  data: { type: Date, default: Date.now }
 })
 
 const Imagem = mongoose.model('Imagem', ImagemSchema);

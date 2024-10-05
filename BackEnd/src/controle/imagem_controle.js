@@ -4,13 +4,13 @@ import Imagem from '../modelos/imagem.js'
 const create = async (request, response) =>{
     try {
 
-        const {name} = request.body;
+        const {nome} = request.body;
 
         const file = request.file;
 
         const imagem = new Imagem({
-            name,
-            src: file.path,
+            nome,
+            url: file.path,
         })
 
         await imagem.save()
@@ -62,7 +62,7 @@ const remove = async (request, response) =>{
             return response.status(404).json({message: "imagem não encontrada"})
         }
 
-        fs.unlinkSync(imagem.src)
+        fs.unlinkSync(imagem.url)
 
         await Imagem.deleteOne({ _id: request.params.id });
 

@@ -5,10 +5,7 @@ const TextoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dataCriacao: {
-    type: Date,
-    default: Date.now,
-  },
+  date: { type: Date, default: Date.now }
 });
 
 const Texto = mongoose.model('Texto', TextoSchema);

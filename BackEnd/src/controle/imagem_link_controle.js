@@ -5,57 +5,43 @@ import fetch from 'node-fetch';
 
 const create = async (request, response) => {
   try {
+    const { nome, url } = request.body;
+    let filePath = '';
 
-    const { name, externalUrl } = request.body;
-
-    let filePath = null;
-
-    if (request.file) {
-
-      filePath = request.file.path;
-
-    } else if (externalUrl) {
-
-      const responseFetch = await fetch(externalUrl);
-
+    if (url.startsWith('http')) {
+      // Se for um link externo, faça o download da imagem e salve localmente
+      const responseFetch = await fetch(url);
       const arrayBuffer = await responseFetch.arrayBuffer();
-
       const buffer = Buffer.from(arrayBuffer);
 
-      const fileName = `${Date.now()}_${path.basename(externalUrl)}`;
-
+      const parsedUrl = new URL(url);
+      const fileName = `${Date.now()}_${path.basename(parsedUrl.pathname)}`;
       filePath = `uploads/${fileName}`;
 
       fs.writeFileSync(filePath, buffer);
     }
 
     const imagemLink = new ImagemLink({
-      name,
-      src: filePath,
-      externalUrl: externalUrl || null,
+      nome,
+      caminhointerno: filePath,
+      url,
     });
 
     await imagemLink.save();
 
     response.status(201).json({ mensagem: 'Imagem ou link salvo com sucesso!', imagemLink });
-
   } catch (error) {
-
     response.status(500).json({ mensagem: 'Erro ao salvar imagem ou link', erro: error.message });
-
   }
 };
 
 const findAll = async (request, response) => {
   try {
-    // Buscar as imagens no banco de dados
     const imagens = await ImagemLink.find();
 
-    // Retornar as imagens encontradas com status 200 (sucesso)
     response.status(200).json(imagens);
 
   } catch (error) {
-    // Retornar erro com status 500 (erro interno) e mensagem de erro
     response.status(500).json({ mensagem: 'Erro ao buscar imagens ou links', erro: error.message });
   }
 };
@@ -80,7 +66,7 @@ const findOne = async (request, response) => {
 
 const remove = async (request, response) => {
   try {
-    // Buscar a imagem pelo ID
+
     const imagemLink = await ImagemLink.findById(request.params.id);
 
     if (!imagemLink) {

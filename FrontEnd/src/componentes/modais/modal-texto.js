@@ -29,20 +29,20 @@ const ModalTexto = ({ fecharModal }) => {
     const htmldescodificado = descodificado(editorData)
 
     // Extraindo o título do HTML do CKEditor
-    const titulo = extrairTituloDoHtml(htmldescodificado);
+    const nome = extrairTituloDoHtml(htmldescodificado);
 
     console.log('editorData:', editorData);
 
-    console.log('Título extraído:', titulo);
+    console.log('Título extraído:', nome);
 
-    if (!titulo || titulo.trim() === '') {
+    if (!nome || nome.trim() === '') {
       console.error('Título não definido ou vazio');
       return;
     }
 
     const saveFunction = isChecked 
       ? () => salvarTextoSimples(editorData)
-      : () => salvarHtml(editorData, titulo);
+      : () => salvarHtml(editorData, nome);
 
     saveFunction() 
       .then(response => {

@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
 const ImagemLinkSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  src: { type: String },      
-  externalUrl: { type: String, required: true},   
+  nome: { type: String, required: true },
+  caminhointerno: {type: String, required: true },
+  url: { type: String, required: true },
+  data: { type: Date, default: Date.now }
 });
 
 const Imagem_link =mongoose.model("ImagemLink", ImagemLinkSchema);

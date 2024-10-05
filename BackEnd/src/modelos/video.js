@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
 const videoSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  src: { type: String, required: true }, // Caminho do vídeo
+  nome: { type: String, required: true },
+  url: { type: String, required: true },
+  data: { type: Date, default: Date.now }
 });
 
 const Video = mongoose.model('Video', videoSchema);
