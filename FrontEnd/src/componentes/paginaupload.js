@@ -34,36 +34,36 @@ const PaginaUpload = () => {
   };
 
   // Função para carregar as imagens
-const RenderizarImagem = (upload, index) => {
-  console.log(upload);
-  if (upload.url) {
-    return (
-      <img src={upload.url} alt={`upload-${index}`} className="preview-imagem" />
-    );
-  }
-  return null;
-};
+  const RenderizarImagem = (upload, index) => {
+    console.log(upload);
+    if (upload.url) {
+      return (
+        <img src={upload.url} alt={`upload-${index}`} className="preview-imagem" />
+      );
+    }
+    return null;
+  };
 
-// Função para carregar textos
-const RenderizarTexto = (upload) => {
-  if (upload.conteudo) {
-    return <p className="preview-texto">{upload.conteudo}</p>;
-  }
-  return null;
-};
+  // Função para carregar textos
+  const RenderizarTexto = (upload) => {
+    if (upload.conteudo) {
+      return <p className="preview-texto">{upload.conteudo}</p>;
+    }
+    return null;
+  };
 
-// Função para carregar HTML
-const RenderizarHtml = (upload) => {
-  if (upload.conteudoHtml) {
-    return (
-      <div
-        dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
-        className="preview-html"
-      ></div>
-    );
-  }
-  return null;
-};
+  // Função para carregar HTML
+  const RenderizarHtml = (upload) => {
+    if (upload.conteudoHtml) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
+          className="preview-html"
+        ></div>
+      );
+    }
+    return null;
+  };
 
   // Função para buscar os uploads
   const carregarUploads = async () => {
@@ -75,9 +75,12 @@ const RenderizarHtml = (upload) => {
       const textos = await buscarTextosSimples();
       const htmls = await buscarHtmls();
       
-      // Armazenar todos os uploads juntos
-      setUploads([...imagens, ...imagensLink, ...videos, ...videosLink, ...textos, ...htmls]);
-      console.log([...imagens, ...imagensLink, ...videos, ...videosLink, ...textos, ...htmls]);
+      const todosUploads = [...imagens, ...imagensLink, ...videos, ...videosLink, ...textos, ...htmls];
+
+      todosUploads.sort((a, b) => new Date(a.data) - new Date(b.data));
+
+      setUploads(todosUploads);
+
       
     } catch (error) {
       console.error("Erro ao carregar uploads", error);
@@ -127,7 +130,6 @@ const RenderizarHtml = (upload) => {
             {uploads.length > 0 ? (
               uploads.map((upload, index) => (
                 <div key={index} className="upload-preview">
-                  {index} {upload.titulo}
                   {RenderizarImagem(upload, index)}
                   {RenderizarTexto(upload)}
                   {RenderizarHtml(upload)}
