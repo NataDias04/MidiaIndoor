@@ -8,9 +8,11 @@ const create = async (request, response) =>{
 
         const file = request.file;
 
+        const caminhoCorrigido = file.path.replace(/\\/g, '/'); 
+
         const imagem = new Imagem({
             nome,
-            url: file.path,
+            url: caminhoCorrigido,
         })
 
         await imagem.save()

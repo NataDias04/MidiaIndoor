@@ -235,6 +235,7 @@ body::before {
   height: 90%;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20px;
   margin-left: 10px;
   overflow-y: scroll;
   overflow-x: hidden; 
@@ -246,12 +247,15 @@ body::before {
 }
 
 .upload-preview{
-  margin: 0;
   width: 200px;
   height: 200px;
   display: flex;
-  margin-top: 10px;
+  overflow: hidden; 
+  margin-top: 20px;
+  overflow: visible;
   margin-left: 10px;
+  border-radius: 5px;
+  position: relative;
   align-items: center;
   justify-content: center;
   background-color: white;
@@ -260,6 +264,29 @@ body::before {
 .upload-preview img,
 .upload-preview video {
 
-  max-width: 80%;
-  max-height: 80%;
+  width: 80%;
+  height: auto;
+  max-height: 90%;
+}
+
+.botao-apagar {
+  top: -8px;
+  right: -8px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  display: flex;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.botao-apagar:hover {
+  background-color: black;
 }

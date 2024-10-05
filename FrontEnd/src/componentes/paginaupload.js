@@ -36,13 +36,57 @@ const PaginaUpload = () => {
   // Função para carregar as imagens
   const RenderizarImagem = (upload, index) => {
     console.log(upload);
-    if (upload.url) {
-      return (
-        <img src={upload.url} alt={`upload-${index}`} className="preview-imagem" />
-      );
+
+    const extensao = upload.url ? upload.url.split('.').pop() : '';
+    const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
+
+    if (tiposDeImagem.includes(extensao.toLowerCase())) {
+        if (upload.url.startsWith('http://') || upload.url.startsWith('https://')) {
+            return (
+                <img src={upload.url} alt={`upload-${index}`} className="preview-imagem" />
+            );
+        } else {
+            return (
+                <img src={`http://localhost:5000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+            );
+        }
+    }
+
+    return null;
+  };
+
+
+   // Função para carregar os videos
+   const RenderizarVideo = (upload, index) => {
+    console.log(upload);
+
+    const extensao = upload.url ? upload.url.split('.').pop() : '';
+    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+
+    if (tiposDeVideo.includes(extensao)) {
+
+        if (upload.url.startsWith('http://') || upload.url.startsWith('https://')) {
+            return (
+                <video controls key={index} className="preview-video">
+                    <source src={upload.url} type={`video/${extensao}`} />
+                    Seu navegador não suporta a tag de vídeo.
+                </video>
+            );
+        } 
+
+        else {
+            return (
+                <video controls key={index} className="preview-video">
+                    <source src={`http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+                    Seu navegador não suporta a tag de vídeo.
+                </video>
+            );
+        }
     }
     return null;
   };
+
+
 
   // Função para carregar textos
   const RenderizarTexto = (upload) => {
@@ -130,7 +174,9 @@ const PaginaUpload = () => {
             {uploads.length > 0 ? (
               uploads.map((upload, index) => (
                 <div key={index} className="upload-preview">
+                  <button class="botao-apagar" >×</button>
                   {RenderizarImagem(upload, index)}
+                  {RenderizarVideo(upload, index)}
                   {RenderizarTexto(upload)}
                   {RenderizarHtml(upload)}
                 </div>
