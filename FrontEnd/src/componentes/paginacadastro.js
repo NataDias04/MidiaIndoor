@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import '../estilos/paginacadastro.css';
 
+import { useNavigate } from 'react-router-dom';
+
 function PaginaCadastro() {
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
+
+  const navigate = useNavigate();
+
+  const irParaLogin = () => {
+    navigate('/login');
+  };
 
   const validarCPF = (cpf) => {
     const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
@@ -88,7 +96,7 @@ function PaginaCadastro() {
         </form>
 
         <div className="opcoes-adicionais-cadastro">
-          <p>Já tem uma conta? <a href="#" className="login-cadastro">Faça login</a></p>
+          <p>Já tem uma conta? <a href="#" className="login-cadastro" onClick={irParaLogin}>Faça login</a></p>
         </div>
       </div>
     </div>
