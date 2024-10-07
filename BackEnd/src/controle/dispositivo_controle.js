@@ -3,15 +3,16 @@ import Dispositivo from '../modelos/dispositivo.js';
 // Criar um novo dispositivo
 const create = async (req, res) => {
   try {
-    const { nome, localizacao, playlist, status } = req.body;
+    const { nome, resolucao, playlist } = req.body;
 
+    // Criar novo dispositivo
     const novoDispositivo = new Dispositivo({
       nome,
-      localizacao,
-      playlist,
-      status
+      resolucao,
+      playlist // Playlist opcional
     });
 
+    // Salvar o dispositivo no banco de dados
     await novoDispositivo.save();
     res.status(201).json({ mensagem: 'Dispositivo criado com sucesso!', dispositivo: novoDispositivo });
   } catch (error) {
@@ -22,6 +23,7 @@ const create = async (req, res) => {
 // Buscar todos os dispositivos
 const findAll = async (req, res) => {
   try {
+    // Buscar todos os dispositivos e popular a playlist
     const dispositivos = await Dispositivo.find().populate('playlist');
     res.json(dispositivos);
   } catch (error) {
@@ -32,6 +34,7 @@ const findAll = async (req, res) => {
 // Buscar um dispositivo específico pelo ID
 const findOne = async (req, res) => {
   try {
+    // Buscar dispositivo pelo ID e popular a playlist
     const dispositivo = await Dispositivo.findById(req.params.id).populate('playlist');
     
     if (!dispositivo) {
@@ -47,11 +50,12 @@ const findOne = async (req, res) => {
 // Atualizar um dispositivo pelo ID
 const update = async (req, res) => {
   try {
-    const { nome, localizacao, playlist, status } = req.body;
+    const { nome, resolucao, playlist } = req.body;
 
+    // Atualizar os campos do dispositivo
     const dispositivoAtualizado = await Dispositivo.findByIdAndUpdate(
       req.params.id,
-      { nome, localizacao, playlist, status },
+      { nome, resolucao, playlist },
       { new: true, runValidators: true }
     );
 
@@ -68,6 +72,7 @@ const update = async (req, res) => {
 // Remover um dispositivo pelo ID
 const remove = async (req, res) => {
   try {
+    // Remover o dispositivo pelo ID
     const dispositivo = await Dispositivo.findByIdAndDelete(req.params.id);
 
     if (!dispositivo) {

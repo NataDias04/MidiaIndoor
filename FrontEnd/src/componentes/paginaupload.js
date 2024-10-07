@@ -86,12 +86,10 @@ const PaginaUpload = () => {
     return null;
   };
 
-
-
   // Função para carregar textos
-  const RenderizarTexto = (upload) => {
+  const RenderizarTexto = (upload, index) => {
     if (upload.conteudo) {
-      return <p className="preview-texto">{upload.conteudo}</p>;
+      return <p key={index} className="preview-texto">{upload.conteudo}</p>;
     }
     return null;
   };
@@ -131,7 +129,7 @@ const PaginaUpload = () => {
     }
   };
 
-  // Chamar a função de busca quando o componente carregar
+  // Chama a função de busca quando o componente carregar
   useEffect(() => {
     carregarUploads();
   }, []);
@@ -170,7 +168,7 @@ const PaginaUpload = () => {
 
         <div className='column2-upload'>
           <div className='previews-upload'>
-            {/* Renderizar os previews dos uploads */}
+            {/* Renderiza os previews dos uploads */}
             {uploads.length > 0 ? (
               uploads.map((upload, index) => (
                 <div key={index} className="upload-preview">
