@@ -25,13 +25,15 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
 
   const handleSave = async () => {
     try {
-      const dispositivoData = {
-        nome,
-        resolucao,
-        playlist: playlistId,
-      };
+      if (!resolucao) {
+        console.error('Erro: A resolução não pode estar vazia.');
+        setErro('A resolução não pode estar vazia.');
+        return;
+      }
 
-      const response = await salvarDispositivo(dispositivoData);
+      console.log('Dados a serem enviados:', { nome, resolucao });
+
+      const response = await salvarDispositivo(nome, resolucao);
       console.log('Dispositivo salvo com sucesso:', response);
       setErro('');
     } catch (error) {
@@ -64,31 +66,21 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
           </div>
 
           <div className="input-group">
-            <label htmlFor="playlistId">ID da Playlist</label>
-            <input
-              type="text"
-              id="playlistId"
-              placeholder="Insira o ID da playlist"
-              value={playlistId}
-              onChange={handlePlaylistIdChange}
-            />
+            <label htmlFor="resolucao">Resolução</label>
+            <select
+              id="resolucao"
+              value={resolucao}
+              onChange={handleResolucaoChange}
+            >
+              <option value="">Selecione uma resolução</option>
+              <option value="1920x1080">1920x1080 (Full HD)</option>
+              <option value="1280x720">1280x720 (HD)</option>
+              <option value="3840x2160">3840x2160 (4K UHD)</option>
+              <option value="2560x1440">2560x1440 (QHD)</option>
+              <option value="1366x768">1366x768 (HD Ready)</option>
+              {/* Adicionar mais opções conforme necessário */}
+            </select>
           </div>
-
-          <div className="input-group">
-                <label htmlFor="resolucao">Resolução</label>
-                <select
-                id="resolucao"
-                value={resolucao}
-                onChange={handleResolucaoChange}
-                >
-                <option value="1920x1080">1920x1080 (Full HD)</option>
-                <option value="1280x720">1280x720 (HD)</option>
-                <option value="3840x2160">3840x2160 (4K UHD)</option>
-                <option value="2560x1440">2560x1440 (QHD)</option>
-                <option value="1366x768">1366x768 (HD Ready)</option>
-                {/* Adicionar mais opções conforme necessário */}
-                </select>
-            </div>
 
           {erro && <p className="erro-mensagem">{erro}</p>}
 

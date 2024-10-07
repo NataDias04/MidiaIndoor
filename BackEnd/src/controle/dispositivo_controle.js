@@ -3,13 +3,12 @@ import Dispositivo from '../modelos/dispositivo.js';
 // Criar um novo dispositivo
 const create = async (req, res) => {
   try {
-    const { nome, resolucao, playlist } = req.body;
+    const { nome, resolucao } = req.body; // Remover playlist do corpo da requisição
 
     // Criar novo dispositivo
     const novoDispositivo = new Dispositivo({
       nome,
       resolucao,
-      playlist // Playlist opcional
     });
 
     // Salvar o dispositivo no banco de dados
@@ -23,8 +22,8 @@ const create = async (req, res) => {
 // Buscar todos os dispositivos
 const findAll = async (req, res) => {
   try {
-    // Buscar todos os dispositivos e popular a playlist
-    const dispositivos = await Dispositivo.find().populate('playlist');
+    // Buscar todos os dispositivos (remover populate da playlist)
+    const dispositivos = await Dispositivo.find();
     res.json(dispositivos);
   } catch (error) {
     res.status(500).json({ mensagem: 'Erro ao buscar dispositivos', erro: error.message });
@@ -34,8 +33,8 @@ const findAll = async (req, res) => {
 // Buscar um dispositivo específico pelo ID
 const findOne = async (req, res) => {
   try {
-    // Buscar dispositivo pelo ID e popular a playlist
-    const dispositivo = await Dispositivo.findById(req.params.id).populate('playlist');
+    // Buscar dispositivo pelo ID (remover populate da playlist)
+    const dispositivo = await Dispositivo.findById(req.params.id);
     
     if (!dispositivo) {
       return res.status(404).json({ mensagem: 'Dispositivo não encontrado' });
@@ -50,12 +49,12 @@ const findOne = async (req, res) => {
 // Atualizar um dispositivo pelo ID
 const update = async (req, res) => {
   try {
-    const { nome, resolucao, playlist } = req.body;
+    const { nome, resolucao } = req.body; // Remover playlist do corpo da requisição
 
     // Atualizar os campos do dispositivo
     const dispositivoAtualizado = await Dispositivo.findByIdAndUpdate(
       req.params.id,
-      { nome, resolucao, playlist },
+      { nome, resolucao },
       { new: true, runValidators: true }
     );
 
