@@ -1,16 +1,17 @@
 import VideoLink from '../modelos/video_link.js';
 
+
 const create = async (req, res) => {
   try {
-    const { name, link } = req.body;
+    const { nome, url } = req.body;
 
     if (!link) {
       return res.status(400).json({ mensagem: 'Nenhum link enviado' });
     }
 
     const videoLink = new VideoLink({
-      name,
-      link,
+      url,
+      nome,
     });
 
     await videoLink.save();

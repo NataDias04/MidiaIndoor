@@ -1,18 +1,21 @@
 import { response } from 'express'
 import Imagem from '../modelos/imagem.js'
 
-//import fs from 'fs'
+import fs from 'fs';
+import path from 'path';
 
 const create = async (request, response) =>{
     try {
 
-        const {name} = request.body;
+        const {nome} = request.body;
 
         const file = request.file;
 
+        const caminhoCorrigido = file.path.replace(/\\/g, '/'); 
+
         const imagem = new Imagem({
-            name,
-            src: file.path,
+            nome,
+            url: caminhoCorrigido,
         })
 
         await imagem.save()
@@ -29,6 +32,7 @@ const findAll = async (request, response) =>{
     try {
         
         const imagens = await Imagem.find();
+        response.status(200).json(imagens);
 
     } catch (error) {
 
@@ -40,6 +44,7 @@ const findOne = async (request, response) => {
     try {
 
         const imagem = await Imagem.findById(request.params.id);
+        response.status(200).json(imagem);
 
         if (!imagem) {
             return response.status(404).json({ message: "Imagem não encontrada" });
@@ -62,9 +67,8 @@ const remove = async (request, response) =>{
             return response.status(404).json({message: "imagem não encontrada"})
         }
 
-        fs.unlinkSync(imagem.src)
+        fs.unlinkSync(imagem.url)
 
-        //await imagem.remove()
         await Imagem.deleteOne({ _id: request.params.id });
 
         response.json({ message : "imagem revomida com sucesso"})
@@ -79,5 +83,4 @@ export default {
     remove,
     findOne,
     findAll,
-    // outras funções
   };

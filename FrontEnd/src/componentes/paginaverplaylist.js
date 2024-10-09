@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const PaginaUpload = () => {
 
-  const navigate = useNavigate(); // useNavigate é usado para redirecionar o usuário
+  const navigate = useNavigate();
 
   const irParaCentral = () => {
-    navigate('/central'); // Redireciona para a página de playlist
+    navigate('/central');
 };
 
   return (

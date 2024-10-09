@@ -3,7 +3,7 @@ import '../estilos/paginaplaylistlayout1.css'
 
 import {FaPlus} from 'react-icons/fa';
 
-import ModalPosicao1Layout from './modais/modal-posicao1-layout.js';
+import ModalPosicao1Layout from './modais/modal-posicao1-layout1.js';
 
 import { useNavigate } from 'react-router-dom';
 

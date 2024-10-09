@@ -2,21 +2,19 @@ import mongoose from 'mongoose';
 
 const PlaylistSchema = new mongoose.Schema({
   nome: { type: String, required: true },
-  midias: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Midia' // Referência para as mídias (imagens, vídeos, textos)
-  }],
-  layout: {
-    type: String, 
-    required: true,
-    enum: ['grid', 'fullscreen', 'carousel'] // Layouts disponíveis
-  },
+  descricao: { type: String },
   ordemMidias: [{
-    midia: { type: mongoose.Schema.Types.ObjectId, ref: 'Midia' },
-    posicao: { type: String, enum: ['top', 'bottom', 'left', 'right', 'center'] },
-    ordem: { type: Number }  // Definir a ordem no carrossel ou layout
-  }]
-}, { timestamps: true });
+    midia: { type: mongoose.Schema.Types.ObjectId, ref: 'Midia', required: true }, // Referência ao modelo Midia
+    posicao: { 
+      type: String, 
+      enum: ['top', 'bottom', 'left', 'right', 'center'], 
+      required: true 
+    }, // Posição da mídia
+    ordem: { type: Number, required: true }, // Ordem de exibição
+    tempo: { type: Number, required: true } // Tempo de exibição em segundos
+  }],
+  criadoEm: { type: Date, default: Date.now }
+});
 
 const Playlist = mongoose.model('Playlist', PlaylistSchema);
 export default Playlist;

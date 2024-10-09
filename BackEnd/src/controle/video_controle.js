@@ -4,7 +4,7 @@ import path from 'path';
 
 const create = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { nome } = req.body;
     const file = req.file;
 
     if (!file) {
@@ -12,8 +12,8 @@ const create = async (req, res) => {
     }
 
     const video = new Video({
-      name,
-      src: file.path,
+      nome,
+      url: file.path,
     });
 
     await video.save();
@@ -51,9 +51,8 @@ const remove = async (req, res) => {
       return res.status(404).json({ mensagem: 'Vídeo não encontrado' });
     }
 
-    // Excluir o arquivo físico
-    if (video.src && fs.existsSync(video.src)) {
-      fs.unlinkSync(video.src);
+    if (video.url && fs.existsSync(video.url)) {
+      fs.unlinkSync(video.url);
     }
 
     await Video.findByIdAndDelete(req.params.id);

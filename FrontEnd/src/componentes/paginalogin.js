@@ -10,6 +10,16 @@ function PaginaLogin() {
     console.log('Tentativa de login com:', email, senha);
   };
 
+  const navigate = useNavigate();
+
+  const irParaCentral = () => {
+    navigate('/central');
+};
+
+const irParaCadastro = () => {
+  navigate('/cadastro');
+};
+
   return (
     <div className="dashbord-login">
 
@@ -50,7 +60,7 @@ function PaginaLogin() {
 
         <div className="opcoes-adicionais-login">
           <a href="#" className="esqueceu-senha-login">Esqueceu a senha?</a>
-          <p>Não tem uma conta? <a href="#" className="registrar-login">Registre-se</a></p>
+          <p>Não tem uma conta? <a href="#" className="registrar-login" onClick={irParaCadastro}>Registre-se</a></p>
         </div>
       </div>
     </div>

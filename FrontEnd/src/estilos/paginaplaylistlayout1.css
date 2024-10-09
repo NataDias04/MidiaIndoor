@@ -75,8 +75,8 @@ body {
 }
 
 .borda1-layout1-layout1{
-    width: 1380px; /*base 385*/
-    height: 400px; /*base 160px*/
+    width: 1380px;
+    height: 400px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -87,8 +87,8 @@ body {
 }
 
 .borda2-layout1-layout1{
-    width: 125px; /*base 50*/
-    height: 400px; /*base 160px*/
+    width: 125px;
+    height: 400px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -100,8 +100,8 @@ body {
 }
 
 .borda3-layout1-layout1{
-    width: 1514px; /*base 438*/
-    height: 125px; /*base 50px*/
+    width: 1514px;
+    height: 125px;
     display: flex;
     margin-bottom: 10px;
     align-items: center;
@@ -157,15 +157,15 @@ body {
 }
 
 .midia-item {
-  width: 200px; /* Largura da div da mídia */
-  height: 200px; /* Altura da div da mídia */
+  width: 200px;
+  height: 200px;
   margin-left: 10px;
   margin-top: 10px;
   border-radius: 10px;
   background-color: white;
   display: flex;
-  flex-direction: column; /* Organiza os elementos verticalmente */
-  align-items: center;    /* Centraliza horizontalmente */
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   cursor: pointer;
 }
@@ -173,15 +173,15 @@ body {
 .midia-nome {
   font-size: 16px;
   font-weight: bold;
-  text-align: center; /* Centraliza o texto do nome */
-  margin-bottom: 10px; /* Espaçamento entre o nome e o campo de entrada */
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .campo-tempo {
   display: flex;
-  flex-direction: column; /* Organiza o label e o input verticalmente */
-  align-items: center;    /* Centraliza horizontalmente */
-  width: 100%; /* Garante que o label e o input fiquem alinhados */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .input-tempo {

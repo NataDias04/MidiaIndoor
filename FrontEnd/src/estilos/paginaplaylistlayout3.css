@@ -66,8 +66,8 @@ body {
 }
 
 .borda1-layout3-layout3{
-    width: 1380px; /*base 385*/
-    height: 400px; /*base 160px*/
+    width: 1380px;
+    height: 400px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -84,8 +84,8 @@ body {
 }
 
 .borda2-layout3-layout3{
-    width: 125px; /*base 50*/
-    height: 125px; /*base 50*/
+    width: 125px;
+    height: 125px;
     display: flex;
     margin-top: 25px;
     margin-right: 5px;
@@ -96,8 +96,8 @@ body {
 }
 
 .borda3-layout3-layout3{
-    width: 125px; /*base 50*/
-    height: 268px; /* base 104px*/
+    width: 125px;
+    height: 268px;
     display: flex;
     margin-top: 5px;
     margin-right: 5px;
@@ -113,8 +113,8 @@ body {
 }
 
 .borda4-layout3-layout3{
-    width: 125px; /*base 50*/
-    height: 125px; /*base 50px*/
+    width: 125px;
+    height: 125px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,7 +124,7 @@ body {
 
 .borda5-layout3-layout3{
     width: 1380px;
-    height: 125px; /*base 50px*/
+    height: 125px;
     display: flex;
     margin-left: 5px;
     align-items: center;

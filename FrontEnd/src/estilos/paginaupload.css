@@ -83,16 +83,17 @@ body::before {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.previews-upload{
-  width: 95%;
-  height: 90%;
-  margin-left: 10px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background-color: #d8cfc4;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.icon-container-upload {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagem-upload svg, .video-upload svg, .texto-upload svg {
+  width: 50px;
+  height: 50px;
+  color: #7EC8E3;
 }
 
 .botao-video-upload{
@@ -224,4 +225,67 @@ body::before {
 }
 .botao-modal-imagem, .botao-modal-video, .botao-modal-texto{
   margin-bottom: 20px;
+}
+
+.previews-upload{
+  gap: 10px;
+  width: 95%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden; 
+  justify-content: flex-start;
+  background-color: #d8cfc4;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-preview{
+  width: 200px;
+  height: 200px;
+  display: flex;
+  overflow: hidden; 
+  margin-top: 20px;
+  overflow: visible;
+  margin-left: 10px;
+  border-radius: 5px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.upload-preview img,
+.upload-preview video,
+.upload-preview iframe {
+
+  width: 80%;
+  height: auto;
+  max-height: 90%;
+}
+
+.botao-apagar {
+  top: -8px;
+  right: -8px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  display: flex;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.botao-apagar:hover {
+  background-color: black;
 }
