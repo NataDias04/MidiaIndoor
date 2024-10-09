@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import '../estilos/paginalogin.css';
 
-import { useNavigate } from 'react-router-dom';
-
 function PaginaLogin() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -57,7 +55,7 @@ const irParaCadastro = () => {
             />
           </div>
 
-          <button className={'button-entrar-login'}type="submit" onClick={irParaCentral}>Entrar</button>
+          <button className={'button-entrar-login'}type="submit">Entrar</button>
         </form>
 
         <div className="opcoes-adicionais-login">

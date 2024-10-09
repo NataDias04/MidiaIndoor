@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../estilos/paginaupload.css';
 import { salvarImagem, salvarImagemLink } from '../rotas/imagem';
 

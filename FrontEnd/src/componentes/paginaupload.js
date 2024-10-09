@@ -206,6 +206,7 @@ const PaginaUpload = () => {
             <div className="icon-container-upload">
               <FaRegImage />
             </div>
+
             <button className="botao-imagem-upload" onClick={abrirModalImagem}>arquivo</button>
             {modalImagemAberto && <ModalImagem fecharModal={carregarposmodalimagem} />}
           </div>
@@ -214,6 +215,7 @@ const PaginaUpload = () => {
             <div className="icon-container-upload">
               <FaRegPlayCircle />
             </div>
+
             <button className="botao-video-upload" onClick={abrirModalVideo}>arquivo</button>
             {modalVideoAberto && <ModalVideo fecharModal={carregarposmodalvideo} />}
           </div>
@@ -246,7 +248,7 @@ const PaginaUpload = () => {
           </div>
         </div>
       </div>
-
+             
       <div className="rodape-upload">
         <button className="botao-anterior-central" onClick={irParaCentral}>cancelar</button>
         <button className="botao-anterior-central" onClick={irParaCentral}>salvar</button>
