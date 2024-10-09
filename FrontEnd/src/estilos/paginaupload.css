@@ -262,7 +262,8 @@ body::before {
 }
 
 .upload-preview img,
-.upload-preview video {
+.upload-preview video,
+.upload-preview iframe {
 
   width: 80%;
   height: auto;

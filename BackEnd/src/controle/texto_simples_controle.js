@@ -1,5 +1,6 @@
 import Texto from '../modelos/texto_simples.js';
 
+
 // Criar novo texto
 const create = async (req, res) => {
   try {

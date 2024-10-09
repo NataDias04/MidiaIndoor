@@ -2,16 +2,30 @@ import React, { useState, useEffect } from 'react';
 import '../estilos/paginadispositivo.css';
 
 import ModalDispositivo from './modais/modal-dispositivo.js';
+import ModalEditarDispositivo from './modais/modal-editar-dispositivo.js';
 import { FaTv } from 'react-icons/fa';
-import { buscarDispositivos, deletarDispositivo } from './rotas/dispositivo.js'; // Funções para buscar e deletar dispositivos
+import { buscarDispositivos, deletarDispositivo } from './rotas/dispositivo.js';
 import { useNavigate } from 'react-router-dom';
 
 const PaginaDispositivo = () => {
   const [modalAberto, setModalAberto] = useState(false);
+  const [modalEditarAberto, setModalEditarAberto] = useState(false);
   const [dispositivos, setDispositivos] = useState([]);
+  const [dispositivoSelecionado, setDispositivoSelecionado] = useState(null);
 
   const abrirModalDispositivo = () => setModalAberto(true);
   const fecharModalDispositivo = () => setModalAberto(false);
+
+  const abrirModalEditar = (dispositivo) => {
+    setDispositivoSelecionado(dispositivo);
+    setModalEditarAberto(true);
+  };
+
+  const fecharModalEditar = () => {
+    setDispositivoSelecionado(null);
+    setModalEditarAberto(false);
+    carregarDispositivos();
+  };
 
   const navigate = useNavigate();
 
@@ -29,15 +43,24 @@ const PaginaDispositivo = () => {
     }
   };
 
-  // Função para apagar dispositivo
-  const apagarDispositivo = async (id) => {
+  const apagarDispositivo = async (dispositivo) =>{
     try {
-      await deletarDispositivo(id);
-      carregarDispositivos(); // Recarrega a lista após apagar
+      await deletarDispositivo(dispositivo._id);
+      carregarDispositivos();
     } catch (error) {
-      console.error("Erro ao apagar dispositivo", error);
+      console.error("Erro ao deletar dispositivo", error);
     }
   };
+
+  const carregarposmodalDispositivo = async () =>{
+    try {
+      fecharModalDispositivo();
+      carregarDispositivos();
+    } catch{
+
+    }
+  };
+
 
   // Carregar dispositivos quando o componente for montado
   useEffect(() => {
@@ -55,7 +78,7 @@ const PaginaDispositivo = () => {
               <FaTv />
             </div>
             <button className="botao-dispositivo" onClick={abrirModalDispositivo}>arquivo</button>
-            {modalAberto && <ModalDispositivo fecharModalDispositivo={fecharModalDispositivo} />}
+            {modalAberto && <ModalDispositivo fecharModalDispositivo={carregarposmodalDispositivo} />}
           </div>
         </div>
 
@@ -69,22 +92,17 @@ const PaginaDispositivo = () => {
                     <p>Nome: {dispositivo.nome}</p>
                     <p>Resolução: {dispositivo.resolucao}</p>
                   </div>
-                  <button 
-                    className="botao-apagar" 
-                    onClick={() => apagarDispositivo(dispositivo.id)}>
-                    ×
-                  </button>
-                  <button 
-                    className="botao-editar" 
-                    onClick={() => {/* Função para editar o dispositivo */}}>
-                    Editar
-                  </button>
+                  <button className="botao-apagar" onClick={() => apagarDispositivo(dispositivo)}>×</button>
+                  <button className="botao-editar" onClick={() => abrirModalEditar(dispositivo)}> Editar </button>
                 </div>
               ))
             ) : (
               <p>Nenhum dispositivo encontrado.</p>
             )}
           </div>
+          {modalEditarAberto && (
+            <ModalEditarDispositivo dispositivo={dispositivoSelecionado} fecharModal={fecharModalEditar} />
+          )}
         </div>
       </div>
 

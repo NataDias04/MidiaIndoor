@@ -85,9 +85,9 @@ export async function salvarDispositivo(nome, resolucao) { // Remover playlist d
   }
   
   // Função para deletar um dispositivo pelo ID
-  export async function deletarDispositivo(dispositivoId) {
+  export async function deletarDispositivo(id) {
     try {
-      const response = await fetch(`http://localhost:5000/dispositivo/${dispositivoId}`, {
+      const response = await fetch(`http://localhost:5000/dispositivo/${id}`, {
         method: 'DELETE',
       });
   

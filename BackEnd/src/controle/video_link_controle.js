@@ -1,5 +1,6 @@
 import VideoLink from '../modelos/video_link.js';
 
+
 const create = async (req, res) => {
   try {
     const { nome, url } = req.body;

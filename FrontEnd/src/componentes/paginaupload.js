@@ -55,26 +55,39 @@ const PaginaUpload = () => {
     return null;
   };
 
-
    // Função para carregar os videos
    const RenderizarVideo = (upload, index) => {
-    console.log(upload);
+      console.log(upload);
 
-    const extensao = upload.url ? upload.url.split('.').pop() : '';
-    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+      const extensao = upload.url ? upload.url.split('.').pop() : '';
+      const tiposDeVideo = ['mp4', 'webm', 'ogg'];
 
-    if (tiposDeVideo.includes(extensao)) {
+      // Regex para identificar links do YouTube
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
 
-        if (upload.url.startsWith('http://') || upload.url.startsWith('https://')) {
-            return (
-                <video controls key={index} className="preview-video">
-                    <source src={upload.url} type={`video/${extensao}`} />
-                    Seu navegador não suporta a tag de vídeo.
-                </video>
-            );
-        } 
-
-        else {
+      // Verifica se é um link do YouTube
+      if (youtubeRegex.test(upload.url)) {
+          const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
+          return (
+              <iframe
+                  key={index}
+                  className="preview-video"
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={`Video ${index}`}
+              ></iframe>
+          );
+      } else if (tiposDeVideo.includes(extensao)) {
+          if (upload.url.startsWith('http://') || upload.url.startsWith('https://')) {
+              return (
+                  <video controls key={index} className="preview-video">
+                      <source src={upload.url} type={`video/${extensao}`} />
+                      Seu navegador não suporta a tag de vídeo.
+                  </video>
+              );
+          } else {
             return (
                 <video controls key={index} className="preview-video">
                     <source src={`http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
@@ -83,6 +96,7 @@ const PaginaUpload = () => {
             );
         }
     }
+
     return null;
   };
 
@@ -129,6 +143,53 @@ const PaginaUpload = () => {
     }
   };
 
+  const deletarUpload = async (upload) => {
+    try {
+      if (upload.url && upload.url.startsWith('uploads')) {
+        if (upload.url.endsWith('.mp4') || upload.url.endsWith('.webm') || upload.url.endsWith('.ogg')) {
+          await deletarVideo(upload._id);
+        } else {
+          await deletarImagem(upload._id);
+        }
+      } 
+
+      else if (upload.url && (upload.url.startsWith('http://') || upload.url.startsWith('https://'))) {
+        if (upload.url.endsWith('.mp4') || upload.url.endsWith('.webm') || upload.url.endsWith('.ogg') || upload.url.includes('youtube.com/watch') || upload.url.includes('youtu.be')) {
+          await deletarVideoLink(upload._id);
+        } else {
+          await deletarImagemLink(upload._id);
+        }
+      } 
+
+      else if (upload.conteudo) {
+        await deletarTextoSimples(upload._id);
+      } 
+
+      else if (upload.conteudoHtml) {
+        await deletarHtml(upload._id);
+      }
+
+      carregarUploads();
+    } catch (erro) {
+      console.error('Erro ao deletar upload:', erro);
+    }
+  };
+
+  const carregarposmodalimagem = async () => {
+    fecharModalImagem();
+    carregarUploads();
+  };
+
+  const carregarposmodaltexto = async () => {
+    fecharModalTexto();
+    carregarUploads();
+  };
+
+  const carregarposmodalvideo = async () => {
+    fecharModalVideo();
+    carregarUploads();
+  };
+
   // Chama a função de busca quando o componente carregar
   useEffect(() => {
     carregarUploads();
@@ -146,7 +207,7 @@ const PaginaUpload = () => {
               <FaRegImage />
             </div>
             <button className="botao-imagem-upload" onClick={abrirModalImagem}>arquivo</button>
-            {modalImagemAberto && <ModalImagem fecharModal={fecharModalImagem} />}
+            {modalImagemAberto && <ModalImagem fecharModal={carregarposmodalimagem} />}
           </div>
 
           <div className='video-upload'>
@@ -154,7 +215,7 @@ const PaginaUpload = () => {
               <FaRegPlayCircle />
             </div>
             <button className="botao-video-upload" onClick={abrirModalVideo}>arquivo</button>
-            {modalVideoAberto && <ModalVideo fecharModal={fecharModalVideo} />}
+            {modalVideoAberto && <ModalVideo fecharModal={carregarposmodalvideo} />}
           </div>
 
           <div className='texto-upload'>
@@ -162,7 +223,7 @@ const PaginaUpload = () => {
               <FaRegFileAlt />
             </div>
             <button className="botao-texto-upload" onClick={abrirModalTexto}>arquivo</button>
-            {modalTextoAberto && <ModalTexto fecharModal={fecharModalTexto} />}
+            {modalTextoAberto && <ModalTexto fecharModal={carregarposmodaltexto} />}
           </div>
         </div>
 
@@ -172,7 +233,7 @@ const PaginaUpload = () => {
             {uploads.length > 0 ? (
               uploads.map((upload, index) => (
                 <div key={index} className="upload-preview">
-                  <button class="botao-apagar" >×</button>
+                  <button className="botao-apagar"  onClick={() => deletarUpload(upload)} >×</button>
                   {RenderizarImagem(upload, index)}
                   {RenderizarVideo(upload, index)}
                   {RenderizarTexto(upload)}
