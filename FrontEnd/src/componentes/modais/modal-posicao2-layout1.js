@@ -1,9 +1,9 @@
 import React , { useState } from 'react';
-import '../../estilos/paginaplaylistlayout1.css';
+import '../../estilos/paginaplaylistlayout2.css';
 
 import { FaPlus } from 'react-icons/fa';
 
-const ModalPosicao1Layout1 = ({ fecharModal }) => {
+const ModalPosicao2Layout1 = ({ fecharModal }) => {
 
   const [midias, setMidias] = useState([]); // Lista para armazenar as mídias
 
@@ -19,13 +19,13 @@ const ModalPosicao1Layout1 = ({ fecharModal }) => {
   return (
     <>
       <div className="overlay"></div>
-      <div className="modal-posicao1-layou1">
-        <div className="modal2-posicao1-layou1">
+      <div className="modal-posicao2-layou1">
+        <div className="modal2-posicao2-layou1">
             <h2>Conteúdo do Modal Imagem</h2>
 
-              <div className='ordem-playlist-posicao1-layou1'>
+              <div className='ordem-playlist-posicao2-layou1'>
 
-                <div className='adicionar-midia-posicao1-layou1'>
+                <div className='adicionar-midia-posicao2-layou1'>
                   <FaPlus onClick={adicionarMidia} />
                 </div>
 
@@ -64,4 +64,4 @@ const ModalPosicao1Layout1 = ({ fecharModal }) => {
   );
 };
 
-export default ModalPosicao1Layout1;
+export default ModalPosicao2Layout1;

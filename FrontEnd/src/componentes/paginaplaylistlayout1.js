@@ -3,16 +3,22 @@ import '../estilos/paginaplaylistlayout1.css'
 
 import {FaPlus} from 'react-icons/fa';
 
-import ModalPosicao1Layout from './modais/modal-posicao1-layout1.js';
+import ModalPosicao1Layout1 from './modais/modal-posicao1-layout1.js';
+
+import ModalPosicao2Layout1 from './modais/modal-posicao2-layout1.js';
 
 import { useNavigate } from 'react-router-dom';
 
 const PaginaPlaylistLayout1 = () => {
 
-  const [modalPosicao1LayoutAberto, setModalPosicao1LayoutAberto] = useState(false);
+  const [ModalPosicao1Layout1Aberto, setModalPosicao1Layout1Aberto] = useState(false);
+  const [ModalPosicao2Layout1Aberto, setModalPosicao2Layout1Aberto] = useState(false);
 
-  const abrirModalPosicao1Layout = () => setModalPosicao1LayoutAberto(true);
-  const fecharModalPosicao1Layout = () => setModalPosicao1LayoutAberto(false);
+  const abrirModalPosicao1Layout1 = () => setModalPosicao1Layout1Aberto(true);
+  const fecharModalPosicao1Layout1 = () => setModalPosicao1Layout1Aberto(false);
+
+  const abrirModalPosicao2Layout1 = () => setModalPosicao2Layout1Aberto(true);
+  const fecharModalPosicao2Layout1 = () => setModalPosicao2Layout1Aberto(false);
 
   const navigate = useNavigate();
 
@@ -33,12 +39,15 @@ const PaginaPlaylistLayout1 = () => {
 
         <div className='linha-layout1-layout1'>
             <div className='borda1-layout1-layout1'> 
-              <FaPlus onClick={abrirModalPosicao1Layout} />
+              <FaPlus onClick={abrirModalPosicao1Layout1} />
 
-              {modalPosicao1LayoutAberto && <ModalPosicao1Layout fecharModal={fecharModalPosicao1Layout} />}
+              {ModalPosicao1Layout1Aberto && <ModalPosicao1Layout1 fecharModal={fecharModalPosicao1Layout1} />}
             </div>
             <div className='borda2-layout1-layout1'> 
-              <FaPlus/>
+              <FaPlus onClick={abrirModalPosicao2Layout1} />
+
+            {ModalPosicao2Layout1Aberto && <ModalPosicao2Layout1 fecharModal={fecharModalPosicao2Layout1} />}
+
             </div>
         </div>
         <div className='linha-layout1-layout1'>

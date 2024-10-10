@@ -130,6 +130,7 @@ export async function buscarImagensLink() {
     console.error('Erro ao buscar links de imagens:', erro);
     throw erro;
   }
+}
 
 export default {
   salvarImagem,

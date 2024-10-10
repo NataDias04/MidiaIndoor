@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../estilos/paginadispositivo.css';
 import { salvarDispositivo } from '../rotas/dispositivo.js';
+import { buscarPlaylists } from '../rotas/playlist.js';
 
 const ModalDispositivo = ({ fecharModalDispositivo }) => {
   const [nome, setNome] = useState('');
   const [resolucao, setResolucao] = useState('');
-  const [playlistId, setPlaylistId] = useState('');
   const [erro, setErro] = useState('');
+
+  const [playlists, setPlaylists] = useState([]);
+  const [playlistsSelecionadas, setPlaylistsSelecionadas] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleNomeChange = (e) => {
     setNome(e.target.value);
@@ -18,27 +23,46 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
     setErro('');
   };
 
-  const handlePlaylistIdChange = (e) => {
-    setPlaylistId(e.target.value);
-    setErro('');
-  };
-
   const handleSave = async () => {
     try {
       if (!resolucao) {
-        console.error('Erro: A resolução não pode estar vazia.');
         setErro('A resolução não pode estar vazia.');
         return;
       }
 
-      console.log('Dados a serem enviados:', { nome, resolucao });
-
-      const response = await salvarDispositivo(nome, resolucao);
+      const response = await salvarDispositivo(nome, resolucao, playlistsSelecionadas);
       console.log('Dispositivo salvo com sucesso:', response);
       setErro('');
     } catch (error) {
       console.error('Erro ao salvar dispositivo:', error);
       setErro('Erro ao salvar dispositivo. Tente novamente.');
+    }
+  };
+
+  const fetchPlaylists = async () => {
+    setLoading(true);
+    setError(null); // Limpa qualquer erro anterior
+    try {
+      const data = await buscarPlaylists();
+      setPlaylists(data);
+    } catch (erro) {
+      setError('Erro ao buscar playlists');
+      console.error(erro);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlaylists();
+  }, []);
+
+  const handlePlaylistChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setPlaylistsSelecionadas([...playlistsSelecionadas, value]);
+    } else {
+      setPlaylistsSelecionadas(playlistsSelecionadas.filter(id => id !== value));
     }
   };
 
@@ -78,8 +102,32 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
               <option value="3840x2160">3840x2160 (4K UHD)</option>
               <option value="2560x1440">2560x1440 (QHD)</option>
               <option value="1366x768">1366x768 (HD Ready)</option>
-              {/* Adicionar mais opções conforme necessário */}
             </select>
+          </div>
+
+          <div className="input-group">
+            <label>Playlists Disponíveis</label>
+            {loading ? (
+              <p>Carregando playlists...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              playlists.length > 0 ? (
+                playlists.map((playlist) => (
+                  <div key={playlist._id} className="checkbox-group">
+                    <input
+                      type="checkbox"
+                      id={`playlist-${playlist._id}`}
+                      value={playlist._id}
+                      onChange={handlePlaylistChange}
+                    />
+                    <label htmlFor={`playlist-${playlist._id}`}>{playlist.nome}</label>
+                  </div>
+                ))
+              ) : (
+                <p>Nenhuma playlist encontrada.</p>
+              )
+            )}
           </div>
 
           {erro && <p className="erro-mensagem">{erro}</p>}

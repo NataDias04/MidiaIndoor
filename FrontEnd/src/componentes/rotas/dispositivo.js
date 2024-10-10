@@ -1,19 +1,19 @@
 // Função para criar um novo dispositivo
-export async function salvarDispositivo(nome, resolucao) { // Remover playlist da assinatura
+  export async function salvarDispositivo(nome, resolucao, playlists) {
     try {
       const response = await fetch('http://localhost:5000/dispositivo/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nome, resolucao }), // Remover playlist do corpo da requisição
+        body: JSON.stringify({ nome, resolucao, playlists }),
       });
-  
+
       if (!response.ok) {
-        const erroDetalhado = await response.json(); // Obtenha o erro detalhado
+        const erroDetalhado = await response.json();
         throw new Error(`Erro ao criar dispositivo: ${erroDetalhado.mensagem}`);
       }
-  
+
       const resultado = await response.json();
       return resultado;
     } catch (erro) {
@@ -62,14 +62,14 @@ export async function salvarDispositivo(nome, resolucao) { // Remover playlist d
   }
   
   // Função para atualizar um dispositivo pelo ID
-  export async function atualizarDispositivo(dispositivoId, nome, resolucao) { // Remover playlist da assinatura
+  export async function atualizarDispositivo(dispositivoId, nome, resolucao, playlists) {
     try {
       const response = await fetch(`http://localhost:5000/dispositivo/${dispositivoId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nome, resolucao }), // Remover playlist do corpo da requisição
+        body: JSON.stringify({ nome, resolucao, playlists }),
       });
   
       if (!response.ok) {

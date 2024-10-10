@@ -91,6 +91,14 @@ const PaginaDispositivo = () => {
                   <div className="info-dispositivo">
                     <p>Nome: {dispositivo.nome}</p>
                     <p>Resolução: {dispositivo.resolucao}</p>
+                    <p>Playlists conectadas:</p>
+                    <ul>
+                      {dispositivo.playlists && dispositivo.playlists.length > 0 && (
+                        dispositivo.playlists.map((playlist) => (
+                          <li key={playlist._id}>{playlist.nome}</li>
+                        ))
+                      )}
+                    </ul>
                   </div>
                   <button className="botao-apagar" onClick={() => apagarDispositivo(dispositivo)}>×</button>
                   <button className="botao-editar" onClick={() => abrirModalEditar(dispositivo)}> Editar </button>

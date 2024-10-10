@@ -4,7 +4,7 @@ import PlaylistControle from '../controle/playlist_controle.js';
 const router = express.Router();
 
 // Rota para criar uma nova playlist
-router.post('/adicionar', PlaylistControle.create);
+router.post('/', PlaylistControle.create);
 
 // Rota para buscar todas as playlists
 router.get('/', PlaylistControle.findAll);
