@@ -4,7 +4,8 @@ const PlaylistSchema = new mongoose.Schema({
   nome: { type: String, required: true },
   descricao: { type: String },
   ordemMidias: [{
-    midia: { type: mongoose.Schema.Types.ObjectId, ref: 'Midia', required: true }, // Referência ao modelo Midia
+    nome: String,
+    url: String,
     posicao: { 
       type: String, 
       enum: ['top', 'bottom', 'left', 'right', 'center'], 

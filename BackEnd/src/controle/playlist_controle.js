@@ -27,8 +27,7 @@ const create = async (req, res) => {
 // Buscar todas as playlists
 const findAll = async (req, res) => {
   try {
-    // Buscar todas as playlists e popular as mídias associadas
-    const playlists = await Playlist.find().populate('ordemMidias.midia');
+    const playlists = await Playlist.find(); // Agora sem populate
     res.json(playlists);
   } catch (error) {
     res.status(500).json({ mensagem: 'Erro ao buscar playlists', erro: error.message });
