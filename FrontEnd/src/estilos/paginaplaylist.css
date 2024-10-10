@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    }
+  
+  body::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    content: '';
+    position: fixed;
+    filter: blur(8px);
+    background-color: #d8cfc4;
+  }
+  
+  .dashbord-playlist {
+    margin: 20px;
+    display: flex; 
+    border-radius: 10px;
+    flex-direction: column;
+    width: calc(100vw - 40px);
+    background-color: white;
+    height: calc(100vh - 40px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cabecalho-playlist, .rodape-playlist {
+    height: 75px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cabecalho-playlist{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .rodape-playlist{
+    margin-top: auto;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PaginaUpload from './componentes/paginaupload.js';
 import PaginaLayout from './componentes/paginalayout.js';
 import PaginaLogin from './componentes/paginalogin.js';
@@ -11,8 +10,6 @@ import PaginaVerPlaylist from './componentes/paginaverplaylist.js';
 import PaginaDispositivo from './componentes/paginadispositivo.js';
 import Paginacadastro from './componentes/paginacadastro.js'
 
-// <PaginaLayout />
-// <PaginaUpload />
 // <PaginaLogin/>
 // <Paginaplaylistlayout1/>
 // <Paginaplaylistlayout2/>
@@ -23,9 +20,10 @@ import Paginacadastro from './componentes/paginacadastro.js'
 
 const App = () => {
   return (
-      <Router>
+    <div className="App">
 
-      <div className="App">
+      
+        <PaginaUpload/>{/* Renderizando a página de upload */} 
 
         <Routes>
           <Route path="/" element={<PaginaLogin />} />
@@ -41,8 +39,7 @@ const App = () => {
           <Route path="/verplaylist" element={<PaginaVerPlaylist/>} />
         </Routes>
 
-      </div>
-      </Router>
+    </div>
   );
 };
 
