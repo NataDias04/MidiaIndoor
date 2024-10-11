@@ -11,7 +11,7 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, midiaSelecionada }) 
   const fecharModalEscolherUpload = () => setModalEscolherUploadAberto(false);
 
   const carregarUploadsEscolhidos = () => {
-    setUploadsSelecionados(prevUploads => [...prevUploads, ...novosUploads]);
+    setUploadsSelecionados(prevUploads => [...prevUploads]);
     fecharModalEscolherUpload(); // Fecha o modal após carregar os uploads
   };
 
