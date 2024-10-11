@@ -88,7 +88,7 @@ export async function salvarHtml(conteudo, titulo) {
   // Função para deletar conteúdo HTML
   export async function deletarHtml(htmlId) {
     try {
-      const response = await fetch(`/api/html/${htmlId}`, {
+      const response = await fetch(`http://localhost:5000/html${htmlId}`, {
         method: 'DELETE',
       });
   
