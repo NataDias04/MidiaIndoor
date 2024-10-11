@@ -23,7 +23,7 @@ const create = async (request, response) =>{
         response.json({imagem, msg: "mensagem salva com sucesso!"})
         
     } catch (error) {
-        
+        console.error("Erro ao salvar imagem:", error);
         response.status(500).json({message: "erro ao salvar imagem"})
     }
 }

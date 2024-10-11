@@ -140,4 +140,3 @@ export default {
   deletarImagem,
   deletarImagemLink,
 };
-

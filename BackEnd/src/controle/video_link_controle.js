@@ -5,7 +5,7 @@ const create = async (req, res) => {
   try {
     const { nome, url } = req.body;
 
-    if (!link) {
+    if (!url) {
       return res.status(400).json({ mensagem: 'Nenhum link enviado' });
     }
 

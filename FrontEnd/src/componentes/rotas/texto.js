@@ -24,7 +24,7 @@ export async function salvarTextoSimples(conteudo) {
   // Função para deletar texto simples
   export async function deletarTextoSimples(textoId) {
     try {
-      const response = await fetch(`/api/texto_simples/${textoId}`, {
+      const response = await fetch(`http://localhost:5000/texto/${textoId}`, {
         method: 'DELETE',
       });
   
@@ -61,10 +61,11 @@ export async function buscarTextosSimples() {
   }
 }
 
+
 // Função para salvar conteúdo HTML
 export async function salvarHtml(conteudo, titulo) {
     try {
-      const response = await fetch('/api/html', {
+      const response = await fetch('http://localhost:5000/html', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ export async function salvarHtml(conteudo, titulo) {
   // Função para deletar conteúdo HTML
   export async function deletarHtml(htmlId) {
     try {
-      const response = await fetch(`http://localhost:5000/html${htmlId}`, {
+      const response = await fetch(`http://localhost:5000/html/${htmlId}`, {
         method: 'DELETE',
       });
   

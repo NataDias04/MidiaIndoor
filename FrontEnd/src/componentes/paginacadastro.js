@@ -97,7 +97,6 @@ function PaginaCadastro() {
 
         <div className="opcoes-adicionais-cadastro">
           <p>Já tem uma conta? <a href="#" className="login-cadastro" onClick={irParaLogin}>Faça login</a></p>
-
         </div>
       </div>
     </div>
