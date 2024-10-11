@@ -41,7 +41,7 @@ const PaginaPlaylistLayout1 = () => {
             <div className='borda1-layout1-layout1'> 
               <FaPlus onClick={abrirModalPosicao1Layout1} />
 
-              {ModalPosicao1Layout1Aberto && <ModalPosicao1Layout1 fecharModal={fecharModalPosicao1Layout1} />}
+              {ModalPosicao1Layout1Aberto && <ModalPosicao1Layout1 fecharModalPosicao1Layout1={fecharModalPosicao1Layout1} />}
             </div>
             <div className='borda2-layout1-layout1'> 
               <FaPlus onClick={abrirModalPosicao2Layout1} />

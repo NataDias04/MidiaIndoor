@@ -145,6 +145,8 @@ const PaginaUpload = () => {
 
   const deletarUpload = async (upload) => {
     try {
+      console.log(upload)
+
       if (upload.url && upload.url.startsWith('uploads')) {
         if (upload.url.endsWith('.mp4') || upload.url.endsWith('.webm') || upload.url.endsWith('.ogg')) {
           await deletarVideo(upload._id);
@@ -161,13 +163,13 @@ const PaginaUpload = () => {
         }
       } 
 
+      else if (upload.conteudo && upload.conteudo.includes('<html>')) {
+        await deletarHtml(upload._id);
+      } 
+
       else if (upload.conteudo) {
         await deletarTextoSimples(upload._id);
       } 
-
-      else if (upload.conteudoHtml) {
-        await deletarHtml(upload._id);
-      }
 
       carregarUploads();
     } catch (erro) {

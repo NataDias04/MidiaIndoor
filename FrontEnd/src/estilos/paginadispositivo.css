@@ -126,7 +126,7 @@ body::before {
 
 .dispositivo-preview{
   width: 200px;
-  height: 200px;
+  height: 300px;
   display: flex;
   overflow: hidden; 
   margin-top: 20px;
