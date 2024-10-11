@@ -5,7 +5,7 @@ import { buscarVideos, buscarVideosLink } from '../rotas/video.js';
 
 import '../../estilos/modal-escolher-upload.css'
 
-const ModalEscolherUpload = ({ fecharModalEscolherUpload }) => {
+const ModalEscolherUpload = ({ fecharModalEscolherUpload, adicionarUpload }) => {
   const [uploads, setUploads] = useState([]);
   const [uploadSelecionado, setUploadSelecionado] = useState(null);
 
@@ -83,17 +83,11 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload }) => {
     setUploadSelecionado(upload);
   };
 
-  // Função para salvar o upload selecionado e fechar o modal
-  const handleSalvarUpload = () => {
-    if (uploadSelecionado) {
-      const modal = document.querySelector('.modal-posicao1-layou1');
-      if (modal) {
-        modal.setAttribute('data-upload-id', uploadSelecionado._id); // Carrega o ID do upload selecionado
-      }
-      fecharModalEscolherUpload(); // Fecha o modal
-    } else {
-      alert('Nenhum upload selecionado');
-    }
+  const handleSalvarUpload = (upload) => {
+    console.log('ID do upload selecionado:', upload._id);
+    console.log('ID do upload selecionado:', upload.url);
+    adicionarUpload(upload._id);
+    fecharModalEscolherUpload();
   };
 
   useEffect(() => {
@@ -125,7 +119,7 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload }) => {
             )}
           </div>
           <div className="botao-container">
-            <button className='botao-salvar-upload' onClick={handleSalvarUpload}>Salvar</button>
+            <button className='botao-salvar-upload' onClick={() => handleSalvarUpload(uploadSelecionado)}>Salvar</button>
             <button className='botao-modal-upload' onClick={fecharModalEscolherUpload}>Fechar</button>
           </div>
         </div>

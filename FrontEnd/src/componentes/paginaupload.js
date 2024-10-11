@@ -110,7 +110,7 @@ const PaginaUpload = () => {
 
   // Função para carregar HTML
   const RenderizarHtml = (upload) => {
-    if (upload.conteudoHtml) {
+    if (upload.conteudo && upload.conteudo.includes('<html>')) {
       return (
         <div
           dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}

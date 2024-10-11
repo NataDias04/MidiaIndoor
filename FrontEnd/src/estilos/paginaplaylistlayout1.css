@@ -204,3 +204,20 @@ body {
   justify-content: center;
   background-color: white;
 }
+
+.lista-uploads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.upload-preview {
+  width: 200px;
+  height: 200px;
+}
+
+.preview-imagem,
+.preview-video {
+  width: 80%;
+  height: 80%;
+}
