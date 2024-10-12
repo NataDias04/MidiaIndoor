@@ -213,8 +213,9 @@ body {
 
 .upload-preview-layout1 {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   width: 200px;
   height: 250px;
   background-color: white;
@@ -242,4 +243,10 @@ body {
   height: auto;
   object-fit: cover;
   margin-top: 20px;
+}
+
+.tempo{
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
 }

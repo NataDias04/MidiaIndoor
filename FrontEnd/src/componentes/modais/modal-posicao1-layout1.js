@@ -5,6 +5,7 @@ import ModalEscolherUpload from './modal-escolher-upload.js';
 const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
   const [modalEscolherUploadAberto, setModalEscolherUploadAberto] = useState(false);
   const [uploadsSelecionados, setUploadsSelecionados] = useState([]); // Lista para armazenar uploads selecionados
+  const [tempos, setTempos] = useState({}); // Estado para armazenar os tempos
 
   const abrirModalEscolherUpload = () => setModalEscolherUploadAberto(true);
   const fecharModalEscolherUpload = () => setModalEscolherUploadAberto(false);
@@ -15,7 +16,18 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
 
   const handleSalvarUpload = () => {
     console.log('Fechando o modal posicao1');
+    console.log('Tempos dos uploads:', tempos); // Exibe os tempos no console
     fecharModalPosicao1Layout1();
+  };
+
+  const handleTempoChange = (index, value) => {
+    // Verifica se o valor é um número inteiro
+    if (/^\d*$/.test(value)) { // Regex para permitir apenas números inteiros
+      console.log(`Mudando o tempo do upload ${index + 1} para: ${value}`); // Log para verificar a mudança
+      setTempos((prev) => ({ ...prev, [index]: value })); // Atualiza o tempo para o índice correspondente
+    } else {
+      console.log(`Valor inválido para o upload ${index + 1}: ${value}`); // Log para valores inválidos
+    }
   };
 
   const RenderizarImagem = (upload, index) => {
@@ -90,26 +102,33 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
               </div>
             </div>
 
-              {/* Renderiza a lista de uploads selecionados */}
+            {/* Renderiza a lista de uploads selecionados */}
             <div className="lista-uploads">
-            {uploadsSelecionados.map((upload, index) => {
-              console.log(upload, index + 1); // Mostra o upload atual
-              console.log('Uploads selecionados:', uploadsSelecionados);
-              return (
-                <div key={`${upload._id}-${index}`} className="upload-preview-layout1">
-                  {RenderizarImagem(upload, index)}
-                  {RenderizarVideo(upload, index)}
-                  {RenderizarTexto(upload, index)}
-                  {RenderizarHtml(upload)}
-                  {console.log("Ordem:" , index + 1)}
-                  {console.log("Posição:" , "top")}
-                </div>
-              );
-            })}
+              {uploadsSelecionados.map((upload, index) => {
+                console.log(upload, index + 1); // Mostra o upload atual
+                console.log('Uploads selecionados:', uploadsSelecionados);
+                return (
+                  <div key={`${upload._id}-${index}`} className="upload-preview-layout1">
+                    {RenderizarImagem(upload, index)}
+                    {RenderizarVideo(upload, index)}
+                    {RenderizarTexto(upload, index)}
+                    {RenderizarHtml(upload)}
+                    {console.log("ID:" , upload._id)}
+                    {console.log("Ordem:" , index + 1)}
+                    {console.log("Posição:" , "centro")}
+                    <input
+                      className="tempo"
+                      type="text"
+                      placeholder="tempo(seg)"
+                      value={tempos[index] || ''} // Define o valor do input a partir do estado
+                      onChange={(e) => handleTempoChange(index, e.target.value)} // Atualiza o estado ao mudar o valor
+                    />
+                    {console.log("Tempo:" , tempos[index] || '')}
+                  </div>
+                );
+              })}
             </div>
           </div>
-
-          
 
           <div className="botao-container">
             <button className='botao-salvar-upload' onClick={handleSalvarUpload}>Salvar</button>

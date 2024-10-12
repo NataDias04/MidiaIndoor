@@ -8,7 +8,7 @@ const PlaylistSchema = new mongoose.Schema({
     url: String,
     posicao: { 
       type: String, 
-      enum: ['top', 'bottom', 'left', 'right', 'center'], 
+      enum: ['centro', 'direita', 'dreita-cima', 'esquerda','baixo','baixo-esquerda'], 
       required: true 
     }, // Posição da mídia
     ordem: { type: Number, required: true }, // Ordem de exibição
