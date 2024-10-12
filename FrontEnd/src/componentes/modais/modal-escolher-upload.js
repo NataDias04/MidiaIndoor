@@ -84,9 +84,8 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload, adicionarUpload }) => 
   };
 
   const handleSalvarUpload = (upload) => {
-    console.log('ID do upload selecionado:', upload._id);
-    console.log('ID do upload selecionado:', upload.url);
-    adicionarUpload(upload._id);
+    console.log('ID do upload selecionado:', upload);
+    adicionarUpload(upload);
     fecharModalEscolherUpload();
   };
 

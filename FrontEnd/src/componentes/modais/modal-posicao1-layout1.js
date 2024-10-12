@@ -18,6 +18,57 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
     fecharModalPosicao1Layout1();
   };
 
+  const RenderizarImagem = (upload, index) => {
+    const extensao = upload.url ? upload.url.split('.').pop() : '';
+    const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
+
+    if (tiposDeImagem.includes(extensao.toLowerCase())) {
+      return (
+        <img src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+      );
+    }
+    return null;
+  };
+
+  const RenderizarVideo = (upload, index) => {
+    const extensao = upload.url ? upload.url.split('.').pop() : '';
+    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+
+    if (youtubeRegex.test(upload.url)) {
+      const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
+      return (
+        <iframe
+          key={index}
+          className="preview-video"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title={`Video ${index}`}
+        ></iframe>
+      );
+    } else if (tiposDeVideo.includes(extensao)) {
+      return (
+        <video controls key={index} className="preview-video">
+          <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+          Seu navegador não suporta a tag de vídeo.
+        </video>
+      );
+    }
+    return null;
+  };
+
+  const RenderizarTexto = (upload, index) => {
+    return upload.conteudo ? <p key={index} className="preview-texto">{upload.conteudo}</p> : null;
+  };
+
+  const RenderizarHtml = (upload) => {
+    return upload.conteudoHtml ? (
+      <div dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }} className="preview-html"></div>
+    ) : null;
+  };
+
   return (
     <>
       <div className="overlay"></div>
@@ -46,9 +97,11 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
               console.log('Uploads selecionados:', uploadsSelecionados);
               return (
                 <div key={`${upload._id}-${index}`} className="upload-preview">
-                  {"Id: "}{upload} {/* O texto se quebrará em linha automaticamente se o CSS estiver configurado corretamente */}
-    {" | "} {/* Separador opcional */}
-    {"Ordem: "}{index + 1}
+                  {RenderizarImagem(upload, index)}
+                  {RenderizarVideo(upload, index)}
+                  {RenderizarTexto(upload, index)}
+                  {RenderizarHtml(upload)}
+                  {console.log("Ordem:" , index + 1)}
                 </div>
               );
             })}
