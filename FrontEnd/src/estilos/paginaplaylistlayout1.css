@@ -192,7 +192,7 @@ body {
 
 .adicionar-upload-posicao1-layou1{
   width: 200px;
-  height: 200px;
+  height: 250px;
   display: flex;
   overflow: hidden; 
   margin-top: 20px;
@@ -211,13 +211,35 @@ body {
   gap: 10px;
 }
 
-.upload-preview {
+.upload-preview-layout1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   width: 200px;
-  height: 200px;
+  height: 250px;
+  background-color: white;
+  margin-top: 20px;
+  margin-left: 10px;
+  border-radius: 5px;
 }
 
-.preview-imagem,
-.preview-video {
+.upload-preview-layout1 img{
   width: 80%;
-  height: 80%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.upload-preview-layout1 video {
+  width: 80%;
+  height: 60%;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.upload-preview-layout1 iframe {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 20px;
 }

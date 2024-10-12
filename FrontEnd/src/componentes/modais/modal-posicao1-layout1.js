@@ -96,12 +96,13 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
               console.log(upload, index + 1); // Mostra o upload atual
               console.log('Uploads selecionados:', uploadsSelecionados);
               return (
-                <div key={`${upload._id}-${index}`} className="upload-preview">
+                <div key={`${upload._id}-${index}`} className="upload-preview-layout1">
                   {RenderizarImagem(upload, index)}
                   {RenderizarVideo(upload, index)}
                   {RenderizarTexto(upload, index)}
                   {RenderizarHtml(upload)}
                   {console.log("Ordem:" , index + 1)}
+                  {console.log("Posição:" , "top")}
                 </div>
               );
             })}

@@ -104,7 +104,7 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload, adicionarUpload }) => 
               uploads.map((upload, index) => (
                 <div
                   key={index}
-                  className={`upload-preview ${uploadSelecionado === upload ? 'selecionado' : ''}`}
+                  className={`escolher-upload-preview ${uploadSelecionado === upload ? 'selecionado' : ''}`}
                   onClick={() => handleSelecionarUpload(upload)}
                 >
                   {RenderizarImagem(upload, index)}
