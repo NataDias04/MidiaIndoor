@@ -63,14 +63,14 @@ export async function buscarTextosSimples() {
 
 
 // Função para salvar conteúdo HTML
-export async function salvarHtml(conteudo, titulo) {
+export async function salvarHtml(conteudo, nome) {
     try {
       const response = await fetch('http://localhost:5000/html', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ conteudo,  titulo})
+        body: JSON.stringify({ conteudo: conteudo, nome })
       });
   
       if (!response.ok) {

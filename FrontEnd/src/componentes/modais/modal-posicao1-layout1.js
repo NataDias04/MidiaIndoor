@@ -1,34 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import ModalEscolherUpload from './modal-escolher-upload.js';
 
-const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
+const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSelecionados}) => {
   const [modalEscolherUploadAberto, setModalEscolherUploadAberto] = useState(false);
-  const [uploadsSelecionados, setUploadsSelecionados] = useState([]); // Lista para armazenar uploads selecionados
-  const [tempos, setTempos] = useState({}); // Estado para armazenar os tempos
+  const [uploadsSelecionados, setUploadsSelecionados] = useState([]);
+  const [tempos, setTempos] = useState({});
+  const [minhaListaRequisicoes, setMinhaListaRequisicoes] = useState([]);
 
   const abrirModalEscolherUpload = () => setModalEscolherUploadAberto(true);
   const fecharModalEscolherUpload = () => setModalEscolherUploadAberto(false);
 
   const adicionarUpload = (upload) => {
-    setUploadsSelecionados((prev) => [...prev, upload]); // Adiciona o upload à lista
+    setUploadsSelecionados((prev) => [...prev, upload]);
   };
 
   const handleSalvarUpload = () => {
     console.log('Fechando o modal posicao1');
-    console.log('Tempos dos uploads:', tempos); // Exibe os tempos no console
+    console.log('Tempos dos uploads:', tempos);
+    atualizarUploadsSelecionados(minhaListaRequisicoes);
+    
     fecharModalPosicao1Layout1();
   };
 
   const handleTempoChange = (index, value) => {
-    // Verifica se o valor é um número inteiro
-    if (/^\d*$/.test(value)) { // Regex para permitir apenas números inteiros
-      console.log(`Mudando o tempo do upload ${index + 1} para: ${value}`); // Log para verificar a mudança
-      setTempos((prev) => ({ ...prev, [index]: value })); // Atualiza o tempo para o índice correspondente
+    if (/^\d*$/.test(value)) {
+      console.log(`Mudando o tempo do upload ${index + 1} para: ${value}`);
+      setTempos((prev) => ({ ...prev, [index]: value }));
     } else {
-      console.log(`Valor inválido para o upload ${index + 1}: ${value}`); // Log para valores inválidos
+      console.log(`Valor inválido para o upload ${index + 1}: ${value}`);
     }
   };
+
+  // Mover a lógica para adicionar requisições para um useEffect
+  useEffect(() => {
+    const novasRequisicoes = uploadsSelecionados.map((upload, index) => ({
+      midia: upload._id,
+      tempo: tempos[index] || '',
+      ordem: index + 1,
+      posicao: "centro",
+    }));
+    console.log("Novas requisições:", novasRequisicoes);
+    setMinhaListaRequisicoes(novasRequisicoes);
+  }, [uploadsSelecionados, tempos]);
 
   const RenderizarImagem = (upload, index) => {
     const extensao = upload.url ? upload.url.split('.').pop() : '';
@@ -81,6 +95,26 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
     ) : null;
   };
 
+  const urlimagem = (upload) => {
+    if (upload && upload.url) {
+      const isImage = upload.url.endsWith('.jpg') || 
+                      upload.url.endsWith('.jpeg') || 
+                      upload.url.endsWith('.png') || 
+                      upload.url.endsWith('.gif') || 
+                      upload.url.endsWith('.bmp') || 
+                      upload.url.endsWith('.svg') || 
+                      upload.url.endsWith('.webp');
+
+      return isImage;
+    } else {
+      const conteudo = upload.conteudo;
+      console.log('Conteúdo do upload:', conteudo);
+      const isHtml = conteudo && /<[^>]+>/.test(conteudo);
+
+      return isHtml;
+    }
+  };
+
   return (
     <>
       <div className="overlay"></div>
@@ -92,38 +126,41 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1 }) => {
             <div className='adicionar-upload-posicao1-layou1'>
               <div className="icon-container-dispositivo">
                 <FaPlus onClick={abrirModalEscolherUpload} />
-                {/* Passar a função adicionarUpload para o ModalEscolherUpload */}
                 {modalEscolherUploadAberto && (
                   <ModalEscolherUpload 
                     fecharModalEscolherUpload={fecharModalEscolherUpload}
-                    adicionarUpload={adicionarUpload} // Passando a função
+                    adicionarUpload={adicionarUpload}
                   />
                 )}
               </div>
             </div>
 
-            {/* Renderiza a lista de uploads selecionados */}
             <div className="lista-uploads">
               {uploadsSelecionados.map((upload, index) => {
-                console.log(upload, index + 1); // Mostra o upload atual
+                console.log(upload, index + 1);
                 console.log('Uploads selecionados:', uploadsSelecionados);
+                const tempo = tempos[index] || '';
                 return (
                   <div key={`${upload._id}-${index}`} className="upload-preview-layout1">
                     {RenderizarImagem(upload, index)}
                     {RenderizarVideo(upload, index)}
                     {RenderizarTexto(upload, index)}
                     {RenderizarHtml(upload)}
-                    {console.log("ID:" , upload._id)}
-                    {console.log("Ordem:" , index + 1)}
-                    {console.log("Posição:" , "centro")}
-                    <input
-                      className="tempo"
-                      type="text"
-                      placeholder="tempo(seg)"
-                      value={tempos[index] || ''} // Define o valor do input a partir do estado
-                      onChange={(e) => handleTempoChange(index, e.target.value)} // Atualiza o estado ao mudar o valor
-                    />
-                    {console.log("Tempo:" , tempos[index] || '')}
+                    {console.log("ID:", upload._id)}
+                    {console.log("Ordem:", index + 1)}
+                    {console.log("Posição:", "centro")}
+                    {urlimagem(upload) && (
+                      <input
+                        className="tempo"
+                        type="text"
+                        placeholder="tempo(seg)"
+                        value={tempos[index] || ''}
+                        onChange={(e) => handleTempoChange(index, e.target.value)}
+                      />
+                    )}
+
+                    {console.log("Tempo:", tempos[index] || '')}
+                    {console.log("lista",minhaListaRequisicoes)}
                   </div>
                 );
               })}

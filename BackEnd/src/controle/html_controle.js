@@ -13,18 +13,20 @@ const create = async (req, res) => {
   try {
     const { conteudo, nome } = req.body;
 
+    console.log('Nome recebido:', req.body.nome);
+
     if (!conteudo) {
       return res.status(400).json({ mensagem: 'Nenhum conteúdo HTML enviado' });
     }
 
     // Decodificar o conteúdo HTML antes de salvar
-    const conteudoDecodificado = he.decode(conteudo);
+    const conteudoDecodificado = he.decode(conteudo).replace(/<\/?p[^>]*>/g, '');
 
-    const novoHtml = new Html({ conteudo: conteudoDecodificado, nome });
+    const novoHtml = new Html({ nome, conteudo: conteudoDecodificado });
     await novoHtml.save();
 
     const uploadsDir = path.join(__dirname, '..', '..', 'uploads');
-    const filePath = path.join(uploadsDir, `${nome || 'conteudo'}.html`);
+    const filePath = path.join(uploadsDir, `${nome}.html`);
 
     fs.writeFile(filePath, conteudoDecodificado, (error) => {
       if (error) {
@@ -61,7 +63,6 @@ const findOne = async (req, res) => {
   }
 };
 
-// Remover um conteúdo HTML
 const remove = async (req, res) => {
   try {
     const html = await Html.findById(req.params.id);
@@ -69,8 +70,25 @@ const remove = async (req, res) => {
       return res.status(404).json({ mensagem: 'Conteúdo HTML não encontrado' });
     }
 
-    await Html.findByIdAndDelete(req.params.id);
-    res.json({ mensagem: 'Conteúdo HTML removido com sucesso' });
+    // Definindo o caminho do arquivo que será removido
+    const uploadsDir = path.join(__dirname, '..', '..', 'uploads');
+    const filePath = path.join(uploadsDir, `${html.nome}.html`); // Assume que o nome é o campo que você salvou
+
+    // Remover o arquivo HTML da pasta uploads
+    fs.unlink(filePath, (error) => {
+      if (error) {
+        console.error('Erro ao deletar o arquivo HTML:', error);
+        return res.status(500).json({ mensagem: 'Erro ao deletar o arquivo HTML', erro: error.message });
+      }
+      // Se o arquivo foi removido com sucesso, então removemos do banco de dados
+      Html.findByIdAndDelete(req.params.id)
+        .then(() => {
+          res.json({ mensagem: 'Conteúdo HTML removido com sucesso' });
+        })
+        .catch((deleteError) => {
+          res.status(500).json({ mensagem: 'Erro ao excluir conteúdo HTML do banco de dados', erro: deleteError.message });
+        });
+    });
   } catch (error) {
     res.status(500).json({ mensagem: 'Erro ao excluir conteúdo HTML', erro: error.message });
   }

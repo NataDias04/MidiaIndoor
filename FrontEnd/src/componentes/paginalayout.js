@@ -22,10 +22,12 @@ const PaginaLayout = () => {
     const irParaCentral = () => {
         navigate('/central');
     };
+
+
   
     return(
         <div className="dashbord-layout">
-            <div className="cabecalho-layout">Dashboard</div>
+            <div className="cabecalho-layout"></div>
             <div className='secao-layout'>
                 <div className='layout1-layout'>
                     <div className='background-layout1-layout'>

@@ -12,6 +12,8 @@ import { buscarImagens, buscarImagensLink, deletarImagem, deletarImagemLink } fr
 import { buscarTextosSimples, buscarHtmls, deletarTextoSimples, deletarHtml } from './rotas/texto.js';
 import { buscarVideos, buscarVideosLink, deletarVideo, deletarVideoLink } from './rotas/video.js';
 
+import parse from 'html-react-parser';
+
 const PaginaUpload = () => {
   const [modalImagemAberto, setModalImagemAberto] = useState(false);
   const [modalVideoAberto, setModalVideoAberto] = useState(false);
@@ -110,17 +112,16 @@ const PaginaUpload = () => {
 
   // Função para carregar HTML
   const RenderizarHtml = (upload) => {
-    if (upload.conteudo && upload.conteudo.includes('<html>')) {
+    if (upload.conteudo) {
       return (
-        <div
-          dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
-          className="preview-html"
-        ></div>
+        <div className="preview-html">
+          {parse(upload.conteudo)}
+        </div>
       );
     }
     return null;
   };
-
+  
   // Função para buscar os uploads
   const carregarUploads = async () => {
     try {
@@ -163,7 +164,7 @@ const PaginaUpload = () => {
         }
       } 
 
-      else if (upload.conteudo && upload.conteudo.includes('<html>')) {
+      else if (upload.conteudo && upload.conteudo.includes('<html>') && upload.conteudo.includes('<!DOCTYPE')) {
         await deletarHtml(upload._id);
       } 
 
