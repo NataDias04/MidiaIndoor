@@ -27,3 +27,5 @@ Exibição de Canais de TV:
 Exibição de Canais de TV: o sistema integrará streams de TV, possibilitando a exibição de canais de TV diretamente nas telas do consultório. Isso oferecerá uma forma de entretenimento e informação contínua para os pacientes.
 
 Interface do TV Box: o TV Box terá uma interface web acessível por meio de um navegador integrado, permitindo aos administradores selecionar e acionar a mídia desejada para exibição. O TV Box estará conectado às telas do consultório e funcionará como um ponto de controle físico para o sistema multimídia.
+
+salve
