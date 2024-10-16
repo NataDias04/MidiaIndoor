@@ -13,6 +13,6 @@ router.get('/', PlaylistControle.findAll);
 router.get('/:id', PlaylistControle.findOne);
 
 // Rota para excluir uma playlist pelo ID
-router.delete('/excluir/:id', PlaylistControle.remove);
+router.delete('/:id', PlaylistControle.remove);
 
 export default router;

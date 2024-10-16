@@ -39,9 +39,29 @@ export async function buscarPlaylists() {
       throw erro;
     }
   }
+
+// Função para deletar uma playlist
+export async function deletarPlaylist(playlistId) {
+  try {
+    const response = await fetch(`http://localhost:5000/playlist/${playlistId}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro ao deletar a playlist');
+    }
+
+    const resultado = await response.json();
+    return resultado;
+  } catch (erro) {
+    console.error(erro);
+    throw erro;
+  }
+}
   
 
   export default {
     criarPlaylist,
     buscarPlaylists,
+    deletarPlaylist,
   };

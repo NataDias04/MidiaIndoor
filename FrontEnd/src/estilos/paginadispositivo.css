@@ -167,3 +167,25 @@ body::before {
   align-items: center;
   justify-content: flex-end;
 }
+
+.botao-apagar:hover {
+  background-color: black;
+}
+
+.botao-apagar {
+  top: -8px;
+  right: -8px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  display: flex;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+}
