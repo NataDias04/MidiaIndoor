@@ -61,6 +61,28 @@ export async function buscarTextosSimples() {
   }
 }
 
+// Função para buscar um texto simples pelo ID
+export const buscarTextoSimples = async (textoId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/texto/${textoId}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar texto simples: ${errorMessage}`);
+    }
+
+    const textoSimples = await response.json();
+    console.log('Texto simples buscado com sucesso:', textoSimples);
+    return textoSimples; 
+  } catch (erro) {
+    console.error('Erro ao buscar texto simples:', erro);
+    throw erro;
+  }
+};
+
+
 
 // Função para salvar conteúdo HTML
 export async function salvarHtml(conteudo, nome) {
@@ -126,6 +148,27 @@ export async function buscarHtmls() {
   }
 }
 
+// Função para buscar um conteúdo HTML pelo ID
+export const buscarHtml = async (htmlId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/html/${htmlId}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar conteúdo HTML: ${errorMessage}`);
+    }
+
+    const html = await response.json();
+    console.log('Conteúdo HTML buscado com sucesso:', html);
+    return html;
+  } catch (erro) {
+    console.error('Erro ao buscar conteúdo HTML:', erro);
+    throw erro;
+  }
+};
+
     export default {
         salvarTextoSimples,
         salvarHtml,
@@ -133,4 +176,6 @@ export async function buscarHtmls() {
         buscarTextosSimples,
         deletarHtml,
         buscarHtmls,
+        buscarHtml,
+        buscarTextoSimples,
       };
