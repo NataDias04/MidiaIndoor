@@ -55,6 +55,12 @@ const PaginaPlaylistLayout1 = () => {
 
   const handleSalvarPlaylist = () => {
     criarPlaylist(PlaylistName,uploadsSelecionados);
+    localStorage.clear();
+    irParaCentral();
+  };
+
+  const handlecancelar = () =>{
+    localStorage.clear();
     irParaCentral();
   };
 
@@ -102,7 +108,7 @@ const PaginaPlaylistLayout1 = () => {
       </div>
       
       <div className="rodape-playlist-layout1">
-        <button className='' onClick={irParaLayout}>cancelar</button>
+        <button className='' onClick={handlecancelar}>cancelar</button>
         <button className='' onClick={handleSalvarPlaylist}>salvar</button>
       </div>
       

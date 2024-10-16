@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import ModalEscolherUpload from './modal-escolher-upload.js';
 
+import { deletarImagem, deletarImagemLink } from '../rotas/imagem.js';
+import { deletarTextoSimples, deletarHtml } from '../rotas/texto.js';
+import { deletarVideo, deletarVideoLink } from '../rotas/video.js';
+
 const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSelecionados }) => {
   const [modalEscolherUploadAberto, setModalEscolherUploadAberto] = useState(false);
   const [uploadsSelecionados, setUploadsSelecionados] = useState([]);
@@ -107,6 +111,22 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
       <div dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }} className="preview-html"></div>
     ) : null;
   };
+  
+  const ApagarUploadSelecionado = (upload) => {
+    try {
+      console.log('Removendo upload localmente:', upload);
+  
+      // Filtra a lista, removendo o item com o ID correspondente
+      const novaLista = uploadsSelecionados.filter((u) => u._id !== upload._id);
+  
+      // Atualiza o estado com a nova lista filtrada
+      setUploadsSelecionados(novaLista);
+      
+      console.log('Upload removido da lista:', novaLista);
+    } catch (erro) {
+      console.error('Erro ao remover upload da lista:', erro);
+    }
+  };
 
   return (
     <>
@@ -138,8 +158,15 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
                 console.log(upload, index + 1);
                 console.log('Uploads selecionados:', uploadsSelecionados);
                 const tempo = tempos[index] || '';
+                
                 return (
                   <div key={`${upload._id}-${index}`} className="upload-preview-layout1">
+                    <button
+                      className="botao-apagar"
+                      onClick={() => ApagarUploadSelecionado(upload)}
+                    >
+                      ×
+                    </button>
                     {RenderizarImagem(upload, index)}
                     {RenderizarVideo(upload, index)}
                     {RenderizarTexto(upload, index)}
@@ -154,8 +181,10 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
                       value={tempos[index] || ''}
                       onChange={(e) => handleTempoChange(index, e.target.value)}
                     />
+                    
                   </div>
                 );
+
               })}
             </div>
           </div>
