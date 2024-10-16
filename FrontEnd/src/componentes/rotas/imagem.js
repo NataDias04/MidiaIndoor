@@ -65,6 +65,28 @@ export async function buscarImagens() {
   }
 }
 
+// Função para buscar uma imagem pelo ID
+export async function buscarImagem(imagemId) {
+  try {
+    const response = await fetch(`http://localhost:5000/imagem/${imagemId}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar a imagem: ${errorMessage}`);
+    }
+
+    const imagem = await response.json();
+    console.log('Imagem buscada com sucesso:', imagem);
+    return imagem; // Retorna a imagem encontrada
+  } catch (erro) {
+    console.error('Erro ao buscar imagem:', erro);
+    throw erro;
+  }
+}
+
+
 // Função para salvar link de imagem
 export const salvarImagemLink = async (nome, url) => {
   try {
@@ -132,6 +154,27 @@ export async function buscarImagensLink() {
   }
 }
 
+// Função para buscar um link de imagem pelo ID
+export async function buscarImagemLink(imagemLinkId) {
+  try {
+    const response = await fetch(`http://localhost:5000/imagem_link/${imagemLinkId}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Erro ao buscar o link da imagem: ${errorMessage}`);
+    }
+
+    const imagemLink = await response.json();
+    console.log('Link da imagem buscado com sucesso:', imagemLink);
+    return imagemLink; // Retorna o link da imagem encontrado
+  } catch (erro) {
+    console.error('Erro ao buscar link da imagem:', erro);
+    throw erro;
+  }
+}
+
 export default {
   salvarImagem,
   salvarImagemLink,
@@ -139,4 +182,6 @@ export default {
   buscarImagensLink,
   deletarImagem,
   deletarImagemLink,
+  buscarImagemLink,
+  buscarImagem,
 };

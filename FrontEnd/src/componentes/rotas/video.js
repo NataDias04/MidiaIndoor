@@ -62,6 +62,25 @@ export const buscarVideos = async () => {
   }
 };
 
+// Função para buscar um vídeo pelo ID
+export const buscarVideo = async (videoId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/video/${videoId}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro ao buscar vídeo');
+    }
+
+    const video = await response.json();
+    return video;
+  } catch (error) {
+    console.error('Erro ao buscar vídeo:', error.message);
+    throw error;
+  }
+};
+
 // Define a função salvarVideoLink
 export const salvarVideoLink = async (nome, url) => {
 
@@ -125,6 +144,24 @@ export const buscarVideosLink = async () => {
   }
 };
 
+// Função para buscar um único vídeo por link
+export const buscarVideoLink = async (videolinkId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/video_link/${videolinkId}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro ao buscar o vídeo por link');
+    }
+
+    const videoLink = await response.json();
+    return videoLink;
+  } catch (error) {
+    console.error('Erro ao buscar vídeo por link:', error.message);
+    throw error;
+  }
+};
 
 export default {
   salvarVideo,
@@ -133,4 +170,6 @@ export default {
   salvarVideoLink,
   deletarVideoLink,
   buscarVideosLink,
+  buscarVideo,
+  buscarVideoLink,
 };
