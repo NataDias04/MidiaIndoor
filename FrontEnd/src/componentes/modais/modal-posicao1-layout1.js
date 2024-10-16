@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import ModalEscolherUpload from './modal-escolher-upload.js';
 
-const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSelecionados}) => {
+const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSelecionados }) => {
   const [modalEscolherUploadAberto, setModalEscolherUploadAberto] = useState(false);
   const [uploadsSelecionados, setUploadsSelecionados] = useState([]);
   const [tempos, setTempos] = useState({});
@@ -32,7 +32,6 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     }
   };
 
-  // Mover a lógica para adicionar requisições para um useEffect
   useEffect(() => {
     const novasRequisicoes = uploadsSelecionados.map((upload, index) => ({
       midia: upload._id,
@@ -42,7 +41,21 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     }));
     console.log("Novas requisições:", novasRequisicoes);
     setMinhaListaRequisicoes(novasRequisicoes);
+
+    // Salva os uploads selecionados no localStorage
+    if (uploadsSelecionados.length > 0) {
+      localStorage.setItem('uploadsSelecionados', JSON.stringify(uploadsSelecionados));
+    }
+
   }, [uploadsSelecionados, tempos]);
+
+  // Recupera os uploads salvos no localStorage ao montar o componente
+  useEffect(() => {
+    const uploadsSalvos = localStorage.getItem('uploadsSelecionados');
+    if (uploadsSalvos) {
+      setUploadsSelecionados(JSON.parse(uploadsSalvos));
+    }
+  }, []);
 
   const RenderizarImagem = (upload, index) => {
     const extensao = upload.url ? upload.url.split('.').pop() : '';
@@ -95,28 +108,13 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     ) : null;
   };
 
-  const urlimagem = (upload) => {
-    if (upload && upload.url) {
-      const isImage = upload.url.endsWith('.jpg') || 
-                      upload.url.endsWith('.jpeg') || 
-                      upload.url.endsWith('.png') || 
-                      upload.url.endsWith('.gif') || 
-                      upload.url.endsWith('.bmp') || 
-                      upload.url.endsWith('.svg') || 
-                      upload.url.endsWith('.webp');
-
-      return isImage;
-    } else {
-      const conteudo = upload.conteudo;
-      console.log('Conteúdo do upload:', conteudo);
-      const isHtml = conteudo && /<[^>]+>/.test(conteudo);
-
-      return isHtml;
-    }
-  };
-
   return (
     <>
+      <div className='previews'>
+        {minhaListaRequisicoes.map((imagem) => (
+          <img key={imagem.midia} src={`url_da_imagem/${imagem.midia}`} alt="Preview" />
+        ))}
+      </div>
       <div className="overlay"></div>
       <div className="modal-posicao1-layou1">
         <div className="modal2-posicao1-layou1">
@@ -149,18 +147,13 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
                     {console.log("ID:", upload._id)}
                     {console.log("Ordem:", index + 1)}
                     {console.log("Posição:", "centro")}
-                    {urlimagem(upload) && (
-                      <input
-                        className="tempo"
-                        type="text"
-                        placeholder="tempo(seg)"
-                        value={tempos[index] || ''}
-                        onChange={(e) => handleTempoChange(index, e.target.value)}
-                      />
-                    )}
-
-                    {console.log("Tempo:", tempos[index] || '')}
-                    {console.log("lista",minhaListaRequisicoes)}
+                    <input
+                      className="tempo"
+                      type="text"
+                      placeholder="tempo(seg)"
+                      value={tempos[index] || ''}
+                      onChange={(e) => handleTempoChange(index, e.target.value)}
+                    />
                   </div>
                 );
               })}
