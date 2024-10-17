@@ -17,6 +17,13 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
 
   const adicionarUpload = (upload) => {
     setUploadsSelecionados((prev) => [...prev, upload]);
+  
+    // Verifica se o upload é um vídeo e define o tempo como 0
+    const extensao = upload.url ? upload.url.split('.').pop() : '';
+    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+    if (tiposDeVideo.includes(extensao.toLowerCase())) {
+      setTempos((prev) => ({ ...prev, [uploadsSelecionados.length]: '0' }));
+    }
   };
 
   const handleSalvarUpload = () => {
@@ -51,6 +58,10 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
       localStorage.setItem('uploadsSelecionados', JSON.stringify(uploadsSelecionados));
     }
 
+    if (Object.keys(tempos).length > 0) {
+      localStorage.setItem('temposUploads', JSON.stringify(tempos));
+    }
+
   }, [uploadsSelecionados, tempos]);
 
   // Recupera os uploads salvos no localStorage ao montar o componente
@@ -58,6 +69,10 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     const uploadsSalvos = localStorage.getItem('uploadsSelecionados');
     if (uploadsSalvos) {
       setUploadsSelecionados(JSON.parse(uploadsSalvos));
+    }
+    const temposSalvos = localStorage.getItem('temposUploads');
+    if (temposSalvos) {
+      setTempos(JSON.parse(temposSalvos));
     }
   }, []);
 
@@ -180,6 +195,7 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
                       placeholder="tempo(seg)"
                       value={tempos[index] || ''}
                       onChange={(e) => handleTempoChange(index, e.target.value)}
+                      disabled={RenderizarVideo(upload, index) !== null}
                     />
                     
                   </div>

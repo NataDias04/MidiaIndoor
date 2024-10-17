@@ -190,25 +190,10 @@ body::before {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.playlist-item{
-  width: 20px;
-  height: 20px;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-/* Estilo do botão de remover */
-.playlist-item button {
-  background-color: transparent;
-  border: 1px solid #007bff;
-  color: #007bff;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.playlist-item button:hover {
-  background-color: #007bff;
-  color: white;
+.dispositivo-item{
+  width: 100px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

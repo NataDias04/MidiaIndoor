@@ -147,7 +147,7 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
             {playlistsSelecionadas.map((id) => {
               const playlist = playlists.find((p) => p._id === id);
               return (
-                <div key={id} className="playlist-item">
+                <div key={id} className="dispositivo-item">
                   <span>{playlist?.nome || 'Playlist desconhecida'}</span>
                   <button onClick={() => handleRemovePlaylist(id)}>Remover</button>
                 </div>
