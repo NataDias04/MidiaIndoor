@@ -1,3 +1,4 @@
+/* Reset básico */
 body {
     margin: 0;
     padding: 0;
@@ -21,7 +22,8 @@ body::before {
     background-color: #d8cfc4;
   }
 
-.dashbord-login {
+/* Container principal */
+.player-dashbord-login {
     padding: 20px;
     display: flex;
     align-items: center;
@@ -31,18 +33,20 @@ body::before {
     height: calc(100vh - 200px);
 }
 
-.logo-login {
+/* Logo */
+.player-logo-login {
     text-align: center;
     margin-bottom: 30px;
 }
 
-.logo-login h1 {
+.player-logo-login h1 {
     color: #7EC8E3;
     font-size: 2.5rem;
     font-weight: bold;
 }
 
-.formulario-login {
+/* Formulário */
+.player-formulario-login {
     width: 300px;
     padding: 20px;
     border-radius: 10px;
@@ -50,13 +54,14 @@ body::before {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.formulario-login h2 {
+.player-formulario-login h2 {
     color: #333;
     text-align: center;
     margin-bottom: 20px;
 }
 
-.grupo-formulario-login {
+/* Grupo de inputs */
+.player-grupo-formulario-login {
     margin-bottom: 15px;
 }
 
@@ -69,7 +74,8 @@ input[type="password"] {
     border: 1px solid #ddd;
 }
 
-.button-entrar-login {
+/* Botão de login */
+.player-button-entrar-login {
     width: 97%;
     border: none;
     padding: 10px;
@@ -81,28 +87,33 @@ input[type="password"] {
     transition: background-color 0.3s;
 }
 
-.button-entrar-login :hover {
-    background-color: #7EC8E3;
+
+.player-button-entrar-login:hover {
+    background-color: #6BB5D6;
 }
 
-.opcoes-adicionais-login {
+/* Opções adicionais */
+.player-opcoes-adicionais-login {
     margin-top: 20px;
     text-align: center;
 }
 
-.esqueceu-senha-login,
-.registrar-login {
+.player-esqueceu-senha-login,
+.player-registrar-login {
     color: #7EC8E3;
     text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
     font-size: 14px;
 }
 
-.esqueceu-senha-login:hover,
-.registrar-login:hover {
+.player-esqueceu-senha-login:hover,
+.player-registrar-login:hover {
     text-decoration: underline;
 }
 
-.opcoes-adicionais-login p {
+.player-opcoes-adicionais-login p {
     color: #666;
     font-size: 14px;
     margin-top: 10px;
