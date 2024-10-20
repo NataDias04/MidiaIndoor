@@ -61,8 +61,21 @@ const irParaCadastro = () => {
         </form>
 
         <div className="opcoes-adicionais-login">
-          <a href="#" className="esqueceu-senha-login">Esqueceu a senha?</a>
-          <p>Não tem uma conta? <a href="#" className="registrar-login" onClick={irParaCadastro}>Registre-se</a></p>
+          <button
+            className="esqueceu-senha-login"
+            onClick={() => alert('Funcionalidade não implementada')}
+          >
+            Esqueceu a senha?
+          </button>
+          <p>
+            Não tem uma conta?{' '}
+            <button
+              className="registrar-login"
+              onClick={irParaCadastro}
+            >
+              Registre-se
+            </button>
+          </p>
         </div>
       </div>
     </div>

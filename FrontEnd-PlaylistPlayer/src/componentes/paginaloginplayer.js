@@ -1,36 +1,40 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../estilos/paginaloginplayer.css';
+
+import { useNavigate } from 'react-router-dom';
 
 function PaginaLogin() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const navigate = useNavigate();
 
-  // Lida com o envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Tentativa de login com:', email, senha);
   };
 
-  // Funções de navegação
+  const navigate = useNavigate();
+
   const irParaCentral = () => {
     navigate('/central');
-  };
+};
 
-  const irParaCadastro = () => {
-    navigate('/cadastro');
-  };
+const irParaCadastro = () => {
+  navigate('/cadastro');
+};
 
   return (
     <div className="player-dashbord-login">
+
       <div className="player-formulario-login">
+
         <div className="player-logo-login">
           <h1>GNHD TV</h1>
         </div>
+        
 
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
+
           <div className="player-grupo-formulario-login">
             <input
               type="email"
@@ -53,13 +57,7 @@ function PaginaLogin() {
             />
           </div>
 
-          <button
-            className="player-button-entrar-login"
-            type="submit"
-            onClick={irParaCentral}
-          >
-            Entrar
-          </button>
+          <button className={'player-button-entrar-login'}type="submit" onClick={irParaCentral}>Entrar</button>
         </form>
 
         <div className="player-opcoes-adicionais-login">
@@ -85,3 +83,4 @@ function PaginaLogin() {
 }
 
 export default PaginaLogin;
+
