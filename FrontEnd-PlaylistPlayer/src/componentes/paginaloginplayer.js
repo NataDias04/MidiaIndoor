@@ -16,7 +16,7 @@ function PaginaLogin() {
 
   const irParaCentral = () => {
     navigate('/central');
-};
+  };
 
 const irParaCadastro = () => {
   navigate('/cadastro');
