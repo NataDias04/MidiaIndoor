@@ -37,8 +37,7 @@ const findAll = async (req, res) => {
 // Buscar uma playlist específica por ID
 const findOne = async (req, res) => {
   try {
-    // Buscar uma playlist específica pelo ID e popular as mídias associadas
-    const playlist = await Playlist.findById(req.params.id).populate('ordemMidias.midia');
+    const playlist = await Playlist.findById(req.params.id);
     if (!playlist) {
       return res.status(404).json({ mensagem: 'Playlist não encontrada' });
     }

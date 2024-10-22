@@ -29,6 +29,10 @@ const PaginaVerDispositivo = () => {
     navigate('/central');
   };*/
 
+  const GuardarDispositivo = (dispositivo) => {
+    navigate('/playlist', { state: { dispositivoSelecionado: dispositivo } });
+  };
+
   return (
     <div className="player-dashbord-ver-dispositivo">
       <div className="player-cabecalho-ver-dispositivo">cabeçalho</div>
@@ -40,6 +44,7 @@ const PaginaVerDispositivo = () => {
               <div key={index} className="player-dispositivo-item">
                 <FaTv className="player-icone-tablet" /> {/* Ícone de tablet */}
                 <p className="player-nome-dispositivo">{dispositivo.nome}</p>
+                <button className='player-botao-entrar-dispositivo' onClick={() => GuardarDispositivo(dispositivo)}>Escolher</button>
               </div>
             ))
           ) : (
