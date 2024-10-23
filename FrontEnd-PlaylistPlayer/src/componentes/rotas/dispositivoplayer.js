@@ -48,6 +48,9 @@ export async function salvarDispositivo(nome, resolucao, playlists) {
       const response = await fetch(`http://localhost:5000/dispositivo/${dispositivoId}`, {
         method: 'GET',
       });
+
+      console.log(response);
+      
   
       if (!response.ok) {
         throw new Error('Erro ao buscar dispositivo');

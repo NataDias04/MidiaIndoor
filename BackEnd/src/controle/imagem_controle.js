@@ -42,21 +42,19 @@ const findAll = async (request, response) =>{
 
 const findOne = async (request, response) => {
     try {
-
         const imagem = await Imagem.findById(request.params.id);
-        response.status(200).json(imagem);
 
         if (!imagem) {
             return response.status(404).json({ message: "Imagem não encontrada" });
         }
-
-        response.json(imagem);
+        
+        return response.status(200).json(imagem);
 
     } catch (error) {
-
-        response.status(500).json({ message: "Erro ao buscar imagem" });
+        console.error("Erro ao buscar imagem:", error);
+        return response.status(500).json({ message: "Erro ao buscar imagem" });
     }
-}
+};
 
 const remove = async (request, response) =>{
     try {

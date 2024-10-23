@@ -5,12 +5,12 @@ import { useNavigate,useLocation  } from 'react-router-dom';
 import { FaTv } from 'react-icons/fa'; // Ícone de playlist
 import { buscarPlaylist } from './rotas/playlistplayer.js'; // Função para buscar playlists
 
-const PaginaVerPlaylist = () => {
+const PaginaPlaylist = () => {
 
   const location = useLocation();
   const { dispositivoSelecionado } = location.state || {};
 
-  const [playlists, setPlaylists] = useState([]); // Estado para armazenar playlists
+  const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
 
   // Função para buscar as playlists
@@ -35,7 +35,7 @@ const PaginaVerPlaylist = () => {
   };
 
   const PlaylistPlayer1 = (playlist) => {
-    navigate('/player1', { state: { playlist } });
+    navigate('/player1', { state: {PlaylistSelecionada:{playlist}}});
   }
 
   const PlaylistPlayer2 = (playlist) => {
@@ -46,7 +46,6 @@ const PaginaVerPlaylist = () => {
     navigate('/player3', { state: { playlist } });
   }
 
-  // Chama a função de busca ao carregar o componente
   useEffect(() => {
     carregarPlaylists();
   }, []);
@@ -84,4 +83,4 @@ const PaginaVerPlaylist = () => {
   );
 };
 
-export default PaginaVerPlaylist;
+export default PaginaPlaylist;
