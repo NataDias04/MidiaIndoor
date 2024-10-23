@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
 import '../estilos/paginaplaylistplayer.css'; // Renomeado o CSS
 
-import { useLocation  } from 'react-router-dom'; //useNavigate,
+import { useNavigate,useLocation  } from 'react-router-dom';
 import { FaTv } from 'react-icons/fa'; // Ícone de playlist
 import { buscarPlaylist } from './rotas/playlistplayer.js'; // Função para buscar playlists
 
@@ -11,14 +11,13 @@ const PaginaVerPlaylist = () => {
   const { dispositivoSelecionado } = location.state || {};
 
   const [playlists, setPlaylists] = useState([]); // Estado para armazenar playlists
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Função para buscar as playlists
   const carregarPlaylists = async () => {
     try {
       if (dispositivoSelecionado && dispositivoSelecionado.playlists) {
         const playlistIds = dispositivoSelecionado.playlists.map(playlist => playlist._id);
-        console.log('IDs das Playlists:', playlistIds); // Adicione este log
   
         const todasPlaylists = await Promise.all(
           playlistIds.map(async (id) => {
@@ -34,6 +33,19 @@ const PaginaVerPlaylist = () => {
       console.error('Erro ao carregar playlists:', erro);
     }
   };
+
+  const PlaylistPlayer1 = (playlist) => {
+    navigate('/player1', { state: { playlist } });
+  }
+
+  const PlaylistPlayer2 = (playlist) => {
+    navigate('/player2', { state: { playlist } });
+  }
+
+  const PlaylistPlayer3 = (playlist) => {
+    navigate('/player3', { state: { playlist } });
+  }
+
   // Chama a função de busca ao carregar o componente
   useEffect(() => {
     carregarPlaylists();
@@ -50,6 +62,8 @@ const PaginaVerPlaylist = () => {
               <div key={index} className="player-playlist-item">
                 <FaTv className="player-icone-playlist" /> {/* Ícone de playlist */}
                 <p className="player-nome-playlist">{playlist.nome}</p>
+                <button className='player-botao-playlist' onClick={() => PlaylistPlayer1(playlist)}>Player</button>
+                {console.log(playlist)}
               </div>
             ))
           ) : (
