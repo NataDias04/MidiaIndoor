@@ -3,11 +3,6 @@ import '../../estilos/player1.css';
 
 import { useNavigate,useLocation  } from 'react-router-dom';
 
-import {buscarVideo, buscarVideoLink} from '../rotas/videoplayer.js';
-
-import {buscarHtml, buscarTextoSimples} from '../rotas/textoplayer.js';
-
-import {buscarImagem, buscarImagemLink} from '../rotas/imagemplayer.js';
 
 const Player1 = () => {
 
