@@ -12,44 +12,54 @@ import {buscarImagem, buscarImagemLink} from '../rotas/imagemplayer.js';
 const Player1 = () => {
 
     const location = useLocation();
-    const { PlaylistSelecionada } = location.state || {};
+    const PlaylistSelecionada = location.state?.PlaylistSelecionada;
 
-    const BuscarMidia = async (midia) => {
-      const funcoes = [
-        buscarVideo,
-        buscarVideoLink,
-        buscarHtml,
-        buscarTextoSimples,
-        buscarImagem,
-        buscarImagemLink
-      ];
-    
-      for (const func of funcoes) {
-        try {
-          const resultado = await func(midia);
+    const [centro, setCentro] = useState([]);
+    const [direita, setDireita] = useState([]);
+    const [baixo, setBaixo] = useState([]);
 
-          if (resultado) {
-            console.log(`Função ${func.name} retornou:`, resultado);
-            return resultado;
-          }
-        } catch (erro) {
-          console.error(`Erro ao executar ${func.name}:`, erro);
-        }
-      }
-    
-      console.log('Nenhuma mídia encontrada para esta playlist.');
-      return null;
-      };
 
     const CarregarMidia = async (playlist) => {
-      for (const midia of playlist.ordemMidias) {
-        console.log(BuscarMidia(midia));
+      if (!Array.isArray(playlist.playlist.ordemMidias)) {
+        console.error('ordemMidias não é um array ou está indefinido:', playlist.ordemMidias);
+        return;
+      }
+      for (const midia of playlist.playlist.ordemMidias) {
+        try {
+          console.log(`Carregando mídia: ${midia._id} na posição: ${midia.posicao}`);
+
+            DistribuirMidia(midia, midia.posicao);
+
+        } catch (erro) {
+          console.error(`Erro ao carregar mídia ${midia._id}:`, erro);
+        }
+      }
+      return null;
+    };
+
+    useEffect(() => {
+      if (PlaylistSelecionada) {
+        CarregarMidia(PlaylistSelecionada);
+      }
+    }, [PlaylistSelecionada]);
+
+    const DistribuirMidia = (midia, posicao) => {
+  
+      if (posicao === 'centro') {
+        setCentro((prev) => [...prev, midia]);
+      } else if (posicao === 'direita') {
+        setDireita((prev) => [...prev, midia]);
+      } else if (posicao === 'baixo') {
+        setBaixo((prev) => [...prev, midia]);
       }
     };
 
   return (
-    <div>
-
+    <div className="player-dashbord-player1">
+      {console.log(PlaylistSelecionada)}
+        {console.log("TESTE CENTRO",centro)}
+        {console.log("TESTE DIREITA",direita)}
+        {console.log("TESTE BAIXO",baixo)}
     </div>
   );
 };

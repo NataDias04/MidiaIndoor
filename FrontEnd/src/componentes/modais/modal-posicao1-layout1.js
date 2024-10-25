@@ -46,6 +46,7 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
   useEffect(() => {
     const novasRequisicoes = uploadsSelecionados.map((upload, index) => ({
       midia: upload._id,
+      url: upload.url,
       tempo: tempos[index] || '',
       ordem: index + 1,
       posicao: "centro",
