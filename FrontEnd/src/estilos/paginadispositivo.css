@@ -1,0 +1,199 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  }
+
+body::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  content: '';
+  position: fixed;
+  filter: blur(8px);
+  background-color: #d8cfc4;
+}
+
+.dashbord-dispositivo {
+  margin: 20px;
+  display: flex; 
+  border-radius: 10px;
+  flex-direction: column;
+  width: calc(100vw - 40px);
+  background-color: white;
+  height: calc(100vh - 40px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho-dispositivo, .rodape-dispositivo {
+  height: 75px;
+}
+
+.cabecalho-dispositivo{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.rodape-dispositivo{
+  gap: 20px;
+  display: flex;
+  margin-top: auto;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.linha-dispositivo {
+  flex: 1;
+  display: flex;
+}
+
+.column1-dispositivo, .column2-dispositivo{
+  display: flex;
+  flex-direction: column;
+}
+
+.column1-dispositivo{   
+  gap: 20px;
+  width: 190px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.column2-dispositivo{
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.div-dispositivo{
+  width: 150px;
+  height: 150px;
+  display: flex;
+  margin-left: 20px;
+  border-radius: 10px;
+  align-items: center;
+  padding-bottom: 10px;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container-dispositivo{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.div-dispositivo svg{
+  width: 50px;
+  height: 50px;
+  color: #7EC8E3;
+}
+
+.overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.previews-dispositivo{
+  gap: 10px;
+  width: 95%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden; 
+  justify-content: flex-start;
+  background-color: #d8cfc4;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dispositivo-preview{
+  width: 200px;
+  height: 300px;
+  display: flex;
+  overflow: hidden; 
+  margin-top: 20px;
+  overflow: visible;
+  margin-left: 10px;
+  border-radius: 5px;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-between;
+}
+
+.icon-dispositivo{
+  margin-top: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.dispositivo-preview svg{
+  width: 50px;
+  height: 50px;
+  color: #7EC8E3;
+}
+
+.info-dispositivo {
+  flex-grow: 1;
+  display: flex;
+  line-height: 0;
+  text-align: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.botao-editar {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.botao-apagar:hover {
+  background-color: black;
+}
+
+.botao-apagar {
+  top: -8px;
+  right: -8px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  display: flex;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dispositivo-item{
+  width: 100px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

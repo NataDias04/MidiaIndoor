@@ -1,0 +1,29 @@
+.escolher-upload-preview{
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .escolher-upload-preview.selecionado {
+    background-color: rgba(0, 255, 0, 0.2);
+    border: 2px solid rgba(0, 255, 0, 0.5); 
+  }
+  
+  .escolher-upload-preview {
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .preview-imagem,
+  .preview-video {
+    width: 80%;
+    height: 80%;
+  }

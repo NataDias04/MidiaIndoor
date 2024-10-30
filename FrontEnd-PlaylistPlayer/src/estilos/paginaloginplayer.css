@@ -1,0 +1,120 @@
+/* Reset básico */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+body::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    content: '';
+    position: fixed;
+    filter: blur(8px);
+    background-color: #d8cfc4;
+  }
+
+/* Container principal */
+.player-dashbord-login {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+    width: calc(100vw - 1200px);
+    height: calc(100vh - 200px);
+}
+
+/* Logo */
+.player-logo-login {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.player-logo-login h1 {
+    color: #7EC8E3;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Formulário */
+.player-formulario-login {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.player-formulario-login h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Grupo de inputs */
+.player-grupo-formulario-login {
+    margin-bottom: 15px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* Botão de login */
+.player-button-entrar-login {
+    width: 97%;
+    border: none;
+    padding: 10px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #7EC8E3;
+    transition: background-color 0.3s;
+}
+
+
+.player-button-entrar-login:hover {
+    background-color: #6BB5D6;
+}
+
+/* Opções adicionais */
+.player-opcoes-adicionais-login {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.player-esqueceu-senha-login,
+.player-registrar-login {
+    color: #7EC8E3;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.player-esqueceu-senha-login:hover,
+.player-registrar-login:hover {
+    text-decoration: underline;
+}
+
+.player-opcoes-adicionais-login p {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}

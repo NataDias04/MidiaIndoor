@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    content: '';
+    position: fixed;
+    filter: blur(8px);
+    background-color: #d8cfc4;
+}
+
+.player-dashbord-ver-dispositivo {
+    margin: 20px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    width: calc(100vw - 40px);
+    background-color: white;
+    height: calc(100vh - 40px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.player-secao-ver-dispositivo {
+    gap: 15px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-cabecalho-ver-dispositivo,
+.player-rodape-ver-dispositivo {
+    height: 75px;
+}
+
+.player-cabecalho-ver-dispositivo {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.player-rodape-ver-dispositivo {
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.player-overlay-ver-dispositivo {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.player-previews-ver-dispositivo {
+    width: 95%;
+    height: 90%;
+    margin-left: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #d8cfc4;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.player-dispositivo-item {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.player-icone-tablet {
+    font-size: 48px;
+    color: #7EC8E3;
+    margin-bottom: 10px;
+}
+
+.player-nome-dispositivo {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+}
