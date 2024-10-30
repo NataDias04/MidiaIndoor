@@ -35,6 +35,8 @@ const ModalPosicao2Layout2 = ({ fecharModalPosicao2Layout2, atualizarUploadsSele
   useEffect(() => {
     const novasRequisicoes = uploadsSelecionados.map((upload, index) => ({
       midia: upload._id,
+      url: upload.url,
+      caminhointerno: upload.caminhointerno,
       tempo: tempos[index] || '',
       ordem: index + 1,
       posicao: "esquerda", // Alteração para "esquerda"
