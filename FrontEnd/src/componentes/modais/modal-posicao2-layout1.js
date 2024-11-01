@@ -12,9 +12,20 @@ const ModalPosicao2Layout1 = ({ fecharModalPosicao2Layout1, atualizarUploadsSele
   const fecharModalEscolherUpload = () => setModalEscolherUploadAberto(false);
 
   const adicionarUpload = (upload) => {
-    setUploadsSelecionados((prev) => [...prev, upload]);
+    setUploadsSelecionados((prev) => {
+      const novosUploads = [...prev, upload];
+  
+      // Verifica se o upload é um vídeo e define o tempo como 0
+      const extensao = upload.url ? upload.url.split('.').pop() : '';
+      const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+      if (tiposDeVideo.includes(extensao.toLowerCase())) {
+        // Atualiza o tempo no estado para o índice do novo upload
+        setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
+      }
+  
+      return novosUploads;
+    });
   };
-
   const handleSalvarUpload = () => {
     console.log('Fechando o modal posicao2');
     console.log('Tempos dos uploads:', tempos);
@@ -117,6 +128,22 @@ const ModalPosicao2Layout1 = ({ fecharModalPosicao2Layout1, atualizarUploadsSele
     }
   };
 
+  const ApagarUploadSelecionado = (upload) => {
+    try {
+      console.log('Removendo upload localmente:', upload);
+  
+      // Filtra a lista, removendo o item com o ID correspondente
+      const novaLista = uploadsSelecionados.filter((u) => u._id !== upload._id);
+  
+      // Atualiza o estado com a nova lista filtrada
+      setUploadsSelecionados(novaLista);
+      
+      console.log('Upload removido da lista:', novaLista);
+    } catch (erro) {
+      console.error('Erro ao remover upload da lista:', erro);
+    }
+  };
+
   return (
     <>
       <div className="overlay"></div>
@@ -144,6 +171,12 @@ const ModalPosicao2Layout1 = ({ fecharModalPosicao2Layout1, atualizarUploadsSele
                 const tempo = tempos[index] || '';
                 return (
                   <div key={`${upload._id}-${index}`} className="upload-preview-layout1">
+                    <button
+                      className="botao-apagar"
+                      onClick={() => ApagarUploadSelecionado(upload)}
+                    >
+                      ×
+                    </button>
                     {RenderizarImagem(upload, index)}
                     {RenderizarVideo(upload, index)}
                     {RenderizarTexto(upload, index)}
@@ -151,15 +184,14 @@ const ModalPosicao2Layout1 = ({ fecharModalPosicao2Layout1, atualizarUploadsSele
                     {console.log("ID:", upload._id)}
                     {console.log("Ordem:", index + 1)}
                     {console.log("Posição:", "direita")} {/* Altere a posição para "direita" */}
-                    {urlimagem(upload) && (
-                      <input
-                        className="tempo"
-                        type="text"
-                        placeholder="tempo(seg)"
-                        value={tempos[index] || ''}
-                        onChange={(e) => handleTempoChange(index, e.target.value)}
-                      />
-                    )}
+                    <input
+                      className="tempo"
+                      type="text"
+                      placeholder="tempo(seg)"
+                      value={tempos[index] || ''}
+                      onChange={(e) => handleTempoChange(index, e.target.value)}
+                      disabled={RenderizarVideo(upload, index) !== null}
+                    />
 
                     {console.log("Tempo:", tempos[index] || '')}
                     {console.log("lista", minhaListaRequisicoes)}
