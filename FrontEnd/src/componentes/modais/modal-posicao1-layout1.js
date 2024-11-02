@@ -15,16 +15,21 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
   const abrirModalEscolherUpload = () => setModalEscolherUploadAberto(true);
   const fecharModalEscolherUpload = () => setModalEscolherUploadAberto(false);
 
-  const adicionarUpload = (upload) => {
-    setUploadsSelecionados((prev) => [...prev, upload]);
-  
+const adicionarUpload = (upload) => {
+  setUploadsSelecionados((prev) => {
+    const novosUploads = [...prev, upload];
+
     // Verifica se o upload é um vídeo e define o tempo como 0
     const extensao = upload.url ? upload.url.split('.').pop() : '';
     const tiposDeVideo = ['mp4', 'webm', 'ogg'];
     if (tiposDeVideo.includes(extensao.toLowerCase())) {
-      setTempos((prev) => ({ ...prev, [uploadsSelecionados.length]: '0' }));
+      // Atualiza o tempo no estado para o índice do novo upload
+      setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
     }
-  };
+
+    return novosUploads;
+  });
+};
 
   const handleSalvarUpload = () => {
     console.log('Fechando o modal posicao1');
