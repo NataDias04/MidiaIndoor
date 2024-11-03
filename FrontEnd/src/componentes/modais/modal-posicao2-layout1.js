@@ -15,17 +15,20 @@ const ModalPosicao2Layout1 = ({ fecharModalPosicao2Layout1, atualizarUploadsSele
     setUploadsSelecionados((prev) => {
       const novosUploads = [...prev, upload];
   
-      // Verifica se o upload é um vídeo e define o tempo como 0
-      const extensao = upload.url ? upload.url.split('.').pop() : '';
+      const url = upload.url || '';
+      const extensao = url.split('.').pop();
       const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-      if (tiposDeVideo.includes(extensao.toLowerCase())) {
-        // Atualiza o tempo no estado para o índice do novo upload
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+  
+      // Verifica se é um vídeo local ou link do YouTube
+      if (tiposDeVideo.includes(extensao.toLowerCase()) || youtubeRegex.test(url)) {
         setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
       }
   
       return novosUploads;
     });
   };
+
   const handleSalvarUpload = () => {
     console.log('Fechando o modal posicao2');
     console.log('Tempos dos uploads:', tempos);

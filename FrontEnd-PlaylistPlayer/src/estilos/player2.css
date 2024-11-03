@@ -12,14 +12,14 @@ body {
     background-color: #d8cfc4;
   }
   
-  .player-dashbord-player2 {
+  .player2-dashbord-player2 {
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
   }
   
-  .player-linha-1 {
+  .player2-linha-1 {
     width: 100%;
     height: 75%;
     display: flex;
@@ -28,29 +28,29 @@ body {
     margin-bottom: 0;
   }
   
-  .player-linha-2{
+  .player2-linha-2{
     width: 100%;
     height: 25%;
     display: flex;
     justify-content: center;
   }
   
-  .player-centro{
+  .player2-centro{
     display: flex;
     background-color: black;
     width: 86.5%;
     height: 100%;
   }
   
-  .player-esquerda{
-    margin-left: 5px;
+  .player2-esquerda{
+    margin-right: 5px;
     display: flex;
     background-color: black;
     width: 12.5%;
     height: 100%;
   }
   
-  .player-baixo {
+  .player2-baixo {
     margin-top: 0;
     background-color: black;
     align-items: center;

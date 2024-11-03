@@ -15,11 +15,13 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
     setUploadsSelecionados((prev) => {
       const novosUploads = [...prev, upload];
   
-      // Verifica se o upload é um vídeo e define o tempo como 0
-      const extensao = upload.url ? upload.url.split('.').pop() : '';
+      const url = upload.url || '';
+      const extensao = url.split('.').pop();
       const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-      if (tiposDeVideo.includes(extensao.toLowerCase())) {
-        // Atualiza o tempo no estado para o índice do novo upload
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+  
+      // Verifica se é um vídeo local ou link do YouTube
+      if (tiposDeVideo.includes(extensao.toLowerCase()) || youtubeRegex.test(url)) {
         setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
       }
   

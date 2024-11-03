@@ -39,11 +39,11 @@ const PaginaPlaylist = () => {
   }
 
   const PlaylistPlayer2 = (playlist) => {
-    navigate('/player2', { state: { playlist } });
+    navigate('/player2', { state: {PlaylistSelecionada:{playlist}}});
   }
 
   const PlaylistPlayer3 = (playlist) => {
-    navigate('/player3', { state: { playlist } });
+    navigate('/player3', { state: {PlaylistSelecionada:{playlist}}});
   }
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const PaginaPlaylist = () => {
               <div key={index} className="player-playlist-item">
                 <FaTv className="player-icone-playlist" /> {/* Ícone de playlist */}
                 <p className="player-nome-playlist">{playlist.nome}</p>
-                <button className='player-botao-playlist' onClick={() => PlaylistPlayer1(playlist)}>Player</button>
+                <button className='player-botao-playlist' onClick={() => PlaylistPlayer2(playlist)}>Player</button>
                 {console.log(playlist)}
               </div>
             ))

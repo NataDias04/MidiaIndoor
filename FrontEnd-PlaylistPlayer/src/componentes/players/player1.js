@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../../estilos/player1.css';
 import { useLocation } from 'react-router-dom'; // useNavigate,
 
+import YouTube from 'react-youtube';
+
 const Player1 = () => {
     const location = useLocation();
     const PlaylistSelecionada = location.state?.PlaylistSelecionada;
@@ -82,6 +84,10 @@ const Player1 = () => {
         }
         
       }, [indexAtual, listacentro]);
+
+      const handleVideoEnd = () => {
+        setIndexAtual((indexAtual + 1) % listacentro.length);
+      };
     
       const renderizarItem = (upload, index) => {
         if (!upload) return null;
@@ -94,15 +100,17 @@ const Player1 = () => {
         if (youtubeRegex.test(upload.url)) {
           const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
           return (
-            <iframe
+            <YouTube
               key={index}
+              videoId={videoId}
+              onEnd={handleVideoEnd} // Aciona ao término do vídeo
+              opts={{
+                height: '390',
+                width: '640',
+                playerVars: { autoplay: 1, controls: 0 },
+              }}
               className="preview-video"
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={`Video ${index}`}
-            ></iframe>
+            />
           );
         } else if (tiposDeVideo.includes(extensao)) {
           return (

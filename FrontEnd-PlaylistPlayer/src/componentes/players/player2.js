@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../../estilos/player2.css';
 import { useLocation } from 'react-router-dom'; // useNavigate,
 
+import YouTube from 'react-youtube';
+
 const Player2 = () => {
     const location = useLocation();
     const PlaylistSelecionada = location.state?.PlaylistSelecionada;
@@ -43,13 +45,13 @@ const Player2 = () => {
         if (posicao === 'centro') {
             setCentro((prev) => [...prev, midia]);
         } else if (posicao === 'esquerda') {
-            setEsquerda((prev) => [...prev, midia]);
+          setEsquerda((prev) => [...prev, midia]);
         } else if (posicao === 'baixo') {
             setBaixo((prev) => [...prev, midia]);
         }
     };
 
-    const PlayerCentro = ({ listacentro }) => {
+    const Player2Centro = ({ listacentro }) => {
       const [indexAtual, setIndexAtual] = useState(0);
       const [isVideo, setIsVideo] = useState(false);
     
@@ -82,6 +84,10 @@ const Player2 = () => {
         }
         
       }, [indexAtual, listacentro]);
+
+      const handleVideoEnd = () => {
+        setIndexAtual((indexAtual + 1) % listacentro.length);
+      };
     
       const renderizarItem = (upload, index) => {
         if (!upload) return null;
@@ -93,16 +99,19 @@ const Player2 = () => {
     
         if (youtubeRegex.test(upload.url)) {
           const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
+    
           return (
-            <iframe
+            <YouTube
               key={index}
+              videoId={videoId}
+              onEnd={handleVideoEnd} // Aciona ao término do vídeo
+              opts={{
+                height: '390',
+                width: '640',
+                playerVars: { autoplay: 1, controls: 0 },
+              }}
               className="preview-video"
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={`Video ${index}`}
-            ></iframe>
+            />
           );
         } else if (tiposDeVideo.includes(extensao)) {
           return (
@@ -151,7 +160,7 @@ const Player2 = () => {
     };
     
 
-    const PlayerEsquerda = ({ listaesquerda }) => {
+    const Player2Esquerda = ({ listaesquerda }) => {
       const [indexAtual, setIndexAtual] = useState(0);
     
       useEffect(() => {
@@ -232,7 +241,7 @@ const Player2 = () => {
       );
     };
     
-    const PlayerBaixo = ({ listabaixo }) => {
+    const Player2Baixo = ({ listabaixo }) => {
       const [indexAtual, setIndexAtual] = useState(0);
     
       useEffect(() => {
@@ -315,20 +324,23 @@ const Player2 = () => {
       
 
     return (
-        <div className="player-dashbord-player2">
+        <div className="player2-dashbord-player2">
 
-          <div className="player-linha-1">
-            <div className="player-centro">
-              <PlayerCentro listacentro={centro} />
+          <div className="player2-linha-1">
+
+            <div className="player2-esquerda">
+              <Player2Esquerda listaesquerda={esquerda} />
             </div>
-            <div className="player-esquerda">
-              <PlayerEsquerda listaesquerda={esquerda} />
+
+            <div className="player2-centro">
+              <Player2Centro listacentro={centro} />
             </div>
+
           </div>
 
-          <div className="player-linha-2">
-            <div className='player-baixo'>
-              <PlayerBaixo listabaixo={baixo} />
+          <div className="player2-linha-2">
+            <div className='player2-baixo'>
+              <Player2Baixo listabaixo={baixo} />
             </div>
           </div>
 
