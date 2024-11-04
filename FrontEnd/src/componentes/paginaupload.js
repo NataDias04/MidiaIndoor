@@ -112,11 +112,13 @@ const PaginaUpload = () => {
   const RenderizarHtml = (upload, index) => {
     if (upload.conteudo) {
       return (
-        <div 
-          key={index} 
-          className="preview-html" 
-          dangerouslySetInnerHTML={{ __html: upload.conteudo }} 
-        />
+      <iframe
+        key={index}
+        srcDoc={upload.conteudoHtml}
+        className="html-iframe"
+        title={`Conteúdo HTML ${index}`}
+        style={{ border: 'none', width: '100%', height: '100%' }}
+      />
       );
     }
     return null;

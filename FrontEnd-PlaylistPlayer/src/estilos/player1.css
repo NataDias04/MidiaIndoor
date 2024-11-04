@@ -60,10 +60,25 @@ body::before {
   margin-top: auto;
 }
 
-.conteudo-centro img , .conteudo-centro video{
+.conteudo-centro{
+  width: 100%;
+  height: 100%;
+}
+
+.conteudo-centro img {
   width: 100%;
   height: 100%;
   aspect-ratio: 4 / 1;
+}
+
+.preview-video{
+  width: 100%;
+  height: 100%;
+}
+
+.conteudo-centro iframe{
+  width: 100%;
+  height: 100%;
 }
 
 .conteudo-direita img , .conteudo-direita video{

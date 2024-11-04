@@ -1,1 +1,4 @@
 node_modules
+
+# Ignorar todos os arquivos .mp4
+*.mp4

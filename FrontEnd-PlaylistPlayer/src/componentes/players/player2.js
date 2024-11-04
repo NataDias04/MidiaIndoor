@@ -65,7 +65,6 @@ const Player2 = () => {
     
         console.log(`Exibindo item ${indexAtual + 1}:`, itemAtual);
     
-        // Definir se o item atual é um vídeo
         const extensao = itemAtual.url ? itemAtual.url.split('.').pop() : '';
         const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
         const tiposDeVideo = ['mp4', 'webm', 'ogg'];
@@ -74,12 +73,11 @@ const Player2 = () => {
           setIsVideo(true);
         } else {
           setIsVideo(false);
-          const tempoDeExibicao = 5000; // Tempo de exibição para imagens e outros conteúdos
+          const tempoDeExibicao = 5000;
           const timeout = setTimeout(() => {
             setIndexAtual((indexAtual + 1) % listacentro.length);
           }, tempoDeExibicao);
     
-          // Limpar o timeout quando o componente é desmontado ou quando indexAtual muda
           return () => clearTimeout(timeout);
         }
         
@@ -104,7 +102,7 @@ const Player2 = () => {
             <YouTube
               key={index}
               videoId={videoId}
-              onEnd={handleVideoEnd} // Aciona ao término do vídeo
+              onEnd={handleVideoEnd}
               opts={{
                 height: '390',
                 width: '640',
@@ -119,8 +117,8 @@ const Player2 = () => {
               key={index} 
               className="video" 
               autoPlay 
-              onEnded={() => setIndexAtual((indexAtual + 1) % listacentro.length)} // Muda para o próximo item ao terminar
-              controls={false} // Remove os controles do vídeo
+              onEnded={() => setIndexAtual((indexAtual + 1) % listacentro.length)}
+              controls={false}
             >
               <source 
                 src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} 
