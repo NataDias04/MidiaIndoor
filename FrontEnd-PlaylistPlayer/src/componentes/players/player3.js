@@ -9,8 +9,10 @@ const Player3 = () => {
     const PlaylistSelecionada = location.state?.PlaylistSelecionada;
 
     const [centro, setCentro] = useState([]);
+    const [direita_cima, setDireitaCima] = useState([]);
     const [direita, setDireita] = useState([]);
     const [baixo, setBaixo] = useState([]);
+    const [baixo_esquerda, setBaixoEsquerda] = useState([]);
     const [mediaCarregada, setMediaCarregada] = useState(false);
 
     const tiposDeVideo = ['mp4', 'webm', 'ogg'];
@@ -155,6 +157,88 @@ const Player3 = () => {
         </div>
       );
     };
+
+    const Player3DireitaCima = ({ listadireitacima }) => {
+      const [indexAtual, setIndexAtual] = useState(0);
+    
+      useEffect(() => {
+        const itemAtual = listadireitacima[indexAtual];
+    
+        if (!itemAtual) {
+          console.warn(`Item ${indexAtual + 1} não encontrado.`);
+          return;
+        }
+    
+        const tempo = itemAtual.tempo || 5;
+    
+        console.log(`Exibindo item ${indexAtual + 1}:`, itemAtual);
+    
+        const timer = setTimeout(() => {
+          const proximoIndex = (indexAtual + 1) % listadireitacima.length;
+          setIndexAtual(proximoIndex);
+        }, tempo * 1000);
+    
+        return () => clearTimeout(timer);
+      }, [indexAtual, listadireitacima]);
+    
+      const renderizarItem = (upload, index) => {
+        if (!upload) return null;
+    
+        const extensao = upload.url ? upload.url.split('.').pop() : '';
+        const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+        const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+    
+        if (youtubeRegex.test(upload.url)) {
+          const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
+          return (
+            <iframe
+              key={index}
+              className="preview-video"
+              src={`https://www.youtube.com/embed/${videoId}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title={`Video ${index}`}
+            ></iframe>
+          );
+        } else if (tiposDeVideo.includes(extensao)) {
+          return (
+            <video controls key={index} className="video">
+              <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+              Seu navegador não suporta a tag de vídeo.
+            </video>
+          );
+        } else if (tiposDeImagem.includes(extensao)) {
+          return (
+            <img
+              key={index}
+              className="imagem"
+              src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`}
+              alt={`Imagem ${index}`}
+            />
+          );
+        } else if (upload.conteudo) {
+          return <p key={index} className="texto">{upload.conteudo}</p>;
+        } else if (upload.conteudoHtml) {
+          return (
+            <div
+              key={index}
+              dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
+              className="html"
+            ></div>
+          );
+        }
+        return null;
+      };
+    
+      return (
+        <div className="conteudo-direita-cima">
+          {renderizarItem(listadireitacima[indexAtual], indexAtual)}
+        </div>
+      );
+    };
+    
     
 
     const Player3Direita = ({ listadireita }) => {
@@ -330,6 +414,7 @@ const Player3 = () => {
             <div className='player3-coluna1'>
               <div className="player3-direita-cima">
                 <Player3Direita listadireita={direita} />
+                {/*<Player3DireitaCima listadireitacima={direita_cima} />*/}
               </div>
 
               <div className="player3-direita">
