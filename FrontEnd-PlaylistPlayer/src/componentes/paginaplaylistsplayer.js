@@ -60,7 +60,7 @@ const PaginaPlaylist = () => {
               <div key={index} className="player-playlist-item">
                 <FaTv className="player-icone-playlist" />
                 <p className="player-nome-playlist">{playlist.nome}</p>
-                <button className='player-botao-playlist' onClick={() => PlaylistPlayer3(playlist)}>Player</button>
+                <button className='player-botao-playlist' onClick={() => PlaylistPlayer1(playlist)}>Player</button>
                 {console.log(playlist)}
               </div>
             ))

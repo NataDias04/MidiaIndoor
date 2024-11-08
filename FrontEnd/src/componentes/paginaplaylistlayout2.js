@@ -81,13 +81,13 @@ const PaginaPlaylistLayout2 = () => {
         </div>
         <div className="linha-layout2-layout2">
           <div className="borda3-layout2-layout2">
-            <FaPlus onClick={abrirModalPosicao3Layout2} />
+            {/*<FaPlus onClick={abrirModalPosicao3Layout2} />
             {ModalPosicao3Layout2Aberto && (
               <ModalPosicao3Layout2
                 fecharModalPosicao3Layout2={fecharModalPosicao3Layout2}
                 atualizarUploadsSelecionados={atualizarUploadsSelecionados}
               />
-            )}
+            )}*/}
           </div>
         </div>
       </div>

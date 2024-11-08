@@ -284,6 +284,7 @@ body {
 }
 
 .upload-preview-layout2 {
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -325,4 +326,26 @@ body {
 
 .nome-playlist{
   width: 600px;
+}
+
+.botao-apagar:hover {
+  background-color: black;
+}
+
+.botao-apagar {
+  top: -8px;
+  right: -8px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  display: flex;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
 }

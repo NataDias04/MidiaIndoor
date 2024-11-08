@@ -43,7 +43,7 @@ const PaginaPlaylistLayout3 = () => {
                   <FaPlus/>
                 </div>
                 <div className='borda5-layout3-layout3'>
-                  <FaPlus/>
+                  {/*<FaPlus/>*/}
                 </div>
             </div>
         </div>

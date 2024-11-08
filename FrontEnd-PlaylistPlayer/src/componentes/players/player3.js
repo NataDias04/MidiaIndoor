@@ -15,9 +15,17 @@ const Player3 = () => {
     const [baixo_esquerda, setBaixoEsquerda] = useState([]);
     const [mediaCarregada, setMediaCarregada] = useState(false);
 
-    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-    const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+    //const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+    //const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+    //const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+
+    const cacheMidia = (midia) => {
+        const cachedMidia = localStorage.getItem(midia._id);
+        if (cachedMidia) return JSON.parse(cachedMidia);
+        
+        localStorage.setItem(midia._id, JSON.stringify(midia));
+        return midia;
+    };
 
     const CarregarMidia = async (playlist) => {
         if (!Array.isArray(playlist.playlist.ordemMidias)) {
@@ -26,14 +34,12 @@ const Player3 = () => {
         }
         for (const midia of playlist.playlist.ordemMidias) {
             try {
-                console.log(`Carregando mídia: ${midia._id} na posição: ${midia.posicao}`);
-                DistribuirMidia(midia, midia.posicao);
-
+                const cachedMidia = cacheMidia(midia);
+                DistribuirMidia(cachedMidia, cachedMidia.posicao);
             } catch (erro) {
                 console.error(`Erro ao carregar mídia ${midia._id}:`, erro);
             }
         }
-        return null;
     };
 
     useEffect(() => {
@@ -46,8 +52,12 @@ const Player3 = () => {
     const DistribuirMidia = (midia, posicao) => {
         if (posicao === 'centro') {
             setCentro((prev) => [...prev, midia]);
+        } else if (posicao === 'direita-cima') {
+            setDireitaCima((prev) => [...prev, midia]);
         } else if (posicao === 'direita') {
             setDireita((prev) => [...prev, midia]);
+        } else if (posicao === 'baixo-esquerda') {
+            setBaixoEsquerda((prev) => [...prev, midia]);
         } else if (posicao === 'baixo') {
             setBaixo((prev) => [...prev, midia]);
         }
@@ -321,12 +331,12 @@ const Player3 = () => {
         </div>
       );
     };
-    
-    const Player3Baixo = ({ listabaixo }) => {
+
+    const Player3BaixoEsquerda = ({ listabaixoesquerda }) => {
       const [indexAtual, setIndexAtual] = useState(0);
     
       useEffect(() => {
-        const itemAtual = listabaixo[indexAtual];
+        const itemAtual = listabaixoesquerda[indexAtual];
     
         if (!itemAtual) {
           console.warn(`Item ${indexAtual + 1} não encontrado.`);
@@ -338,12 +348,12 @@ const Player3 = () => {
         console.log(`Exibindo item ${indexAtual + 1}:`, itemAtual);
     
         const timer = setTimeout(() => {
-          const proximoIndex = (indexAtual + 1) % listabaixo.length;
+          const proximoIndex = (indexAtual + 1) % listabaixoesquerda.length;
           setIndexAtual(proximoIndex);
         }, tempo * 1000);
     
         return () => clearTimeout(timer);
-      }, [indexAtual, listabaixo]);
+      }, [indexAtual, listabaixoesquerda]);
     
       const renderizarItem = (upload, index) => {
         if (!upload) return null;
@@ -397,8 +407,62 @@ const Player3 = () => {
       };
     
       return (
+        <div className="conteudo-baixo-esquerda">
+          {renderizarItem(listabaixoesquerda[indexAtual], indexAtual)}
+        </div>
+      );
+    };
+    
+    const Player3Baixo = () => {
+      const [noticias, setNoticias] = useState([]);
+      const [noticiaIndex, setNoticiaIndex] = useState(0);
+
+      useEffect(() => {
+        const buscarNoticias = async () => {
+          try {
+            const resposta = await fetch(
+              'https://api.rss2json.com/v1/api.json?rss_url=https://rss.tecmundo.com.br/feed'
+            );
+            const dados = await resposta.json();
+            setNoticias(dados.items || []);
+          } catch (erro) {
+            console.error('Erro ao buscar notícias:', erro);
+            setNoticias([]);
+          }
+        };
+
+        buscarNoticias();
+      }, []);
+
+      useEffect(() => {
+        const tempo = 30;
+        if (noticias.length > 0) {
+          const timer = setTimeout(() => {
+            const proximoIndex = (noticiaIndex + 1) % noticias.length;
+            setNoticiaIndex(proximoIndex);
+          }, tempo * 1000);
+
+          return () => clearTimeout(timer);
+        }
+      }, [noticiaIndex, noticias]);
+
+      const renderizarNoticia = (noticia) => {
+
+        const removeHtmlTags = (htmlString) => {
+          return htmlString.replace(/<\/?[^>]+(>|$)/g, "");
+        };
+
+        return (
+          <div className="noticia" style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <h2 style={{ color: 'white', textAlign: 'center' }} >{removeHtmlTags(noticia.title)}</h2>
+            <h4 style={{ color: 'white', textAlign: 'center' }}> {removeHtmlTags(noticia.description)} </h4>
+          </div>
+        );
+      };
+
+      return (
         <div className="conteudo-baixo">
-          {renderizarItem(listabaixo[indexAtual], indexAtual)}
+          {noticias.length > 0 && renderizarNoticia(noticias[noticiaIndex])}
         </div>
       );
     };
@@ -413,8 +477,7 @@ const Player3 = () => {
             </div>
             <div className='player3-coluna1'>
               <div className="player3-direita-cima">
-                <Player3Direita listadireita={direita} />
-                {/*<Player3DireitaCima listadireitacima={direita_cima} />*/}
+                <Player3DireitaCima listadireitacima={direita_cima} />
               </div>
 
               <div className="player3-direita">
@@ -426,7 +489,7 @@ const Player3 = () => {
           <div className="player3-linha-2">
             <div className='player3-coluna2'>
                 <div className='player3-baixo-esquerda'>
-                  <Player3Baixo listabaixo={baixo} />
+                  <Player3BaixoEsquerda listabaixoesquerda={baixo_esquerda} />
                 </div>
 
                 <div className='player3-baixo'>

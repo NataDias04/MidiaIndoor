@@ -13,9 +13,17 @@ const Player1 = () => {
     const [baixo, setBaixo] = useState([]);
     const [mediaCarregada, setMediaCarregada] = useState(false);
 
-    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-    const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+    //const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+    //const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+    //const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+
+    const cacheMidia = (midia) => {
+        const cachedMidia = localStorage.getItem(midia._id);
+        if (cachedMidia) return JSON.parse(cachedMidia);
+        
+        localStorage.setItem(midia._id, JSON.stringify(midia));
+        return midia;
+    };
 
     const CarregarMidia = async (playlist) => {
         if (!Array.isArray(playlist.playlist.ordemMidias)) {
@@ -24,14 +32,12 @@ const Player1 = () => {
         }
         for (const midia of playlist.playlist.ordemMidias) {
             try {
-                console.log(`Carregando mídia: ${midia._id} na posição: ${midia.posicao}`);
-                DistribuirMidia(midia, midia.posicao);
-
+                const cachedMidia = cacheMidia(midia);
+                DistribuirMidia(cachedMidia, cachedMidia.posicao);
             } catch (erro) {
                 console.error(`Erro ao carregar mídia ${midia._id}:`, erro);
             }
         }
-        return null;
     };
 
     useEffect(() => {
@@ -237,88 +243,60 @@ const Player1 = () => {
         </div>
       );
     };
-    
-    const PlayerBaixo = ({ listabaixo }) => {
-      const [indexAtual, setIndexAtual] = useState(0);
-    
+
+    const PlayerBaixo = () => {
+      const [noticias, setNoticias] = useState([]);
+      const [noticiaIndex, setNoticiaIndex] = useState(0);
+
       useEffect(() => {
-        const itemAtual = listabaixo[indexAtual];
-    
-        if (!itemAtual) {
-          console.warn(`Item ${indexAtual + 1} não encontrado.`);
-          return;
+        const buscarNoticias = async () => {
+          try {
+            const resposta = await fetch(
+              'https://api.rss2json.com/v1/api.json?rss_url=https://rss.tecmundo.com.br/feed'
+            );
+            const dados = await resposta.json();
+            setNoticias(dados.items || []);
+          } catch (erro) {
+            console.error('Erro ao buscar notícias:', erro);
+            setNoticias([]);
+          }
+        };
+
+        buscarNoticias();
+      }, []);
+
+      useEffect(() => {
+        const tempo = 30;
+        if (noticias.length > 0) {
+          const timer = setTimeout(() => {
+            const proximoIndex = (noticiaIndex + 1) % noticias.length;
+            setNoticiaIndex(proximoIndex);
+          }, tempo * 1000);
+
+          return () => clearTimeout(timer);
         }
-    
-        const tempo = itemAtual.tempo || 5;
-    
-        console.log(`Exibindo item ${indexAtual + 1}:`, itemAtual);
-    
-        const timer = setTimeout(() => {
-          const proximoIndex = (indexAtual + 1) % listabaixo.length;
-          setIndexAtual(proximoIndex);
-        }, tempo * 1000);
-    
-        return () => clearTimeout(timer);
-      }, [indexAtual, listabaixo]);
-    
-      const renderizarItem = (upload, index) => {
-        if (!upload) return null;
-    
-        const extensao = upload.url ? upload.url.split('.').pop() : '';
-        const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-        const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-    
-        if (youtubeRegex.test(upload.url)) {
-          const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
-          return (
-            <iframe
-              key={index}
-              className="preview-video"
-              src={`https://www.youtube.com/embed/${videoId}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={`Video ${index}`}
-            ></iframe>
-          );
-        } else if (tiposDeVideo.includes(extensao)) {
-          return (
-            <video controls key={index} className="video">
-              <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-          );
-        } else if (tiposDeImagem.includes(extensao)) {
-          return (
-            <img
-              key={index}
-              className="imagem"
-              src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`}
-              alt={`Imagem ${index}`}
-            />
-          );
-        } else if (upload.conteudo) {
-          return <p key={index} className="texto">{upload.conteudo}</p>;
-        } else if (upload.conteudoHtml) {
-          return (
-            <div
-              key={index}
-              dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
-              className="html"
-            ></div>
-          );
-        }
-        return null;
+      }, [noticiaIndex, noticias]);
+
+      const renderizarNoticia = (noticia) => {
+
+        const removeHtmlTags = (htmlString) => {
+          return htmlString.replace(/<\/?[^>]+(>|$)/g, "");
+        };
+
+        return (
+          <div className="noticia">
+            <h2 style={{ color: 'white', textAlign: 'center' }} >{removeHtmlTags(noticia.title)}</h2>
+            <h3 style={{ color: 'white', textAlign: 'center' }}> {removeHtmlTags(noticia.description)} </h3>
+          </div>
+        );
       };
-    
+
       return (
         <div className="conteudo-baixo">
-          {renderizarItem(listabaixo[indexAtual], indexAtual)}
+          {noticias.length > 0 && renderizarNoticia(noticias[noticiaIndex])}
         </div>
       );
     };
-      
 
     return (
         <div className="player-dashbord-player1">

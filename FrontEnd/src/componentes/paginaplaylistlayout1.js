@@ -98,10 +98,10 @@ const PaginaPlaylistLayout1 = () => {
         </div>
         <div className='linha-layout1-layout1'>
             <div className='borda3-layout1-layout1'> 
-              <FaPlus onClick={abrirModalPosicao3Layout1} />
+              {/*<FaPlus onClick={abrirModalPosicao3Layout1} />
 
             {ModalPosicao3Layout1Aberto && <ModalPosicao3Layout1 fecharModalPosicao3Layout1={fecharModalPosicao3Layout1} 
-            atualizarUploadsSelecionados={atualizarUploadsSelecionados}/>}
+            atualizarUploadsSelecionados={atualizarUploadsSelecionados}/>}*/}
             </div>
         </div>
 
