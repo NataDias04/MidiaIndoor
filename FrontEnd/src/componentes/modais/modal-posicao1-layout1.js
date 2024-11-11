@@ -162,7 +162,7 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
       <div className="overlay"></div>
       <div className="modal-posicao1-layou1">
         <div className="modal2-posicao1-layou1">
-          <h2>Conteúdo do Modal Imagem</h2>
+          Centro
 
           <div className='ordem-playlist-posicao1-layou1'>
             <div className='adicionar-upload-posicao1-layou1'>

@@ -58,7 +58,29 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
     }));
     console.log("Novas requisições:", novasRequisicoes);
     setMinhaListaRequisicoes(novasRequisicoes);
+
+     // Salva os uploads selecionados no localStorage
+     if (uploadsSelecionados.length > 0) {
+      localStorage.setItem('uploadsSelecionados', JSON.stringify(uploadsSelecionados));
+    }
+
+    if (Object.keys(tempos).length > 0) {
+      localStorage.setItem('temposUploads', JSON.stringify(tempos));
+    }
+    
   }, [uploadsSelecionados, tempos]);
+
+  // Recupera os uploads salvos no localStorage ao montar o componente
+  useEffect(() => {
+    const uploadsSalvos = localStorage.getItem('uploadsSelecionados');
+    if (uploadsSalvos) {
+      setUploadsSelecionados(JSON.parse(uploadsSalvos));
+    }
+    const temposSalvos = localStorage.getItem('temposUploads');
+    if (temposSalvos) {
+      setTempos(JSON.parse(temposSalvos));
+    }
+  }, []);
 
   const RenderizarImagem = (upload, index) => {
     const extensao = upload.url ? upload.url.split('.').pop() : '';
@@ -152,7 +174,7 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
       <div className="overlay"></div>
       <div className="modal-posicao3-layout1">
         <div className="modal2-posicao3-layout1">
-          <h2>Conteúdo do Modal Imagem</h2>
+          Baixo
 
           <div className='ordem-playlist-posicao3-layout1'>
             <div className='adicionar-upload-posicao3-layout1'>

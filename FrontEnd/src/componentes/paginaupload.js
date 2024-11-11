@@ -204,7 +204,7 @@ const PaginaUpload = () => {
 
   return (
     <div className="dashbord-upload">
-      <div className="cabecalho-upload">cabeçalho</div>
+      <div className="cabecalho-upload"></div>
 
       <div className='linha-upload'>
 

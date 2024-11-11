@@ -41,7 +41,7 @@ const PaginaVerPlaylist = () => {
   return (
     <div className="dashbord-ver-playlist">
 
-      <div className="cabecalho-ver-playlist">cabeçalho</div>
+      <div className="cabecalho-ver-playlist"></div>
 
       <div className='secao-ver-playlist'>
         <div className='previews-ver-playlist'>

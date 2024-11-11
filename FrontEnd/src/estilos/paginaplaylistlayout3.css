@@ -40,13 +40,15 @@ body {
   
   .cabecalho-playlist-layout3, .rodape-playlist-layout3 {
     height: 75px;
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ddd;
+    background-color: white;
   }
   
   .cabecalho-playlist-layout3{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .rodape-playlist-layout3{
@@ -66,8 +68,8 @@ body {
 }
 
 .borda1-layout3-layout3{
-    width: 1380px;
-    height: 400px;
+    width: 1300px;
+    height: 350px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -85,7 +87,7 @@ body {
 
 .borda2-layout3-layout3{
     width: 125px;
-    height: 125px;
+    height: 123px;
     display: flex;
     margin-top: 25px;
     margin-right: 5px;
@@ -97,7 +99,7 @@ body {
 
 .borda3-layout3-layout3{
     width: 125px;
-    height: 268px;
+    height: 220px;
     display: flex;
     margin-top: 5px;
     margin-right: 5px;
@@ -123,7 +125,7 @@ body {
 }
 
 .borda5-layout3-layout3{
-    width: 1380px;
+    width: 1300px;
     height: 125px;
     display: flex;
     margin-left: 5px;
@@ -137,4 +139,166 @@ body {
   width: 25px;
   height: 25px;
   color: #7EC8E3;
+}
+
+.modal-posicao1-layout3, .modal-posicao2-layout3, .modal-posicao3-layout3 {
+  top: 50%;
+  left: 50%;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
+  z-index: 1000;
+  display: flex;
+  position: fixed;
+  border-radius: 10px;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal2-posicao1-layout3, .modal2-posicao2-layout3, .modal2-posicao3-layout3 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ordem-playlist-posicao1-layout3, .ordem-playlist-posicao2-layout3, .ordem-playlist-posicao3-layout3 {
+  width: 95%;
+  height: 80%;
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #d8cfc4;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.midia-item {
+  width: 200px;
+  height: 200px;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.midia-nome {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.campo-tempo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.input-tempo {
+  width: 60px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.adicionar-upload-posicao1-layout3, .adicionar-upload-posicao2-layout3, .adicionar-upload-posicao3-layout3 {
+  width: 200px;
+  height: 250px;
+  display: flex;
+  overflow: hidden; 
+  margin-top: 20px;
+  overflow: visible;
+  margin-left: 10px;
+  border-radius: 5px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.lista-uploads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.upload-preview-layout3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 200px;
+  height: 250px;
+  background-color: white;
+  margin-top: 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.upload-preview-layout3 img {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.upload-preview-layout3 video {
+  width: 80%;
+  height: 60%;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.upload-preview-layout3 iframe {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.tempo {
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+
+.nome-playlist {
+  width: 600px;
+}
+
+.botao-apagar:hover {
+  background-color: black;
+}
+
+.botao-apagar {
+  top: -8px;
+  right: -8px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  display: flex;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
 }

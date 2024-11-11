@@ -63,6 +63,14 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.layout1-central{
+  margin-left: 10px;
+}
+
+.layout4-central{
+  margin-right: 10px;
+}
+
 .layout1-central, .layout2-central, .layout3-central, .layout4-central{
     width: 380px; /*480px;*/
     height: 450px; /*450px;*/
@@ -78,6 +86,7 @@ body {
 
 .icon-container-central {
   height: 100%;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;

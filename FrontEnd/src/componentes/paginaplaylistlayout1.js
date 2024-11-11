@@ -61,7 +61,7 @@ const PaginaPlaylistLayout1 = () => {
 
   const handlecancelar = () =>{
     localStorage.clear();
-    irParaCentral();
+    irParaLayout();
   };
 
   return (

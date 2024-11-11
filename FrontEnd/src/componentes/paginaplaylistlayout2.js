@@ -46,6 +46,11 @@ const PaginaPlaylistLayout2 = () => {
     irParaCentral();
   };
 
+  const handlecancelar = () =>{
+    localStorage.clear();
+    irParaLayout();
+  };
+
   return (
     <div className="dashbord-playlist-layout2">
       <div className="cabecalho-playlist-layout2">
@@ -93,7 +98,7 @@ const PaginaPlaylistLayout2 = () => {
       </div>
 
       <div className="rodape-playlist-layout2">
-        <button onClick={irParaLayout}>cancelar</button>
+        <button onClick={handlecancelar}>cancelar</button>
         <button onClick={handleSalvarPlaylist}>salvar</button>
       </div>
     </div>
