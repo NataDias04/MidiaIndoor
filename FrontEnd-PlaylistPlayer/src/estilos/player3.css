@@ -12,14 +12,14 @@ body {
     background-color: #d8cfc4;
   }
   
-  .player2-dashbord-player2 {
+  .player3-dashbord-player3 {
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
   }
   
-  .player2-linha-1 {
+  .player3-linha-1 {
     width: 100%;
     height: 75%;
     display: flex;
@@ -28,38 +28,62 @@ body {
     margin-bottom: 0;
   }
   
-  .player2-linha-2{
+  .player3-linha-2{
     width: 100%;
     height: 25%;
     display: flex;
     justify-content: center;
   }
+
+  .player3-coluna1{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    width: 12.5%;
+    height: 100%;
+  }
+
+  .player3-coluna2{
+    margin-top: 5px;
+    display: flex;
+    width: 99.4%;
+    height: 100%;
+  }
   
-  .player2-centro{
+  .player3-centro{
     display: flex;
     background-color: #d8cfc4;
     width: 86.5%;
     height: 100%;
   }
-  
-  .player2-esquerda{
-    margin-right: 5px;
+
+  .player3-direita-cima{
     display: flex;
     background-color: #d8cfc4;
-    width: 12.5%;
+    width: 100%;
+    height: 50%;
+  }
+
+  .player3-direita{
+    margin-top: 5px;
+    display: flex;
+    background-color: #d8cfc4;
+    width: 100%;
     height: 100%;
   }
-  
-  .player2-baixo {
-    margin-top: 0;
+
+  .player3-baixo{
     background-color: #d8cfc4;
-    align-items: center;
-    justify-content: center;
-    width: 99.35%;
-    height: 97.5%;
-    margin-top: auto;
   }
-  
+
+
+  .player3-baixo-esquerda{
+    width: 15%;
+    flex-shrink: 0;
+    background-color: #d8cfc4;
+    margin-right: 5px;
+  }
+
   .conteudo-centro{
     width: 100%;
     height: 100%;
@@ -80,18 +104,24 @@ body {
     width: 100%;
     height: 100%;
   }
+  
   .conteudo-centro video{
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
-  .conteudo-esquerda img , .conteudo-esquerda video{
+
+  .conteudo-direita img , .conteudo-direita video{
     width: 100%;
     height: 100%;
     aspect-ratio: 4 / 1;
   }
   
+  .conteudo-baixo{
+    width: 100%;
+    height: 100%;
+  }
+
   .conteudo-baixo img , .conteudo-baixo video{
     width: 100%;
     height: 100%;

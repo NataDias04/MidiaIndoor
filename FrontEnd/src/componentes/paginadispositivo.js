@@ -69,7 +69,7 @@ const PaginaDispositivo = () => {
 
   return (
     <div className="dashbord-dispositivo">
-      <div className="cabecalho-dispositivo">cabeçalho</div>
+      <div className="cabecalho-dispositivo"></div>
 
       <div className="linha-dispositivo">
         <div className="column1-dispositivo">

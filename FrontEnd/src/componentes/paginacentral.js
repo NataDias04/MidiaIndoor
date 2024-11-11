@@ -27,10 +27,11 @@ const PaginaCentral = () => {
 
     return(
         <div className="dashbord-central">
-            <div className="cabecalho-central">Dashboard</div>
+            <div className="cabecalho-central"></div>
 
             <div className='secao-central'>
                 <div className='layout1-central'>
+                    Upload de arquivos
                     <div className="icon-container-central">
                         <FaFileUpload/>
                     </div>
@@ -40,7 +41,7 @@ const PaginaCentral = () => {
                 </div>
 
                 <div className='layout2-central'>
-
+                    Dispositivos
                     <div className="icon-container-central">
                         <FaTv/>
                     </div>
@@ -50,7 +51,7 @@ const PaginaCentral = () => {
                 </div>
 
                 <div className='layout3-central'>
-
+                    Criação de playlists
                     <div className="icon-container-central">
                         <FaPlus/>
                     </div>
@@ -59,7 +60,7 @@ const PaginaCentral = () => {
  
                 </div>
                 <div className='layout4-central'>
-
+                    Playlist criadas
                     <div className="icon-container-central">
                         <FaListUl/>
                     </div>
