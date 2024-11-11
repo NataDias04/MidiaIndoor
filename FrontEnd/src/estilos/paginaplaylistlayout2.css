@@ -67,7 +67,7 @@ body {
 }
 
 .borda1-layout2-layout2{
-    width: 1300px;
+    width: 125px;
     height: 350px;
     display: flex;
     margin-left: 5px;
@@ -79,7 +79,7 @@ body {
 }
 
 .borda2-layout2-layout2{
-    width: 125px;
+    width: 1300px;
     height: 350px;
     display: flex;
     margin-left: 5px;

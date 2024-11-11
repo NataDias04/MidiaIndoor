@@ -61,20 +61,20 @@ const ModalPosicao1Layout3 = ({ fecharModalPosicao1Layout3, atualizarUploadsSele
     setMinhaListaRequisicoes(novasRequisicoes);
 
     if (uploadsSelecionados.length > 0) {
-      localStorage.setItem('uploadsSelecionadosLayout3', JSON.stringify(uploadsSelecionados));
+      localStorage.setItem('uploadsSelecionados_posicao1Layout3', JSON.stringify(uploadsSelecionados));
     }
 
     if (Object.keys(tempos).length > 0) {
-      localStorage.setItem('temposUploadsLayout3', JSON.stringify(tempos));
+      localStorage.setItem('temposUploads_posicao1Layout3', JSON.stringify(tempos));
     }
   }, [uploadsSelecionados, tempos]);
 
   useEffect(() => {
-    const uploadsSalvos = localStorage.getItem('uploadsSelecionadosLayout3');
+    const uploadsSalvos = localStorage.getItem('uploadsSelecionados_posicao1Layout3');
     if (uploadsSalvos) {
       setUploadsSelecionados(JSON.parse(uploadsSalvos));
     }
-    const temposSalvos = localStorage.getItem('temposUploadsLayout3');
+    const temposSalvos = localStorage.getItem('temposUploads_posicao1Layout3');
     if (temposSalvos) {
       setTempos(JSON.parse(temposSalvos));
     }

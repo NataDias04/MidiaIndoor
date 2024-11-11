@@ -64,22 +64,22 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
 
     // Salva os uploads selecionados no localStorage
     if (uploadsSelecionados.length > 0) {
-      localStorage.setItem('uploadsSelecionados', JSON.stringify(uploadsSelecionados));
+      localStorage.setItem('uploadsSelecionados_posicao1', JSON.stringify(uploadsSelecionados));
     }
 
     if (Object.keys(tempos).length > 0) {
-      localStorage.setItem('temposUploads', JSON.stringify(tempos));
+      localStorage.setItem('temposUploads_posicao1', JSON.stringify(tempos));
     }
 
   }, [uploadsSelecionados, tempos]);
 
   // Recupera os uploads salvos no localStorage ao montar o componente
   useEffect(() => {
-    const uploadsSalvos = localStorage.getItem('uploadsSelecionados');
+    const uploadsSalvos = localStorage.getItem('uploadsSelecionados_posicao1');
     if (uploadsSalvos) {
       setUploadsSelecionados(JSON.parse(uploadsSalvos));
     }
-    const temposSalvos = localStorage.getItem('temposUploads');
+    const temposSalvos = localStorage.getItem('temposUploads_posicao1');
     if (temposSalvos) {
       setTempos(JSON.parse(temposSalvos));
     }
