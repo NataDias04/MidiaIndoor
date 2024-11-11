@@ -9,6 +9,7 @@ const PaginaVerPlaylist = () => {
   const [playlists, setPlaylists] = useState([]); // Estado para armazenar playlists
   const navigate = useNavigate();
 
+
   // Função para buscar as playlists
   const carregarPlaylists = async () => {
     try {
@@ -38,9 +39,10 @@ const PaginaVerPlaylist = () => {
     }
   };
 
-  const handleEditarClick = (playlistId) => {
-    navigate(`/editar-playlist/${playlistId}`);
+  const EditarPlaylist = (playlistId) => {
+    navigate(`/paginaeditarplaylist/${playlistId}`);
   };
+
 
   return (
     <div className="dashbord-ver-playlist">
@@ -61,7 +63,7 @@ const PaginaVerPlaylist = () => {
                 </button>
                 <button
                   className="botao-editar-playlist"
-                  onClick={() => handleEditarClick(playlist._id)}
+                  onClick={() =>  EditarPlaylist(playlist._id)}
                 >
                   Editar
                 </button>
