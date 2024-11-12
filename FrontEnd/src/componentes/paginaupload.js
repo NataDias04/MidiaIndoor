@@ -244,8 +244,7 @@ const PaginaUpload = () => {
       </div>
 
       <div className="rodape-upload">
-        <button className="botao-anterior-central" onClick={irParaCentral}>cancelar</button>
-        <button className="botao-anterior-central" onClick={irParaCentral}>salvar</button>
+        <button className="botao-anterior-central" onClick={irParaCentral}>voltar</button>
       </div>
     </div>
   );
