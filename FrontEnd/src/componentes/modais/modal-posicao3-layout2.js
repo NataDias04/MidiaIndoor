@@ -20,7 +20,6 @@ const ModalPosicao3Layout2 = ({ fecharModalPosicao3Layout2, atualizarUploadsSele
       const tiposDeVideo = ['mp4', 'webm', 'ogg'];
       const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
   
-      // Verifica se é um vídeo local ou link do YouTube
       if (tiposDeVideo.includes(extensao.toLowerCase()) || youtubeRegex.test(url)) {
         setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
       }
@@ -53,29 +52,27 @@ const ModalPosicao3Layout2 = ({ fecharModalPosicao3Layout2, atualizarUploadsSele
       caminhointerno: upload.caminhointerno,
       tempo: tempos[index] || '',
       ordem: index + 1,
-      posicao: "baixo", // Posição mantida como "baixo"
+      posicao: "baixo",
     }));
     console.log("Novas requisições:", novasRequisicoes);
     setMinhaListaRequisicoes(novasRequisicoes);
 
-     // Salva os uploads selecionados no localStorage
      if (uploadsSelecionados.length > 0) {
-      localStorage.setItem('uploadsSelecionados', JSON.stringify(uploadsSelecionados));
+      localStorage.setItem('uploadsSelecionados_posicao3Layout2', JSON.stringify(uploadsSelecionados));
     }
 
     if (Object.keys(tempos).length > 0) {
-      localStorage.setItem('temposUploads', JSON.stringify(tempos));
+      localStorage.setItem('temposUploads_posicao3Layout2', JSON.stringify(tempos));
     }
     
   }, [uploadsSelecionados, tempos]);
 
-  // Recupera os uploads salvos no localStorage ao montar o componente
   useEffect(() => {
-    const uploadsSalvos = localStorage.getItem('uploadsSelecionados');
+    const uploadsSalvos = localStorage.getItem('uploadsSelecionados_posicao3Layout2');
     if (uploadsSalvos) {
       setUploadsSelecionados(JSON.parse(uploadsSalvos));
     }
-    const temposSalvos = localStorage.getItem('temposUploads');
+    const temposSalvos = localStorage.getItem('temposUploads_posicao3Layout2');
     if (temposSalvos) {
       setTempos(JSON.parse(temposSalvos));
     }
@@ -155,10 +152,8 @@ const ModalPosicao3Layout2 = ({ fecharModalPosicao3Layout2, atualizarUploadsSele
     try {
       console.log('Removendo upload localmente:', upload);
   
-      // Filtra a lista, removendo o item com o ID correspondente
       const novaLista = uploadsSelecionados.filter((u) => u._id !== upload._id);
   
-      // Atualiza o estado com a nova lista filtrada
       setUploadsSelecionados(novaLista);
       
       console.log('Upload removido da lista:', novaLista);

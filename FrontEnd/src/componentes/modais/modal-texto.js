@@ -9,8 +9,6 @@ const ModalTexto = ({ fecharModal }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleSave = () => {
-
-    // Função para descodificar entidades HTML
     
     const descodificado = (text) => {
       return text.replace(/&lt;/g, '<')
@@ -20,15 +18,13 @@ const ModalTexto = ({ fecharModal }) => {
                 .replace(/&#39;/g, "'");
     };
 
-     // Função para extrair o conteúdo da tag <title> usando expressão regular
      const extrairTituloDoHtml = (htmlString) => {
       const match = htmlString.match(/<title>(.*?)<\/title>/i);
-      return match ? match[1] : 'Sem título'; // Retorna 'Sem título' se não encontrar a tag <title>
+      return match ? match[1] : 'Sem título';
     };
 
     const htmldescodificado = descodificado(editorData)
 
-    // Extraindo o título do HTML do CKEditor
     const nome = extrairTituloDoHtml(htmldescodificado);
 
     console.log('editorData:', editorData);
@@ -54,8 +50,8 @@ const ModalTexto = ({ fecharModal }) => {
   };
 
   const onSaveAndClose = async () => {
-    await handleSave();  // Espera `handleSave` terminar
-    fecharModal();  // Depois, fecha o modal
+    await handleSave();
+    fecharModal();
   };
 
   const editorConfiguration = {
@@ -76,7 +72,7 @@ const ModalTexto = ({ fecharModal }) => {
       <div className="overlay"></div>
       <div className="modal-especial">
         <div className="modal-texto">
-          <h2>Conteúdo do Modal Texto</h2>
+          Upload de textos
 
           <div>
             <label>

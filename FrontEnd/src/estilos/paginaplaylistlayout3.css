@@ -141,7 +141,7 @@ body {
   color: #7EC8E3;
 }
 
-.modal-posicao1-layout3, .modal-posicao2-layout3, .modal-posicao3-layout3 {
+.modal-posicao1-layout3, .modal-posicao2-layout3, .modal-posicao3-layout3, .modal-posicao4-layout3 {
   top: 50%;
   left: 50%;
   width: calc(100vw - 40px);
@@ -155,7 +155,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.modal2-posicao1-layout3, .modal2-posicao2-layout3, .modal2-posicao3-layout3 {
+.modal2-posicao1-layout3, .modal2-posicao2-layout3, .modal2-posicao3-layout3, .modal2-posicao4-layout3  {
   width: 100%;
   height: 100%;
   display: flex;
@@ -164,7 +164,7 @@ body {
   justify-content: space-between;
 }
 
-.ordem-playlist-posicao1-layout3, .ordem-playlist-posicao2-layout3, .ordem-playlist-posicao3-layout3 {
+.ordem-playlist-posicao1-layout3, .ordem-playlist-posicao2-layout3, .ordem-playlist-posicao3-layout3, .ordem-playlist-posicao4-layout3 {
   width: 95%;
   height: 80%;
   gap: 20px;
@@ -215,7 +215,7 @@ body {
   margin-bottom: 10px;
 }
 
-.adicionar-upload-posicao1-layout3, .adicionar-upload-posicao2-layout3, .adicionar-upload-posicao3-layout3 {
+.adicionar-upload-posicao1-layout3, .adicionar-upload-posicao2-layout3, .adicionar-upload-posicao3-layout3,.adicionar-upload-posicao4-layout3 {
   width: 200px;
   height: 250px;
   display: flex;

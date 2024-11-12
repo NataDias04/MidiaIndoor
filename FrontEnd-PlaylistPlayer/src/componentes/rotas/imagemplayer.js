@@ -79,7 +79,7 @@ export const salvarImagem = async (file, nome) => {
   
       const imagem = await response.json();
       console.log('Imagem buscada com sucesso:', imagem);
-      return imagem; // Retorna a imagem encontrada
+      return imagem;
     } catch (erro) {
       console.error('Erro ao buscar imagem:', erro);
       throw erro;
@@ -168,7 +168,7 @@ export const salvarImagem = async (file, nome) => {
   
       const imagemLink = await response.json();
       console.log('Link da imagem buscado com sucesso:', imagemLink);
-      return imagemLink; // Retorna o link da imagem encontrado
+      return imagemLink;
     } catch (erro) {
       console.error('Erro ao buscar link da imagem:', erro);
       throw erro;

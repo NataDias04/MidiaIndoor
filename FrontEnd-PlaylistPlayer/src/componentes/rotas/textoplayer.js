@@ -96,7 +96,7 @@ export async function salvarHtml(conteudo, nome) {
       });
   
       if (!response.ok) {
-        const errorData = await response.json(); // Captura a resposta de erro
+        const errorData = await response.json();
       throw new Error(`Erro ${response.status}: ${errorData.error}`);
       }
   

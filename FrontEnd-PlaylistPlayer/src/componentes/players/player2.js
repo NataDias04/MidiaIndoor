@@ -79,7 +79,7 @@ const Player2 = () => {
           setIsVideo(true);
         } else {
           setIsVideo(false);
-          const tempoDeExibicao = 5000;
+          const tempoDeExibicao = itemAtual.tempo || 30000;
           const timeout = setTimeout(() => {
             setIndexAtual((indexAtual + 1) % listacentro.length);
           }, tempoDeExibicao);

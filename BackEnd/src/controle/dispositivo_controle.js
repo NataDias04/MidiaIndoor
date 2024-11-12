@@ -1,6 +1,5 @@
 import Dispositivo from '../modelos/dispositivo.js';
 
-// Criar um novo dispositivo
 const create = async (req, res) => {
   try {
     const { nome, resolucao, playlists } = req.body;
@@ -18,7 +17,6 @@ const create = async (req, res) => {
   }
 };
 
-// Buscar todos os dispositivos
 const findAll = async (req, res) => {
   try {
     const dispositivos = await Dispositivo.find().populate('playlists');
@@ -28,7 +26,6 @@ const findAll = async (req, res) => {
   }
 };
 
-// Buscar um dispositivo específico pelo ID
 const findOne = async (req, res) => {
   try {
     const dispositivo = await Dispositivo.findById(req.params.id).populate('playlists');
@@ -43,7 +40,6 @@ const findOne = async (req, res) => {
   }
 };
 
-// Atualizar um dispositivo pelo ID
 const update = async (req, res) => {
   try {
     const { nome, resolucao, playlists } = req.body;
@@ -64,7 +60,6 @@ const update = async (req, res) => {
   }
 };
 
-// Remover um dispositivo pelo ID
 const remove = async (req, res) => {
   try {
     const dispositivo = await Dispositivo.findByIdAndDelete(req.params.id);

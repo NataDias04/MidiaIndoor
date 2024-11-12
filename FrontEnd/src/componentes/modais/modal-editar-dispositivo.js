@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../estilos/paginadispositivo.css';
 import { atualizarDispositivo } from '../rotas/dispositivo.js'; 
-import { buscarPlaylists } from '../rotas/playlist.js'; // Importa função para buscar playlists
+import { buscarPlaylists } from '../rotas/playlist.js';
 
 const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
   const [nome, setNome] = useState('');
@@ -16,12 +16,12 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
     if (dispositivo) {
       setNome(dispositivo.nome);
       setResolucao(dispositivo.resolucao);
-      setPlaylistsSelecionadas(dispositivo.playlists || []); // Inicializa playlists já atribuídas
+      setPlaylistsSelecionadas(dispositivo.playlists || []);
     }
   }, [dispositivo]);
 
   useEffect(() => {
-    fetchPlaylists(); // Carrega playlists disponíveis ao abrir o modal
+    fetchPlaylists();
   }, []);
 
   const fetchPlaylists = async () => {

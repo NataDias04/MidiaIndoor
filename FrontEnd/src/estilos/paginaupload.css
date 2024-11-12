@@ -50,6 +50,7 @@ body::before {
 .linha-upload {
   flex: 1;
   display: flex;
+  overflow: hidden;
 }
 
 .column1-upload, .column2-upload{
@@ -202,7 +203,7 @@ body::before {
   background-color: white;
   transform: translateX(100%);
 }
-/* Switch background change */
+
 #checkboxInput:checked+.toggleSwitch {
   transition-duration: .2s;
   background-color: rgb(148, 118, 255);
@@ -231,8 +232,10 @@ body::before {
 
 .previews-upload{
   gap: 10px;
-  width: 95%;
-  height: 90%;
+  min-width: 95%;
+  max-width: 95%;
+  min-height: 95%;
+  max-height: 95%;
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;

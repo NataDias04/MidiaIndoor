@@ -1,7 +1,5 @@
 import Texto from '../modelos/texto_simples.js';
 
-
-// Criar novo texto
 const create = async (req, res) => {
   try {
     const { conteudo } = req.body;
@@ -18,7 +16,6 @@ const create = async (req, res) => {
   }
 };
 
-// Buscar todos os textos
 const findAll = async (req, res) => {
   try {
     const textos = await Texto.find();
@@ -28,7 +25,6 @@ const findAll = async (req, res) => {
   }
 };
 
-// Buscar um texto específico
 const findOne = async (req, res) => {
   try {
     const texto = await Texto.findById(req.params.id);
@@ -41,7 +37,6 @@ const findOne = async (req, res) => {
   }
 };
 
-// Remover um texto
 const remove = async (req, res) => {
   try {
     const texto = await Texto.findById(req.params.id);

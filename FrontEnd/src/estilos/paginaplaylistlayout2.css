@@ -67,7 +67,7 @@ body {
 }
 
 .borda1-layout2-layout2{
-    width: 1300px;
+    width: 125px;
     height: 350px;
     display: flex;
     margin-left: 5px;
@@ -79,7 +79,7 @@ body {
 }
 
 .borda2-layout2-layout2{
-    width: 125px;
+    width: 1300px;
     height: 350px;
     display: flex;
     margin-left: 5px;
@@ -131,7 +131,6 @@ body {
   justify-content: space-between;
 }
 
-/* Estilos para a posição 2 */
 .modal-posicao2-layout2 {
   top: 50%;
   left: 50%;
