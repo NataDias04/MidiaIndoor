@@ -15,4 +15,7 @@ router.get('/:id', PlaylistControle.findOne);
 // Rota para excluir uma playlist pelo ID
 router.delete('/:id', PlaylistControle.remove);
 
+// Rota para atualizar uma playlist pelo ID
+router.put('/:id', PlaylistControle.update);
+
 export default router;

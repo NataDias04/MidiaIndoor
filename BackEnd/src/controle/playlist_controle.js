@@ -3,7 +3,7 @@ import Playlist from '../modelos/playlist.js';
 // Criar uma nova playlist
 const create = async (req, res) => {
   try {
-    const { nome, ordemMidias } = req.body;
+    const { nome, ordemMidias, descricao, imagem, video } = req.body;
 
     // Validação simples para garantir que nome e ordemMidias estejam presentes
     if (!nome || !ordemMidias || ordemMidias.length === 0) {
@@ -50,7 +50,7 @@ const findOne = async (req, res) => {
 // Editar (atualizar) uma playlist por ID
 const update = async (req, res) => {
   try {
-    const { nome, ordemMidias } = req.body;
+    const { nome, ordemMidias, descricao, imagem, video } = req.body;
 
     // Buscar a playlist pelo ID
     const playlist = await Playlist.findById(req.params.id);
