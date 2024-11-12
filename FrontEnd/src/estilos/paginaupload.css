@@ -202,7 +202,7 @@ body::before {
   background-color: white;
   transform: translateX(100%);
 }
-/* Switch background change */
+
 #checkboxInput:checked+.toggleSwitch {
   transition-duration: .2s;
   background-color: rgb(148, 118, 255);

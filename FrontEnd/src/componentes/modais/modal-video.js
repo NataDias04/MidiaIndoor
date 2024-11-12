@@ -11,9 +11,9 @@ const ModalVideo = ({ fecharModal }) => {
   const [erro, setErro] = useState('');
 
   const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0]; // Captura o primeiro arquivo selecionado
+    const selectedFile = e.target.files[0];
     if (selectedFile) {
-      setVideoFile(selectedFile); // Atualiza o estado com o arquivo selecionado
+      setVideoFile(selectedFile);
       console.log('Arquivo de vídeo selecionado:', selectedFile);
       setVideoName(selectedFile.name);
     }
@@ -35,7 +35,6 @@ const ModalVideo = ({ fecharModal }) => {
       ? () => salvarVideo(videoFile, videoFile.name)
       : () => salvarVideoLink(videoName, videoLink);
 
-    // Chama a função correspondente (salvar vídeo ou link)
     saveFunction()
       .then(response => {
         console.log('Salvo com sucesso:', response);
@@ -47,8 +46,8 @@ const ModalVideo = ({ fecharModal }) => {
   };
 
   const onSaveAndClose = async () => {
-    await handleSave();  // Espera `handleSave` terminar
-    fecharModal();  // Depois, fecha o modal
+    await handleSave();
+    fecharModal();
   };
 
   return (
@@ -56,7 +55,7 @@ const ModalVideo = ({ fecharModal }) => {
       <div className="overlay"></div>
       <div className="modal">
         <div className="modal-video">
-          <h2>Conteúdo do Modal Vídeo</h2>
+          Upload de videos
 
           <div className="linha-check-box">
             Link

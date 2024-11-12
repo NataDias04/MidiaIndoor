@@ -56,7 +56,7 @@ const ModalPosicao2Layout3 = ({ fecharModalPosicao2Layout3, atualizarUploadsSele
       caminhointerno: upload.caminhointerno,
       tempo: tempos[index] || '',
       ordem: index + 1,
-      posicao: "direita-cima", // Ajustado para layout3
+      posicao: "direita-cima",
     }));
     setMinhaListaRequisicoes(novasRequisicoes);
 

@@ -41,7 +41,7 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
 
   const fetchPlaylists = async () => {
     setLoading(true);
-    setError(null); // Limpa qualquer erro anterior
+    setError(null); 
     try {
       const data = await buscarPlaylists();
       setPlaylists(data);
@@ -76,7 +76,7 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
       <div className="overlay"></div>
       <div className="modal">
         <div className="modal-dispositivo">
-          <h2>Conteúdo do Modal Dispositivo</h2>
+          Criar dispositivo
 
           <div className="input-group">
             <label htmlFor="nome">Nome do Dispositivo</label>

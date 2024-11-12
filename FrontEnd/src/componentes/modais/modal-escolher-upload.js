@@ -78,7 +78,6 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload, adicionarUpload }) => 
     ) : null;
   };
 
-  // Função para lidar com a seleção de upload
   const handleSelecionarUpload = (upload) => {
     setUploadSelecionado(upload);
   };

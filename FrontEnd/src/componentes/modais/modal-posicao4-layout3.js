@@ -19,8 +19,7 @@ const ModalPosicao4Layout3 = ({ fecharModalPosicao4Layout3, atualizarUploadsSele
       const extensao = url.split('.').pop();
       const tiposDeVideo = ['mp4', 'webm', 'ogg'];
       const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-  
-      // Verifica se é um vídeo local ou link do YouTube
+
       if (tiposDeVideo.includes(extensao.toLowerCase()) || youtubeRegex.test(url)) {
         setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
       }
@@ -46,7 +45,6 @@ const ModalPosicao4Layout3 = ({ fecharModalPosicao4Layout3, atualizarUploadsSele
     }
   };
 
-  // Mover a lógica para adicionar requisições para um useEffect
   useEffect(() => {
     const novasRequisicoes = uploadsSelecionados.map((upload, index) => ({
       midia: upload._id,
@@ -54,12 +52,11 @@ const ModalPosicao4Layout3 = ({ fecharModalPosicao4Layout3, atualizarUploadsSele
       caminhointerno: upload.caminhointerno,
       tempo: tempos[index] || '',
       ordem: index + 1,
-      posicao: "baixo-esquerda", // Alterando a posição para "baixo-esquerda"
+      posicao: "baixo-esquerda",
     }));
     console.log("Novas requisições:", novasRequisicoes);
     setMinhaListaRequisicoes(novasRequisicoes);
 
-     // Salva os uploads selecionados no localStorage
      if (uploadsSelecionados.length > 0) {
       localStorage.setItem('uploadsSelecionados_posicao4', JSON.stringify(uploadsSelecionados));
     }
@@ -70,7 +67,6 @@ const ModalPosicao4Layout3 = ({ fecharModalPosicao4Layout3, atualizarUploadsSele
     
   }, [uploadsSelecionados, tempos]);
 
-  // Recupera os uploads salvos no localStorage ao montar o componente
   useEffect(() => {
     const uploadsSalvos = localStorage.getItem('uploadsSelecionados_posicao4');
     if (uploadsSalvos) {
@@ -157,10 +153,8 @@ const ModalPosicao4Layout3 = ({ fecharModalPosicao4Layout3, atualizarUploadsSele
     try {
       console.log('Removendo upload localmente:', upload);
   
-      // Filtra a lista, removendo o item com o ID correspondente
       const novaLista = uploadsSelecionados.filter((u) => u._id !== upload._id);
   
-      // Atualiza o estado com a nova lista filtrada
       setUploadsSelecionados(novaLista);
       
       console.log('Upload removido da lista:', novaLista);

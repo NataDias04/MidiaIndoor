@@ -24,7 +24,6 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
       const tiposDeVideo = ['mp4', 'webm', 'ogg'];
       const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
   
-      // Verifica se é um vídeo local ou link do YouTube
       if (tiposDeVideo.includes(extensao.toLowerCase()) || youtubeRegex.test(url)) {
         setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
       }
@@ -62,7 +61,6 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     console.log("Novas requisições:", novasRequisicoes);
     setMinhaListaRequisicoes(novasRequisicoes);
 
-    // Salva os uploads selecionados no localStorage
     if (uploadsSelecionados.length > 0) {
       localStorage.setItem('uploadsSelecionados_posicao1', JSON.stringify(uploadsSelecionados));
     }
@@ -73,7 +71,6 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
 
   }, [uploadsSelecionados, tempos]);
 
-  // Recupera os uploads salvos no localStorage ao montar o componente
   useEffect(() => {
     const uploadsSalvos = localStorage.getItem('uploadsSelecionados_posicao1');
     if (uploadsSalvos) {
@@ -140,10 +137,8 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     try {
       console.log('Removendo upload localmente:', upload);
   
-      // Filtra a lista, removendo o item com o ID correspondente
       const novaLista = uploadsSelecionados.filter((u) => u._id !== upload._id);
   
-      // Atualiza o estado com a nova lista filtrada
       setUploadsSelecionados(novaLista);
       
       console.log('Upload removido da lista:', novaLista);
