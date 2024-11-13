@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  content: '';
+  position: fixed;
+  filter: blur(8px);
+  background-color: #d8cfc4;
+}
+
+.pagina-editar-playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.formulario-editar-playlist {
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formulario-editar-playlist h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+  text-align: center;
+}
+
+.formulario-editar-playlist label {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.formulario-editar-playlist input[type="text"],
+.formulario-editar-playlist textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.formulario-editar-playlist textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.formulario-editar-playlist button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #7EC8E3;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.formulario-editar-playlist button:hover {
+  background-color: #64b0cc;
+}
+
+.botao-voltar {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #7EC8E3;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.botao-voltar:hover {
+  color: #64b0cc;
+}
