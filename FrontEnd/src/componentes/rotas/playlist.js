@@ -40,6 +40,25 @@ export async function buscarPlaylists() {
     }
   }
 
+  export async function buscarPlaylist(playlistId) {
+    try {
+      const response = await fetch(`http://localhost:5000/playlist/${playlistId}`, {
+        method: 'GET',
+      });
+  
+      if (!response.ok) {
+        const erroDetails = await response.json();
+        throw new Error(`Erro ao buscar a playlist: ${erroDetails.mensagem}`);
+      }
+  
+      const playlist = await response.json();
+      return playlist;
+    } catch (erro) {
+      console.error('Erro ao buscar a playlist:', erro);
+      throw erro;
+    }
+  }
+
 // Função para deletar uma playlist
 export async function deletarPlaylist(playlistId) {
   try {
@@ -86,6 +105,7 @@ export async function atualizarPlaylist(playlistId, nome, ordemMidias) {
   export default {
     criarPlaylist,
     buscarPlaylists,
+    buscarPlaylist,
     deletarPlaylist,
     atualizarPlaylist,
   };
