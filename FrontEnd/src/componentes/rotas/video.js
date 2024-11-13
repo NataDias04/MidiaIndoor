@@ -55,7 +55,7 @@ export const buscarVideos = async () => {
     }
 
     const videos = await response.json();
-    return videos; // Retorna a lista de vídeos
+    return videos;
   } catch (error) {
     console.error('Erro ao buscar vídeos:', error.message);
     throw error;
@@ -137,7 +137,7 @@ export const buscarVideosLink = async () => {
     }
 
     const videosLinks = await response.json();
-    return videosLinks; // Retorna a lista de links de vídeos
+    return videosLinks;
   } catch (error) {
     console.error('Erro ao buscar vídeos por link:', error.message);
     throw error;

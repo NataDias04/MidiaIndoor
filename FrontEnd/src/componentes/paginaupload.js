@@ -16,7 +16,7 @@ const PaginaUpload = () => {
   const [modalImagemAberto, setModalImagemAberto] = useState(false);
   const [modalVideoAberto, setModalVideoAberto] = useState(false);
   const [modalTextoAberto, setModalTextoAberto] = useState(false);
-  const [uploads, setUploads] = useState([]); // Estado para armazenar os uploads
+  const [uploads, setUploads] = useState([]);
 
   const abrirModalImagem = () => setModalImagemAberto(true);
   const fecharModalImagem = () => setModalImagemAberto(false);
@@ -33,7 +33,6 @@ const PaginaUpload = () => {
     navigate('/central');
   };
 
-  // Função para carregar as imagens
   const RenderizarImagem = (upload, index) => {
     console.log(upload);
 
@@ -55,17 +54,14 @@ const PaginaUpload = () => {
     return null;
   };
 
-   // Função para carregar os videos
    const RenderizarVideo = (upload, index) => {
       console.log(upload);
 
       const extensao = upload.url ? upload.url.split('.').pop() : '';
       const tiposDeVideo = ['mp4', 'webm', 'ogg'];
 
-      // Regex para identificar links do YouTube
       const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
 
-      // Verifica se é um link do YouTube
       if (youtubeRegex.test(upload.url)) {
           const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
           return (
@@ -100,7 +96,6 @@ const PaginaUpload = () => {
     return null;
   };
 
-  // Função para carregar textos
   const RenderizarTexto = (upload, index) => {
     if (upload.conteudo) {
       return <p key={index} className="preview-texto">{upload.conteudo}</p>;
@@ -108,23 +103,21 @@ const PaginaUpload = () => {
     return null;
   };
 
-  // Função para carregar HTML
   const RenderizarHtml = (upload, index) => {
     if (upload.conteudo) {
       return (
-        <div 
-          key={index} 
-          className="preview-html" 
-          dangerouslySetInnerHTML={{ __html: upload.conteudo }} 
-        />
+      <iframe
+        key={index}
+        srcDoc={upload.conteudoHtml}
+        className="html-iframe"
+        title={`Conteúdo HTML ${index}`}
+        style={{ border: 'none', width: '100%', height: '100%' }}
+      />
       );
     }
     return null;
   };
   
-  
-  
-  // Função para buscar os uploads
   const carregarUploads = async () => {
     try {
       const imagens = await buscarImagens();
@@ -195,14 +188,13 @@ const PaginaUpload = () => {
     carregarUploads();
   };
 
-  // Chama a função de busca quando o componente carregar
   useEffect(() => {
     carregarUploads();
   }, []);
 
   return (
     <div className="dashbord-upload">
-      <div className="cabecalho-upload">cabeçalho</div>
+      <div className="cabecalho-upload"></div>
 
       <div className='linha-upload'>
 
@@ -234,7 +226,6 @@ const PaginaUpload = () => {
 
         <div className='column2-upload'>
           <div className='previews-upload'>
-            {/* Renderiza os previews dos uploads */}
             {uploads.length > 0 ? (
               uploads.map((upload, index) => (
                 <div key={index} className="upload-preview">
@@ -253,8 +244,7 @@ const PaginaUpload = () => {
       </div>
 
       <div className="rodape-upload">
-        <button className="botao-anterior-central" onClick={irParaCentral}>cancelar</button>
-        <button className="botao-anterior-central" onClick={irParaCentral}>salvar</button>
+        <button className="botao-anterior-central" onClick={irParaCentral}>voltar</button>
       </div>
     </div>
   );

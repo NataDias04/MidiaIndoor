@@ -9,14 +9,14 @@ const PlaylistSchema = new mongoose.Schema({
     midia: { type: String, required: true },
     posicao: { 
       type: String, 
-      enum: ['centro', 'direita', 'dreita-cima', 'esquerda','baixo','baixo-esquerda'], 
+      enum: ['centro', 'direita', 'direita-cima', 'esquerda','baixo','baixo-esquerda'], 
       required: true 
-    }, // Posição da mídia
-    ordem: { type: Number, required: true }, // Ordem de exibição
-    tempo: { type: Number, required: true } // Tempo de exibição em segundos
+    },
+    ordem: { type: Number, required: true },
+    tempo: { type: Number, required: true }
   }],
   criadoEm: { type: Date, default: Date.now }
-}); //, { _id: false }
+});
 
 const Playlist = mongoose.model('Playlist', PlaylistSchema);
 export default Playlist;

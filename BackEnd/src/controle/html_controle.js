@@ -2,13 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Html from '../modelos/html.js';
-import he from 'he'; // Importando a biblioteca he
+import he from 'he';
 
-// Definir __dirname em módulo ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Criar novo conteúdo HTML
 const create = async (req, res) => {
   try {
     const { conteudo, nome } = req.body;
@@ -19,7 +17,6 @@ const create = async (req, res) => {
       return res.status(400).json({ mensagem: 'Nenhum conteúdo HTML enviado' });
     }
 
-    // Decodificar o conteúdo HTML antes de salvar
     const conteudoDecodificado = he.decode(conteudo).replace(/<\/?p[^>]*>/g, '');
 
     const novoHtml = new Html({ nome, conteudo: conteudoDecodificado });
@@ -40,7 +37,6 @@ const create = async (req, res) => {
   }
 };
 
-// Buscar todos os conteúdos HTML
 const findAll = async (req, res) => {
   try {
     const htmls = await Html.find();
@@ -50,7 +46,6 @@ const findAll = async (req, res) => {
   }
 };
 
-// Buscar um conteúdo HTML específico
 const findOne = async (req, res) => {
   try {
     const html = await Html.findById(req.params.id);
@@ -70,17 +65,15 @@ const remove = async (req, res) => {
       return res.status(404).json({ mensagem: 'Conteúdo HTML não encontrado' });
     }
 
-    // Definindo o caminho do arquivo que será removido
     const uploadsDir = path.join(__dirname, '..', '..', 'uploads');
-    const filePath = path.join(uploadsDir, `${html.nome}.html`); // Assume que o nome é o campo que você salvou
+    const filePath = path.join(uploadsDir, `${html.nome}.html`);
 
-    // Remover o arquivo HTML da pasta uploads
     fs.unlink(filePath, (error) => {
       if (error) {
         console.error('Erro ao deletar o arquivo HTML:', error);
         return res.status(500).json({ mensagem: 'Erro ao deletar o arquivo HTML', erro: error.message });
       }
-      // Se o arquivo foi removido com sucesso, então removemos do banco de dados
+
       Html.findByIdAndDelete(req.params.id)
         .then(() => {
           res.json({ mensagem: 'Conteúdo HTML removido com sucesso' });

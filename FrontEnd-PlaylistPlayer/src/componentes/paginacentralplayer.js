@@ -1,33 +1,26 @@
 import React, { useState, useEffect } from 'react'; 
-import '../estilos/paginacentralplayer.css'; // Renomeado o CSS
+import '../estilos/paginacentralplayer.css';
 
 import { useNavigate } from 'react-router-dom';
-import { FaTv } from 'react-icons/fa'; // Ícone de tablet
-import { buscarDispositivos } from './rotas/dispositivoplayer.js'; // Função para buscar dispositivo
+import { FaTv } from 'react-icons/fa';
+import { buscarDispositivos } from './rotas/dispositivoplayer.js';
 
 const PaginaVerDispositivo = () => {
-  const [dispositivos, setDispositivos] = useState([]); // Estado para armazenar dispositivos
+  const [dispositivos, setDispositivos] = useState([]);
   const navigate = useNavigate();
 
-  // Função para buscar os dispositivos
   const carregarDispositivos = async () => {
     try {
-      const listaDispositivos = await buscarDispositivos(); // Chamada à API
+      const listaDispositivos = await buscarDispositivos();
       setDispositivos(listaDispositivos);
     } catch (erro) {
       console.error('Erro ao carregar dispositivos:', erro);
     }
   };
 
-  // Chama a função de busca ao carregar o componente
   useEffect(() => {
     carregarDispositivos();
   }, []);
-
-  // Função para navegar para outra página
-  /*const irParaCentral = () => {
-    navigate('/central');
-  };*/
 
   const GuardarDispositivo = (dispositivo) => {
     navigate('/playlist', { state: { dispositivoSelecionado: dispositivo } });

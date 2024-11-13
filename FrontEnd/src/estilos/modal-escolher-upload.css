@@ -7,6 +7,30 @@
     background-color: rgba(0, 255, 0, 0.2);
     border: 2px solid rgba(0, 255, 0, 0.5); 
   }
+
+  .modal-posicao1-layou1{
+    overflow: hidden
+  }
+
+  .previews-upload-escolher {
+    gap: 10px;
+    min-width: 95%;
+    max-width: 95%;
+    min-height: 70%;
+    max-height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    justify-content: flex-start;
+    background-color: #d8cfc4;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
   
   .escolher-upload-preview {
     width: 200px;

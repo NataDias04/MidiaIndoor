@@ -33,7 +33,6 @@ const PaginaDispositivo = () => {
     navigate('/central');
   };
 
-  // Função para carregar dispositivos
   const carregarDispositivos = async () => {
     try {
       const dispositivosCarregados = await buscarDispositivos();
@@ -61,15 +60,13 @@ const PaginaDispositivo = () => {
     }
   };
 
-
-  // Carregar dispositivos quando o componente for montado
   useEffect(() => {
     carregarDispositivos();
   }, []);
 
   return (
     <div className="dashbord-dispositivo">
-      <div className="cabecalho-dispositivo">cabeçalho</div>
+      <div className="cabecalho-dispositivo"></div>
 
       <div className="linha-dispositivo">
         <div className="column1-dispositivo">

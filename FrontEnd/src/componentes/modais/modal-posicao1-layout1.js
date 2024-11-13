@@ -16,14 +16,20 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
   const fecharModalEscolherUpload = () => setModalEscolherUploadAberto(false);
 
   const adicionarUpload = (upload) => {
-    setUploadsSelecionados((prev) => [...prev, upload]);
+    setUploadsSelecionados((prev) => {
+      const novosUploads = [...prev, upload];
   
-    // Verifica se o upload é um vídeo e define o tempo como 0
-    const extensao = upload.url ? upload.url.split('.').pop() : '';
-    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-    if (tiposDeVideo.includes(extensao.toLowerCase())) {
-      setTempos((prev) => ({ ...prev, [uploadsSelecionados.length]: '0' }));
-    }
+      const url = upload.url || '';
+      const extensao = url.split('.').pop();
+      const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+  
+      if (tiposDeVideo.includes(extensao.toLowerCase()) || youtubeRegex.test(url)) {
+        setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
+      }
+  
+      return novosUploads;
+    });
   };
 
   const handleSalvarUpload = () => {
@@ -55,24 +61,22 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     console.log("Novas requisições:", novasRequisicoes);
     setMinhaListaRequisicoes(novasRequisicoes);
 
-    // Salva os uploads selecionados no localStorage
     if (uploadsSelecionados.length > 0) {
-      localStorage.setItem('uploadsSelecionados', JSON.stringify(uploadsSelecionados));
+      localStorage.setItem('uploadsSelecionados_posicao1', JSON.stringify(uploadsSelecionados));
     }
 
     if (Object.keys(tempos).length > 0) {
-      localStorage.setItem('temposUploads', JSON.stringify(tempos));
+      localStorage.setItem('temposUploads_posicao1', JSON.stringify(tempos));
     }
 
   }, [uploadsSelecionados, tempos]);
 
-  // Recupera os uploads salvos no localStorage ao montar o componente
   useEffect(() => {
-    const uploadsSalvos = localStorage.getItem('uploadsSelecionados');
+    const uploadsSalvos = localStorage.getItem('uploadsSelecionados_posicao1');
     if (uploadsSalvos) {
       setUploadsSelecionados(JSON.parse(uploadsSalvos));
     }
-    const temposSalvos = localStorage.getItem('temposUploads');
+    const temposSalvos = localStorage.getItem('temposUploads_posicao1');
     if (temposSalvos) {
       setTempos(JSON.parse(temposSalvos));
     }
@@ -133,10 +137,8 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
     try {
       console.log('Removendo upload localmente:', upload);
   
-      // Filtra a lista, removendo o item com o ID correspondente
       const novaLista = uploadsSelecionados.filter((u) => u._id !== upload._id);
   
-      // Atualiza o estado com a nova lista filtrada
       setUploadsSelecionados(novaLista);
       
       console.log('Upload removido da lista:', novaLista);
@@ -155,7 +157,7 @@ const ModalPosicao1Layout1 = ({ fecharModalPosicao1Layout1, atualizarUploadsSele
       <div className="overlay"></div>
       <div className="modal-posicao1-layou1">
         <div className="modal2-posicao1-layou1">
-          <h2>Conteúdo do Modal Imagem</h2>
+          Centro
 
           <div className='ordem-playlist-posicao1-layou1'>
             <div className='adicionar-upload-posicao1-layou1'>

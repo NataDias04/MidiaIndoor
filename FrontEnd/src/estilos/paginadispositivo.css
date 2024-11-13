@@ -50,6 +50,7 @@ body::before {
 .linha-dispositivo {
   flex: 1;
   display: flex;
+  overflow: hidden;
 }
 
 .column1-dispositivo, .column2-dispositivo{

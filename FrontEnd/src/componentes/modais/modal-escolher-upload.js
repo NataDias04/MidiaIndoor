@@ -78,7 +78,6 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload, adicionarUpload }) => 
     ) : null;
   };
 
-  // Função para lidar com a seleção de upload
   const handleSelecionarUpload = (upload) => {
     setUploadSelecionado(upload);
   };
@@ -99,7 +98,7 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload, adicionarUpload }) => 
       <div className="modal-posicao1-layou1">
         <div className="modal2-posicao1-layou1">
           <h2>Escolha seu Upload</h2>
-          <div className='previews-upload'>
+          <div className='previews-upload-escolher'>
             {uploads.length > 0 ? (
               uploads.map((upload, index) => (
                 <div

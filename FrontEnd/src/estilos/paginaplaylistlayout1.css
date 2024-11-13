@@ -49,8 +49,7 @@ body {
   
   .cabecalho-playlist-layout1, .rodape-playlist-layout1 {
     height: 75px;
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ddd;
+    background-color: white;
   }
   
   .cabecalho-playlist-layout1{
@@ -78,8 +77,8 @@ body {
 }
 
 .borda1-layout1-layout1{
-    width: 1380px;
-    height: 400px;
+    width: 1300px;
+    height: 350px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -91,7 +90,7 @@ body {
 
 .borda2-layout1-layout1{
     width: 125px;
-    height: 400px;
+    height: 350px;
     display: flex;
     margin-left: 5px;
     margin-top: 25px;
@@ -103,7 +102,7 @@ body {
 }
 
 .borda3-layout1-layout1{
-    width: 1514px;
+    width: 1434px;
     height: 125px;
     display: flex;
     margin-bottom: 10px;
@@ -170,7 +169,7 @@ body {
   height: 80%;
   gap: 20px;
   display: flex;
-  flex-wrap: wrap;
+  
   margin-left: 10px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -210,7 +209,7 @@ body {
   height: 80%;
   gap: 20px;
   display: flex;
-  flex-wrap: wrap;
+  
   margin-left: 10px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -227,7 +226,7 @@ body {
   height: 80%;
   gap: 20px;
   display: flex;
-  flex-wrap: wrap;
+  
   margin-left: 10px;
   overflow-y: scroll;
   overflow-x: hidden;

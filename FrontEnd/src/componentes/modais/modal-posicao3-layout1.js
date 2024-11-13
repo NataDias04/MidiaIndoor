@@ -12,7 +12,20 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
   const fecharModalEscolherUpload = () => setModalEscolherUploadAberto(false);
 
   const adicionarUpload = (upload) => {
-    setUploadsSelecionados((prev) => [...prev, upload]);
+    setUploadsSelecionados((prev) => {
+      const novosUploads = [...prev, upload];
+  
+      const url = upload.url || '';
+      const extensao = url.split('.').pop();
+      const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+  
+      if (tiposDeVideo.includes(extensao.toLowerCase()) || youtubeRegex.test(url)) {
+        setTempos((prevTempos) => ({ ...prevTempos, [novosUploads.length - 1]: '0' }));
+      }
+  
+      return novosUploads;
+    });
   };
 
   const handleSalvarUpload = () => {
@@ -32,7 +45,6 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
     }
   };
 
-  // Mover a lógica para adicionar requisições para um useEffect
   useEffect(() => {
     const novasRequisicoes = uploadsSelecionados.map((upload, index) => ({
       midia: upload._id,
@@ -40,11 +52,31 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
       caminhointerno: upload.caminhointerno,
       tempo: tempos[index] || '',
       ordem: index + 1,
-      posicao: "baixo", // Alterando a posição para "baixo"
+      posicao: "baixo",
     }));
     console.log("Novas requisições:", novasRequisicoes);
     setMinhaListaRequisicoes(novasRequisicoes);
+
+     if (uploadsSelecionados.length > 0) {
+      localStorage.setItem('uploadsSelecionados_posicao3', JSON.stringify(uploadsSelecionados));
+    }
+
+    if (Object.keys(tempos).length > 0) {
+      localStorage.setItem('temposUploads_posicao3', JSON.stringify(tempos));
+    }
+    
   }, [uploadsSelecionados, tempos]);
+
+  useEffect(() => {
+    const uploadsSalvos = localStorage.getItem('uploadsSelecionados_posicao3');
+    if (uploadsSalvos) {
+      setUploadsSelecionados(JSON.parse(uploadsSalvos));
+    }
+    const temposSalvos = localStorage.getItem('temposUploads_posicao3');
+    if (temposSalvos) {
+      setTempos(JSON.parse(temposSalvos));
+    }
+  }, []);
 
   const RenderizarImagem = (upload, index) => {
     const extensao = upload.url ? upload.url.split('.').pop() : '';
@@ -117,12 +149,26 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
     }
   };
 
+  const ApagarUploadSelecionado = (upload) => {
+    try {
+      console.log('Removendo upload localmente:', upload);
+  
+      const novaLista = uploadsSelecionados.filter((u) => u._id !== upload._id);
+  
+      setUploadsSelecionados(novaLista);
+      
+      console.log('Upload removido da lista:', novaLista);
+    } catch (erro) {
+      console.error('Erro ao remover upload da lista:', erro);
+    }
+  };
+
   return (
     <>
       <div className="overlay"></div>
       <div className="modal-posicao3-layout1">
         <div className="modal2-posicao3-layout1">
-          <h2>Conteúdo do Modal Imagem</h2>
+          Baixo
 
           <div className='ordem-playlist-posicao3-layout1'>
             <div className='adicionar-upload-posicao3-layout1'>
@@ -144,6 +190,12 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
                 const tempo = tempos[index] || '';
                 return (
                   <div key={`${upload._id}-${index}`} className="upload-preview-layout1">
+                    <button
+                      className="botao-apagar"
+                      onClick={() => ApagarUploadSelecionado(upload)}
+                    >
+                      ×
+                    </button>
                     {RenderizarImagem(upload, index)}
                     {RenderizarVideo(upload, index)}
                     {RenderizarTexto(upload, index)}
@@ -151,15 +203,14 @@ const ModalPosicao3Layout1 = ({ fecharModalPosicao3Layout1, atualizarUploadsSele
                     {console.log("ID:", upload._id)}
                     {console.log("Ordem:", index + 1)}
                     {console.log("Posição:", "baixo")}
-                    {urlimagem(upload) && (
-                      <input
-                        className="tempo"
-                        type="text"
-                        placeholder="tempo(seg)"
-                        value={tempos[index] || ''}
-                        onChange={(e) => handleTempoChange(index, e.target.value)}
-                      />
-                    )}
+                    <input
+                      className="tempo"
+                      type="text"
+                      placeholder="tempo(seg)"
+                      value={tempos[index] || ''}
+                      onChange={(e) => handleTempoChange(index, e.target.value)}
+                      disabled={RenderizarVideo(upload, index) !== null}
+                    />
 
                     {console.log("Tempo:", tempos[index] || '')}
                     {console.log("lista", minhaListaRequisicoes)}

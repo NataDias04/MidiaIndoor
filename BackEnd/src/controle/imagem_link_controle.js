@@ -9,7 +9,6 @@ const create = async (request, response) => {
     let filePath = '';
 
     if (url.startsWith('http')) {
-      // Se for um link externo, faça o download da imagem e salve localmente
       const responseFetch = await fetch(url);
       const arrayBuffer = await responseFetch.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);

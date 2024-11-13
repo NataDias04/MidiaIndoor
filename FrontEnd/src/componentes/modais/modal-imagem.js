@@ -37,7 +37,7 @@ const ModalImagem = ({ fecharModal }) => {
 
       const response = await saveFunction();
       console.log('Salvo com sucesso:', response);
-      setErro(''); // Limpa a mensagem de erro após salvar com sucesso
+      setErro('');
     } catch (error) {
       console.error('Erro ao salvar:', error);
       setErro('Erro ao salvar. Tente novamente.');
@@ -45,8 +45,8 @@ const ModalImagem = ({ fecharModal }) => {
   };
 
   const onSaveAndClose = async () => {
-    await handleSave(); // Espera `handleSave` terminar
-    fecharModal(); // Depois, fecha o modal
+    await handleSave();
+    fecharModal();
   };
 
   return (
@@ -54,7 +54,7 @@ const ModalImagem = ({ fecharModal }) => {
       <div className="overlay"></div>
       <div className="modal">
         <div className="modal-imagem">
-          <h2>Conteúdo do Modal Imagem</h2>
+          Upload de imagens 
 
           <div className="linha-check-box">
             Link

@@ -2,29 +2,27 @@ import React, { useState, useEffect } from 'react';
 import '../estilos/paginaverplaylist.css';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaTabletAlt } from 'react-icons/fa'; // Ícone de tablet
-import { buscarPlaylists, deletarPlaylist } from './rotas/playlist.js'; // Função para buscar playlists
+import { FaTabletAlt } from 'react-icons/fa';
+import { buscarPlaylists, deletarPlaylist } from './rotas/playlist.js';
+
 
 const PaginaVerPlaylist = () => {
-  const [playlists, setPlaylists] = useState([]); // Estado para armazenar playlists
+  const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
 
-  // Função para buscar as playlists
   const carregarPlaylists = async () => {
     try {
-      const listaPlaylists = await buscarPlaylists(); // Chamada à API
+      const listaPlaylists = await buscarPlaylists();
       setPlaylists(listaPlaylists);
     } catch (erro) {
       console.error('Erro ao carregar playlists:', erro);
     }
   };
 
-  // Chama a função de busca ao carregar o componente
   useEffect(() => {
     carregarPlaylists();
   }, []);
 
-  // Função para navegar para outra página
   const irParaCentral = () => {
     navigate('/central');
   };
@@ -53,7 +51,7 @@ const PaginaVerPlaylist = () => {
             {playlists.length > 0 ? (
                   playlists.map((playlist, index) => (
                     <div key={index} className="playlist-item">
-                      <FaTabletAlt className="icone-tablet" /> {/* Ícone de tablet */}
+                      <FaTabletAlt className="icone-tablet" />
                       <p className="nome-playlist">{playlist.nome}</p>
                       <button
                         className="botao-apagar-playlist"

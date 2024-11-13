@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'; 
-import '../estilos/paginaplaylistplayer.css'; // Renomeado o CSS
+import '../estilos/paginaplaylistplayer.css';
 
 import { useNavigate,useLocation  } from 'react-router-dom';
-import { FaTv } from 'react-icons/fa'; // Ícone de playlist
-import { buscarPlaylist } from './rotas/playlistplayer.js'; // Função para buscar playlists
+import { FaTv } from 'react-icons/fa';
+import { buscarPlaylist } from './rotas/playlistplayer.js';
 
 const PaginaPlaylist = () => {
 
@@ -13,7 +13,6 @@ const PaginaPlaylist = () => {
   const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
 
-  // Função para buscar as playlists
   const carregarPlaylists = async () => {
     try {
       if (dispositivoSelecionado && dispositivoSelecionado.playlists) {
@@ -39,11 +38,11 @@ const PaginaPlaylist = () => {
   }
 
   const PlaylistPlayer2 = (playlist) => {
-    navigate('/player2', { state: { playlist } });
+    navigate('/player2', { state: {PlaylistSelecionada:{playlist}}});
   }
 
   const PlaylistPlayer3 = (playlist) => {
-    navigate('/player3', { state: { playlist } });
+    navigate('/player3', { state: {PlaylistSelecionada:{playlist}}});
   }
 
   useEffect(() => {
@@ -59,7 +58,7 @@ const PaginaPlaylist = () => {
           {playlists.length > 0 ? (
             playlists.map((playlist, index) => (
               <div key={index} className="player-playlist-item">
-                <FaTv className="player-icone-playlist" /> {/* Ícone de playlist */}
+                <FaTv className="player-icone-playlist" />
                 <p className="player-nome-playlist">{playlist.nome}</p>
                 <button className='player-botao-playlist' onClick={() => PlaylistPlayer1(playlist)}>Player</button>
                 {console.log(playlist)}

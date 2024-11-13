@@ -58,10 +58,34 @@ export async function deletarPlaylist(playlistId) {
     throw erro;
   }
 }
+
+export async function atualizarPlaylist(playlistId, nome, ordemMidias) {
+  try {
+    const response = await fetch(`http://localhost:5000/playlist/${playlistId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ nome, ordemMidias }),
+    });
+
+    if (!response.ok) {
+      const erroDetails = await response.json();
+      throw new Error(`Erro ao atualizar playlist: ${erroDetails.mensagem}`);
+    }
+
+    const playlistAtualizada = await response.json();
+    return playlistAtualizada;
+  } catch (erro) {
+    console.error('Erro ao atualizar playlist:', erro);
+    throw erro;
+  }
+}
   
 
   export default {
     criarPlaylist,
     buscarPlaylists,
     deletarPlaylist,
+    atualizarPlaylist,
   };
