@@ -97,26 +97,57 @@ const PaginaUpload = () => {
   };
 
   const RenderizarTexto = (upload, index) => {
-    if (upload.conteudo) {
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+
+    if (upload.conteudo && !isHtml(upload.conteudo)) {
       return <p key={index} className="preview-texto">{upload.conteudo}</p>;
     }
     return null;
   };
 
+  /*const RenderizarHtml = (upload, index) => {
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+  
+    if (upload.conteudo && isHtml(upload.conteudo)) {
+      if (upload.nome) {
+        console.log("TESTE TITULO", upload.nome);
+        return (
+          <p key={index} className="preview-html-titulo">
+            {`Titulo do Html: ${upload.nome}`}
+          </p>
+        );
+      }
+    }
+    return null;
+  };*/
+
   const RenderizarHtml = (upload, index) => {
-    if (upload.conteudo) {
-      return (
-      <iframe
-        key={index}
-        srcDoc={upload.conteudoHtml}
-        className="html-iframe"
-        title={`Conteúdo HTML ${index}`}
-        style={{ border: 'none', width: '100%', height: '100%' }}
-      />
-      );
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+    
+    if (upload.conteudo && isHtml(upload.conteudo)) {
+      if (upload.nome) {
+        console.log("TESTE TITULO", upload.nome);
+        return (
+          <>
+            <iframe 
+              key={`iframe-${index}`} 
+              className="preview-html-conteudo" 
+              srcDoc={upload.conteudo}
+              width="100%" 
+              height="500px" 
+              frameBorder="0"
+              title={`Iframe - ${upload.nome}`}
+            ></iframe>
+          </>
+        );
+      }
     }
     return null;
   };
+  
   
   const carregarUploads = async () => {
     try {

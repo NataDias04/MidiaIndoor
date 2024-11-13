@@ -122,13 +122,38 @@ const ModalPosicao2Layout3 = ({ fecharModalPosicao2Layout3, atualizarUploadsSele
   };
 
   const RenderizarTexto = (upload, index) => {
-    return upload.conteudo ? <p key={index} className="preview-texto">{upload.conteudo}</p> : null;
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+
+    if (upload.conteudo && !isHtml(upload.conteudo)) {
+      return <p key={index} className="preview-texto">{upload.conteudo}</p>;
+    }
+    return null;
   };
 
-  const RenderizarHtml = (upload) => {
-    return upload.conteudoHtml ? (
-      <div dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }} className="preview-html"></div>
-    ) : null;
+  const RenderizarHtml = (upload, index) => {
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+    
+    if (upload.conteudo && isHtml(upload.conteudo)) {
+      if (upload.nome) {
+        console.log("TESTE TITULO", upload.nome);
+        return (
+          <>
+            <iframe 
+              key={`iframe-${index}`} 
+              className="preview-html-conteudo" 
+              srcDoc={upload.conteudo}
+              width="100%" 
+              height="500px" 
+              frameBorder="0"
+              title={`Iframe - ${upload.nome}`}
+            ></iframe>
+          </>
+        );
+      }
+    }
+    return null;
   };
 
   const ApagarUploadSelecionado = (upload) => {

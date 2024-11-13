@@ -7,6 +7,9 @@ import { buscarPlaylist } from './rotas/playlistplayer.js';
 
 const PaginaPlaylist = () => {
 
+  const [playerAtual, setPlayerAtual] = useState(null);
+
+
   const location = useLocation();
   const { dispositivoSelecionado } = location.state || {};
 
@@ -44,6 +47,32 @@ const PaginaPlaylist = () => {
   const PlaylistPlayer3 = (playlist) => {
     navigate('/player3', { state: {PlaylistSelecionada:{playlist}}});
   }
+  
+  const EnviarPlaylist = (playlist) => {
+    let player = null;
+  
+    // Determinar qual player deve ser selecionado
+    for (const midia of playlist.ordemMidias) {
+      console.log("TESTE", midia.posicao)
+      if (midia.posicao === 'baixo-esquerda' || midia.posicao === 'cima-direita') {
+        console.log("TESTE ENTROU NO IF CERTO BAIXO-ESQUERDA", midia.posicao)
+        console.log("TESTE PLAYLIST", playlist)
+        PlaylistPlayer3(playlist)
+        return;
+      } else if (midia.posicao === 'esquerda') {
+        console.log("TESTE ENTROU NO IF CERTO ESQUERDA", midia.posicao)
+        console.log("TESTE PLAYLIST", playlist)
+        PlaylistPlayer2(playlist)
+        return;
+      } else{
+        console.log("TESTE ENTROU NO IF ERRADO ESQUERDA", midia.posicao)
+        console.log("TESTE PLAYLIST", playlist)
+        PlaylistPlayer1(playlist)
+        return;
+      }
+    }
+  };
+  
 
   useEffect(() => {
     carregarPlaylists();
@@ -60,7 +89,7 @@ const PaginaPlaylist = () => {
               <div key={index} className="player-playlist-item">
                 <FaTv className="player-icone-playlist" />
                 <p className="player-nome-playlist">{playlist.nome}</p>
-                <button className='player-botao-playlist' onClick={() => PlaylistPlayer1(playlist)}>Player</button>
+                <button className='player-botao-playlist' onClick={() => EnviarPlaylist(playlist)}>Player</button>
                 {console.log(playlist)}
               </div>
             ))

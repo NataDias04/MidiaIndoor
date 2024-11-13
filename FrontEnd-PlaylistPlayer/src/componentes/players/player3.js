@@ -66,6 +66,7 @@ const Player3 = () => {
     const Player3Centro = ({ listacentro }) => {
       const [indexAtual, setIndexAtual] = useState(0);
       const [isVideo, setIsVideo] = useState(false);
+      const isHtml = (str) => /<[^>]+>/g.test(str);
     
       useEffect(() => {
         const itemAtual = listacentro[indexAtual];
@@ -147,15 +148,21 @@ const Player3 = () => {
               alt={`Imagem ${index}`}
             />
           );
-        } else if (upload.conteudo) {
+        } else if (upload.conteudo && !isHtml(upload.conteudo)) {
           return <p key={index} className="texto">{upload.conteudo}</p>;
-        } else if (upload.conteudoHtml) {
+        } else if (upload.conteudo) {
           return (
-            <div
-              key={index}
-              dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
-              className="html"
-            ></div>
+            <>
+              <iframe 
+                key={`iframe-${index}`} 
+                className="preview-html-conteudo" 
+                srcDoc={upload.conteudo}
+                width="100%" 
+                height="100%" 
+                frameBorder="0"
+                title={`Iframe - ${upload.nome}`}
+              ></iframe>
+            </>
           );
         }
         return null;
@@ -170,6 +177,7 @@ const Player3 = () => {
 
     const Player3DireitaCima = ({ listadireitacima }) => {
       const [indexAtual, setIndexAtual] = useState(0);
+      const isHtml = (str) => /<[^>]+>/g.test(str);
     
       useEffect(() => {
         const itemAtual = listadireitacima[indexAtual];
@@ -228,15 +236,21 @@ const Player3 = () => {
               alt={`Imagem ${index}`}
             />
           );
-        } else if (upload.conteudo) {
+        } else if (upload.conteudo && !isHtml(upload.conteudo)) {
           return <p key={index} className="texto">{upload.conteudo}</p>;
-        } else if (upload.conteudoHtml) {
+        } else if (upload.conteudo) {
           return (
-            <div
-              key={index}
-              dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
-              className="html"
-            ></div>
+            <>
+              <iframe 
+                key={`iframe-${index}`} 
+                className="preview-html-conteudo" 
+                srcDoc={upload.conteudo}
+                width="100%" 
+                height="100%" 
+                frameBorder="0"
+                title={`Iframe - ${upload.nome}`}
+              ></iframe>
+            </>
           );
         }
         return null;
@@ -253,6 +267,7 @@ const Player3 = () => {
 
     const Player3Direita = ({ listadireita }) => {
       const [indexAtual, setIndexAtual] = useState(0);
+      const isHtml = (str) => /<[^>]+>/g.test(str);
     
       useEffect(() => {
         const itemAtual = listadireita[indexAtual];
@@ -311,15 +326,21 @@ const Player3 = () => {
               alt={`Imagem ${index}`}
             />
           );
-        } else if (upload.conteudo) {
+        } else if (upload.conteudo && !isHtml(upload.conteudo)) {
           return <p key={index} className="texto">{upload.conteudo}</p>;
-        } else if (upload.conteudoHtml) {
+        } else if (upload.conteudo) {
           return (
-            <div
-              key={index}
-              dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
-              className="html"
-            ></div>
+            <>
+              <iframe 
+                key={`iframe-${index}`} 
+                className="preview-html-conteudo" 
+                srcDoc={upload.conteudo}
+                width="100%" 
+                height="100%" 
+                frameBorder="0"
+                title={`Iframe - ${upload.nome}`}
+              ></iframe>
+            </>
           );
         }
         return null;
@@ -334,6 +355,7 @@ const Player3 = () => {
 
     const Player3BaixoEsquerda = ({ listabaixoesquerda }) => {
       const [indexAtual, setIndexAtual] = useState(0);
+      const isHtml = (str) => /<[^>]+>/g.test(str);
     
       useEffect(() => {
         const itemAtual = listabaixoesquerda[indexAtual];
@@ -392,15 +414,21 @@ const Player3 = () => {
               alt={`Imagem ${index}`}
             />
           );
-        } else if (upload.conteudo) {
+        } else if (upload.conteudo && !isHtml(upload.conteudo)) {
           return <p key={index} className="texto">{upload.conteudo}</p>;
-        } else if (upload.conteudoHtml) {
+        } else if (upload.conteudo) {
           return (
-            <div
-              key={index}
-              dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }}
-              className="html"
-            ></div>
+            <>
+              <iframe 
+                key={`iframe-${index}`} 
+                className="preview-html-conteudo" 
+                srcDoc={upload.conteudo}
+                width="100%" 
+                height="100%" 
+                frameBorder="0"
+                title={`Iframe - ${upload.nome}`}
+              ></iframe>
+            </>
           );
         }
         return null;
