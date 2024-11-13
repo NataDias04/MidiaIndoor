@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { buscarPlaylist, atualizarPlaylist } from './rotas/playlist.js';
-import '/estilos/PaginaEditarPlaylist.css'
+import { buscarPlaylist, atualizarPlaylist } from '../componentes/rotas/playlist.js';
+import '../estilos/paginaeditarplaylist.css'
 
 const PaginaEditarPlaylist = () => {
   const { playlistId } = useParams(); // Obtém o ID da playlist da URL

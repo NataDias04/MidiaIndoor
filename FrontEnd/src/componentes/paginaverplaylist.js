@@ -28,8 +28,8 @@ const PaginaVerPlaylist = () => {
   };
 
   
-  const irParaEditar = () => {
-    navigate ('/paginaeditarplaylist')
+  const irParaEditar = async (playlistId)=> {
+    navigate ('/editarplaylist')
   }
 
   const apagarPlaylist = async (playlist) =>{

@@ -9,7 +9,8 @@ import PaginaPlaylistLayout3 from './componentes/paginaplaylistlayout3.js';
 import PaginaCentral from './componentes/paginacentral.js';
 import PaginaVerPlaylist from './componentes/paginaverplaylist.js';
 import PaginaDispositivo from './componentes/paginadispositivo.js';
-import Paginacadastro from './componentes/paginacadastro.js'
+import Paginacadastro from './componentes/paginacadastro.js';
+import PaginaEditarPlaylist from './componentes/paginaeditarplaylist.js';
 
 // <PaginaLayout />
 // <PaginaUpload />
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/playlistlayout2" element={<PaginaPlaylistLayout2 />} />
           <Route path="/playlistlayout3" element={<PaginaPlaylistLayout3 />} />
           <Route path="/verplaylist" element={<PaginaVerPlaylist/>} />
+          <Route path="/editarplaylist" element={<PaginaEditarPlaylist/>}/>
         </Routes>
 
       </div>
