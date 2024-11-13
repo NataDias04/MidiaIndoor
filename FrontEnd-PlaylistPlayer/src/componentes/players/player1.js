@@ -80,10 +80,11 @@ const Player1 = () => {
           setIsVideo(true);
         } else {
           setIsVideo(false);
-          const tempoDeExibicao = itemAtual.tempo || 30000;
+          console.log(itemAtual.tempo)
+          const tempoDeExibicao = itemAtual.tempo || 30;
           const timeout = setTimeout(() => {
             setIndexAtual((indexAtual + 1) % listacentro.length);
-          }, tempoDeExibicao);
+          },  tempoDeExibicao * 1000);
     
           return () => clearTimeout(timeout);
         }

@@ -89,7 +89,7 @@ const Player3 = () => {
           const tempoDeExibicao = itemAtual.tempo || 30000;
           const timeout = setTimeout(() => {
             setIndexAtual((indexAtual + 1) % listacentro.length);
-          }, tempoDeExibicao);
+          },  tempoDeExibicao * 1000);
     
           return () => clearTimeout(timeout);
         }
