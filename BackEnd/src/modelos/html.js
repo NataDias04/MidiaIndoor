@@ -12,9 +12,11 @@ const HtmlSchema = new mongoose.Schema({
   },
   tipo:{
     type: String,
+    default: "",
   },
   urlcache:{
     type: String,
+    default: "",
   },
   data: {
     type: Date,

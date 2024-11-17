@@ -7,9 +7,11 @@ const TextoSchema = new mongoose.Schema({
   },
   tipo:{
     type: String,
+    default: "",
   },
   urlcache:{
     type: String,
+    default: "",
   },
   date: { type: Date, default: Date.now }
 });

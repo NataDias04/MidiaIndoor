@@ -1,9 +1,10 @@
 // Função para salvar imagem com upload de arquivo
-export const salvarImagem = async (file, nome) => {
+export const salvarImagem = async (file, nome, tipo) => {
   const formData = new FormData();
 
   formData.append('file', file);
   formData.append('nome', nome);
+  formData.append('tipo', tipo);
 
   try {
     const response = await fetch('http://localhost:5000/imagem', {
@@ -88,14 +89,14 @@ export async function buscarImagem(imagemId) {
 
 
 // Função para salvar link de imagem
-export const salvarImagemLink = async (nome, url) => {
+export const salvarImagemLink = async (nome, url,tipo) => {
   try {
     const response = await fetch('http://localhost:5000/imagem_link', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ nome, url }),
+      body: JSON.stringify({ nome, url, tipo }),
     });
 
     if (!response.ok) {

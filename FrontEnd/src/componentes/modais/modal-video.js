@@ -9,6 +9,7 @@ const ModalVideo = ({ fecharModal }) => {
   const [videoLink, setVideoLink] = useState('');
   const [videoName, setVideoName] = useState('');
   const [erro, setErro] = useState('');
+  const tipo = 'video';
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -32,8 +33,8 @@ const ModalVideo = ({ fecharModal }) => {
 
   const handleSave = () => {
     const saveFunction = isChecked 
-      ? () => salvarVideo(videoFile, videoFile.name)
-      : () => salvarVideoLink(videoName, videoLink);
+      ? () => salvarVideo(videoFile, videoFile.name,tipo)
+      : () => salvarVideoLink(videoName, videoLink,tipo);
 
     saveFunction()
       .then(response => {

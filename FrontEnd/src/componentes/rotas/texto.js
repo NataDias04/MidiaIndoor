@@ -1,12 +1,12 @@
 // Função para salvar texto simples
-export async function salvarTextoSimples(conteudo) {
+export async function salvarTextoSimples(conteudo, tipo) {
     try {
       const response = await fetch('http://localhost:5000/texto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ conteudo }),
+        body: JSON.stringify({ conteudo, tipo }),
       });
   
       if (!response.ok) {
@@ -85,14 +85,14 @@ export const buscarTextoSimples = async (textoId) => {
 
 
 // Função para salvar conteúdo HTML
-export async function salvarHtml(conteudo, nome) {
+export async function salvarHtml(conteudo, nome, tipo) {
     try {
       const response = await fetch('http://localhost:5000/html', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ conteudo: conteudo, nome })
+        body: JSON.stringify({ conteudo: conteudo, nome , tipo})
       });
   
       if (!response.ok) {
