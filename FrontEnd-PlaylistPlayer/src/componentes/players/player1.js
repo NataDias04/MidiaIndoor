@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import '../../estilos/player1.css';
-import { useLocation } from 'react-router-dom'; // useNavigate,
-import { v4 as uuidv4 } from 'uuid';
+import { useLocation } from 'react-router-dom';
 
 import YouTube from 'react-youtube';
 
@@ -10,23 +9,15 @@ const CACHE_NAME = 'ArquivosCache';
 const Player1 = () => {
     const location = useLocation();
     const PlaylistSelecionada = location.state?.PlaylistSelecionada;
-
-
-
     const [centro, setCentro] = useState([]);
     const [direita, setDireita] = useState([]);
     const [baixo, setBaixo] = useState([]);
     const [mediaCarregada, setMediaCarregada] = useState(false);
 
-    //const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-    //const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-    //const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-
     async function baixarMidia(midia) {
       const cache = await caches.open(CACHE_NAME);
     
       const cachedResponse = await cache.match(midia.url);
-      console.log("TESTE RESPOSTA",cachedResponse.url)
       if (cachedResponse) {
         if (midia.tipo === 'texto' || midia.tipo === 'html') {
           midia.urlcache = await cachedResponse.text();
@@ -67,33 +58,25 @@ const Player1 = () => {
       }
     }
     
-    
-
     const CarregarMidia = async (playlist) => {
       if (!Array.isArray(playlist.playlist.ordemMidias)) {
-          console.error('ordemMidias não é um array ou está indefinido:', playlist.playlist.ordemMidias);
-          return;
+        console.error('ordemMidias não é um array ou está indefinido:', playlist.playlist.ordemMidias);
+        return;
       }
-  
-      // Cria uma lista de promessas para download das mídias
-      const midiasPromises = playlist.playlist.ordemMidias.map(async (midia) => {
-          try {
-              await baixarMidia(midia);
-              DistribuirMidia(midia, midia.posicao);
-          } catch (erro) {
-              console.error(`Erro ao carregar mídia ${midia._id}:`, erro);
-          }
-      });
-  
-      // Aguarda todas as promessas se resolverem
       try {
-          await Promise.all(midiasPromises);
-          console.log('Todas as mídias foram carregadas com sucesso!');
+        for (const midia of playlist.playlist.ordemMidias) {
+          try {
+            await baixarMidia(midia);
+            DistribuirMidia(midia, midia.posicao);
+          } catch (erro) {
+            console.error(`Erro ao carregar mídia ${midia._id}:`, erro);
+          }
+        }
       } catch (erro) {
-          console.error('Erro ao carregar algumas mídias:', erro);
+        console.error('Erro ao carregar a playlist:', erro);
       }
-  };
-
+    };
+    
     useEffect(() => {
         if (PlaylistSelecionada && !mediaCarregada) {
             CarregarMidia(PlaylistSelecionada);
