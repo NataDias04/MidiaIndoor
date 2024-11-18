@@ -7,7 +7,7 @@ export const salvarImagem = async (file, nome, tipo) => {
   formData.append('tipo', tipo);
 
   try {
-    const response = await fetch('http://localhost:5000/imagem', {
+    const response = await fetch('http://localhost:3000/imagem', {
       method: 'POST',
       body: formData,
     });
@@ -28,7 +28,7 @@ export const salvarImagem = async (file, nome, tipo) => {
 // Função para deletar imagem
 export async function deletarImagem(imagemId) {
   try {
-    const response = await fetch(`http://localhost:5000/imagem/${imagemId}`, {
+    const response = await fetch(`http://localhost:3000/imagem/${imagemId}`, {
       method: 'DELETE',
     });
 
@@ -48,7 +48,7 @@ export async function deletarImagem(imagemId) {
 // Função para buscar todas as imagens
 export async function buscarImagens() {
   try {
-    const response = await fetch('http://localhost:5000/imagem', {
+    const response = await fetch('http://localhost:3000/imagem', {
       method: 'GET',
     });
 
@@ -69,7 +69,7 @@ export async function buscarImagens() {
 // Função para buscar uma imagem pelo ID
 export async function buscarImagem(imagemId) {
   try {
-    const response = await fetch(`http://localhost:5000/imagem/${imagemId}`, {
+    const response = await fetch(`http://localhost:3000/imagem/${imagemId}`, {
       method: 'GET',
     });
 
@@ -91,7 +91,7 @@ export async function buscarImagem(imagemId) {
 // Função para salvar link de imagem
 export const salvarImagemLink = async (nome, url,tipo) => {
   try {
-    const response = await fetch('http://localhost:5000/imagem_link', {
+    const response = await fetch('http://localhost:3000/imagem_link', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ export const salvarImagemLink = async (nome, url,tipo) => {
 // Função para deletar link de imagem
 export async function deletarImagemLink(imagemId) {
   try {
-    const response = await fetch(`http://localhost:5000/imagem_link/${imagemId}`, {
+    const response = await fetch(`http://localhost:3000/imagem_link/${imagemId}`, {
       method: 'DELETE',
     });
 
@@ -137,7 +137,7 @@ export async function deletarImagemLink(imagemId) {
 // Função para buscar todos os links de imagens
 export async function buscarImagensLink() {
   try {
-    const response = await fetch('http://localhost:5000/imagem_link', {
+    const response = await fetch('http://localhost:3000/imagem_link', {
       method: 'GET',
     });
 
@@ -158,7 +158,7 @@ export async function buscarImagensLink() {
 // Função para buscar um link de imagem pelo ID
 export async function buscarImagemLink(imagemLinkId) {
   try {
-    const response = await fetch(`http://localhost:5000/imagem_link/${imagemLinkId}`, {
+    const response = await fetch(`http://localhost:3000/imagem_link/${imagemLinkId}`, {
       method: 'GET',
     });
 

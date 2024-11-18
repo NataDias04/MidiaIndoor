@@ -1,7 +1,7 @@
 // Função para criar um novo dispositivo
 export async function salvarDispositivo(nome, resolucao, playlists) {
     try {
-      const response = await fetch('http://localhost:5000/dispositivo/', {
+      const response = await fetch('http://localhost:3000/dispositivo/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export async function salvarDispositivo(nome, resolucao, playlists) {
   // Função para buscar todos os dispositivos
   export async function buscarDispositivos() {
     try {
-      const response = await fetch('http://localhost:5000/dispositivo/', {
+      const response = await fetch('http://localhost:3000/dispositivo/', {
         method: 'GET',
       });
   
@@ -45,7 +45,7 @@ export async function salvarDispositivo(nome, resolucao, playlists) {
   // Função para buscar um dispositivo específico pelo ID
   export async function buscarDispositivoPorId(dispositivoId) {
     try {
-      const response = await fetch(`http://localhost:5000/dispositivo/${dispositivoId}`, {
+      const response = await fetch(`http://localhost:3000/dispositivo/${dispositivoId}`, {
         method: 'GET',
       });
 
@@ -67,7 +67,7 @@ export async function salvarDispositivo(nome, resolucao, playlists) {
   // Função para atualizar um dispositivo pelo ID
   export async function atualizarDispositivo(dispositivoId, nome, resolucao, playlists) {
     try {
-      const response = await fetch(`http://localhost:5000/dispositivo/${dispositivoId}`, {
+      const response = await fetch(`http://localhost:3000/dispositivo/${dispositivoId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export async function salvarDispositivo(nome, resolucao, playlists) {
   // Função para deletar um dispositivo pelo ID
   export async function deletarDispositivo(id) {
     try {
-      const response = await fetch(`http://localhost:5000/dispositivo/${id}`, {
+      const response = await fetch(`http://localhost:3000/dispositivo/${id}`, {
         method: 'DELETE',
       });
   

@@ -86,7 +86,7 @@ const ModalPosicao1Layout3 = ({ fecharModalPosicao1Layout3, atualizarUploadsSele
 
     if (tiposDeImagem.includes(extensao.toLowerCase())) {
       return (
-        <img src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+        <img src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
       );
     }
     return null;
@@ -113,7 +113,7 @@ const ModalPosicao1Layout3 = ({ fecharModalPosicao1Layout3, atualizarUploadsSele
     } else if (tiposDeVideo.includes(extensao)) {
       return (
         <video controls key={index} className="preview-video">
-          <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+          <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} type={`video/${extensao}`} />
           Seu navegador não suporta a tag de vídeo.
         </video>
       );

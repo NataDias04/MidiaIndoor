@@ -129,7 +129,7 @@ const Player2 = () => {
               controls={false}
             >
               <source 
-                src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} 
+                src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} 
                 type={`video/${extensao}`} 
               />
               Seu navegador não suporta a tag de vídeo.
@@ -140,7 +140,7 @@ const Player2 = () => {
             <img
               key={index}
               className="imagem"
-              src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`}
+              src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`}
               alt={`Imagem ${index}`}
             />
           );
@@ -221,7 +221,7 @@ const Player2 = () => {
         } else if (tiposDeVideo.includes(extensao)) {
           return (
             <video controls key={index} className="video">
-              <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+              <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} type={`video/${extensao}`} />
               Seu navegador não suporta a tag de vídeo.
             </video>
           );
@@ -230,7 +230,7 @@ const Player2 = () => {
             <img
               key={index}
               className="imagem"
-              src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`}
+              src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`}
               alt={`Imagem ${index}`}
             />
           );

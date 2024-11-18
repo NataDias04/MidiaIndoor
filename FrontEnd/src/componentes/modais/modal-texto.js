@@ -7,7 +7,8 @@ import { salvarTextoSimples, salvarHtml } from '../rotas/texto';
 const ModalTexto = ({ fecharModal }) => {
   const [editorData, setEditorData] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  const tipo = 'texto';
+  const tipotexto = 'texto';
+  const tipohtml = 'html';
 
   const handleSave = () => {
     
@@ -38,8 +39,8 @@ const ModalTexto = ({ fecharModal }) => {
     }
 
     const saveFunction = isChecked 
-      ? () => salvarTextoSimples(editorData, tipo)
-      : () => salvarHtml(editorData, nome, tipo);
+      ? () => salvarTextoSimples(editorData, tipotexto)
+      : () => salvarHtml(editorData, nome, tipohtml);
 
     saveFunction() 
       .then(response => {

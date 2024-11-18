@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 
 const create = async (request, response) => {
   try {
-    const { nome, url } = request.body;
+    const { nome, url, tipo } = request.body;
     let filePath = '';
 
     if (url.startsWith('http')) {
@@ -22,6 +22,7 @@ const create = async (request, response) => {
 
     const imagemLink = new ImagemLink({
       nome,
+      tipo,
       caminhointerno: filePath,
       url,
     });

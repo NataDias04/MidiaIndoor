@@ -1,7 +1,7 @@
 // Função para salvar texto simples
 export async function salvarTextoSimples(conteudo) {
     try {
-      const response = await fetch('http://localhost:5000/texto', {
+      const response = await fetch('http://localhost:3000/texto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function salvarTextoSimples(conteudo) {
   // Função para deletar texto simples
   export async function deletarTextoSimples(textoId) {
     try {
-      const response = await fetch(`http://localhost:5000/texto/${textoId}`, {
+      const response = await fetch(`http://localhost:3000/texto/${textoId}`, {
         method: 'DELETE',
       });
   
@@ -43,7 +43,7 @@ export async function salvarTextoSimples(conteudo) {
   // Função para buscar todos os textos simples
 export async function buscarTextosSimples() {
   try {
-    const response = await fetch('http://localhost:5000/texto', {
+    const response = await fetch('http://localhost:3000/texto', {
       method: 'GET',
     });
 
@@ -64,7 +64,7 @@ export async function buscarTextosSimples() {
 // Função para buscar um texto simples pelo ID
 export const buscarTextoSimples = async (textoId) => {
   try {
-    const response = await fetch(`http://localhost:5000/texto/${textoId}`, {
+    const response = await fetch(`http://localhost:3000/texto/${textoId}`, {
       method: 'GET',
     });
 
@@ -87,7 +87,7 @@ export const buscarTextoSimples = async (textoId) => {
 // Função para salvar conteúdo HTML
 export async function salvarHtml(conteudo, nome) {
     try {
-      const response = await fetch('http://localhost:5000/html', {
+      const response = await fetch('http://localhost:3000/html', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export async function salvarHtml(conteudo, nome) {
   // Função para deletar conteúdo HTML
   export async function deletarHtml(htmlId) {
     try {
-      const response = await fetch(`http://localhost:5000/html/${htmlId}`, {
+      const response = await fetch(`http://localhost:3000/html/${htmlId}`, {
         method: 'DELETE',
       });
   
@@ -130,7 +130,7 @@ export async function salvarHtml(conteudo, nome) {
   // Função para buscar todos os conteúdos HTML
 export async function buscarHtmls() {
   try {
-    const response = await fetch('http://localhost:5000/html', {
+    const response = await fetch('http://localhost:3000/html', {
       method: 'GET',
     });
 
@@ -151,7 +151,7 @@ export async function buscarHtmls() {
 // Função para buscar um conteúdo HTML pelo ID
 export const buscarHtml = async (htmlId) => {
   try {
-    const response = await fetch(`http://localhost:5000/html/${htmlId}`, {
+    const response = await fetch(`http://localhost:3000/html/${htmlId}`, {
       method: 'GET',
     });
 

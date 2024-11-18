@@ -2,13 +2,13 @@ import Texto from '../modelos/texto_simples.js';
 
 const create = async (req, res) => {
   try {
-    const { conteudo } = req.body;
+    const { conteudo, tipo } = req.body;
 
     if (!conteudo) {
       return res.status(400).json({ mensagem: 'Nenhum conteúdo enviado' });
     }
 
-    const novoTexto = new Texto({ conteudo });
+    const novoTexto = new Texto({ conteudo,tipo });
     await novoTexto.save();
     res.status(201).json({ mensagem: 'Texto salvo com sucesso!', novoTexto });
   } catch (error) {

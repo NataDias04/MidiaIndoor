@@ -46,7 +46,7 @@ const PaginaUpload = () => {
             );
         } else {
             return (
-                <img src={`http://localhost:5000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+                <img src={`http://localhost:3000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
             );
         }
     }
@@ -86,7 +86,7 @@ const PaginaUpload = () => {
           } else {
             return (
                 <video controls key={index} className="preview-video">
-                    <source src={`http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+                    <source src={`http://localhost:3000/${upload.url}`} type={`video/${extensao}`} />
                     Seu navegador não suporta a tag de vídeo.
                 </video>
             );

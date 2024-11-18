@@ -85,7 +85,7 @@ const ModalPosicao3Layout2 = ({ fecharModalPosicao3Layout2, atualizarUploadsSele
     if (tiposDeImagem.includes(extensao.toLowerCase())) {
       return (
         <img
-          src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`}
+          src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`}
           alt={`upload-${index}`}
           className="preview-imagem"
         />
@@ -116,7 +116,7 @@ const ModalPosicao3Layout2 = ({ fecharModalPosicao3Layout2, atualizarUploadsSele
       return (
         <video controls key={index} className="preview-video">
           <source
-            src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`}
+            src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`}
             type={`video/${extensao}`}
           />
           Seu navegador não suporta a tag de vídeo.
