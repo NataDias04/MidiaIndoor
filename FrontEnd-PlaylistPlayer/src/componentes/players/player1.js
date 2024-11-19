@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import '../../estilos/player1.css';
 import { useLocation } from 'react-router-dom';
 
+import API_URL from '../../config';
+
 import YouTube from 'react-youtube';
 
 const CACHE_NAME = 'ArquivosCache';
+
 
 const Player1 = () => {
     const location = useLocation();
@@ -128,7 +131,7 @@ const Player1 = () => {
             controls={false}
           >
             <source 
-              src={upload.urlcache} 
+              src={upload.urlcache || `${API_URL}${upload.url}`} 
               type={`video/${extensao}`} 
             />
             Seu navegador não suporta a tag de vídeo.
@@ -139,7 +142,7 @@ const Player1 = () => {
           <img
             key={index}
             className="imagem"
-            src={upload.urlcache}
+            src={upload.urlcache || `${API_URL}${upload.url}`}
             alt={`Imagem ${index}`}
           />
         );
@@ -229,10 +232,14 @@ const Player1 = () => {
     
         return () => clearTimeout(timer);
       }, [indexAtual, listadireita]);
+
+      const handleVideoEnd = () => {
+        setIndexAtual((indexAtual + 1) % listadireita.length);
+      };
     
       return (
         <div className="conteudo-direita">
-          {renderizarItem(listadireita[indexAtual], indexAtual)}
+          {renderizarItem(listadireita[indexAtual], indexAtual,handleVideoEnd)}
         </div>
       );
     };

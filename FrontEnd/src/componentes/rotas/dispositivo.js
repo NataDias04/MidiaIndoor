@@ -1,7 +1,9 @@
+import API_URL from '../../config';
+
 // Função para criar um novo dispositivo
   export async function salvarDispositivo(nome, resolucao, playlists) {
     try {
-      const response = await fetch('http://localhost:3000/dispositivo/', {
+      const response = await fetch(`${API_URL}dispositivo/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,7 +27,7 @@
   // Função para buscar todos os dispositivos
   export async function buscarDispositivos() {
     try {
-      const response = await fetch('http://localhost:3000/dispositivo/', {
+      const response = await fetch(`${API_URL}dispositivo/`, {
         method: 'GET',
       });
   
@@ -45,7 +47,7 @@
   // Função para buscar um dispositivo específico pelo ID
   export async function buscarDispositivoPorId(dispositivoId) {
     try {
-      const response = await fetch(`http://localhost:3000/dispositivo/${dispositivoId}`, {
+      const response = await fetch(`${API_URL}dispositivo/${dispositivoId}`, {
         method: 'GET',
       });
   
@@ -64,7 +66,7 @@
   // Função para atualizar um dispositivo pelo ID
   export async function atualizarDispositivo(dispositivoId, nome, resolucao, playlists) {
     try {
-      const response = await fetch(`http://localhost:3000/dispositivo/${dispositivoId}`, {
+      const response = await fetch(`${API_URL}dispositivo/${dispositivoId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +89,7 @@
   // Função para deletar um dispositivo pelo ID
   export async function deletarDispositivo(id) {
     try {
-      const response = await fetch(`http://localhost:3000/dispositivo/${id}`, {
+      const response = await fetch(`${API_URL}dispositivo/${id}`, {
         method: 'DELETE',
       });
   

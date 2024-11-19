@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import ModalEscolherUpload from './modal-escolher-upload.js';
 
+import API_URL from '../../config.js';
+
 const ModalPosicao1Layout2 = ({ fecharModalPosicao1Layout2, atualizarUploadsSelecionados }) => {
   const [modalEscolherUploadAberto, setModalEscolherUploadAberto] = useState(false);
   const [uploadsSelecionados, setUploadsSelecionados] = useState([]);
@@ -84,7 +86,7 @@ const ModalPosicao1Layout2 = ({ fecharModalPosicao1Layout2, atualizarUploadsSele
 
     if (tiposDeImagem.includes(extensao.toLowerCase())) {
       return (
-        <img src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} 
+        <img src={upload.url.startsWith('http') ? upload.url : `${API_URL}${upload.url}`} 
              alt={`upload-${index}`} className="preview-imagem" />
       );
     }
@@ -112,7 +114,7 @@ const ModalPosicao1Layout2 = ({ fecharModalPosicao1Layout2, atualizarUploadsSele
     } else if (tiposDeVideo.includes(extensao)) {
       return (
         <video controls key={index} className="preview-video">
-          <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} 
+          <source src={upload.url.startsWith('http') ? upload.url : `${API_URL}${upload.url}`} 
                   type={`video/${extensao}`} />
           Seu navegador não suporta a tag de vídeo.
         </video>

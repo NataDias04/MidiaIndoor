@@ -2,44 +2,84 @@ import React, { useState, useEffect } from 'react';
 import '../../estilos/player2.css';
 import { useLocation } from 'react-router-dom'; // useNavigate,
 
+import API_URL from '../../config.js';
+
 import YouTube from 'react-youtube';
+
+const CACHE_NAME = 'ArquivosCache';
+
 
 const Player2 = () => {
     const location = useLocation();
     const PlaylistSelecionada = location.state?.PlaylistSelecionada;
-
     const [centro, setCentro] = useState([]);
     const [esquerda, setEsquerda] = useState([]);
     const [baixo, setBaixo] = useState([]);
     const [mediaCarregada, setMediaCarregada] = useState(false);
 
-    const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-    const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-
-    const cacheMidia = (midia) => {
-        const cachedMidia = localStorage.getItem(midia._id);
-        if (cachedMidia) return JSON.parse(cachedMidia);
+    async function baixarMidia(midia) {
+      const cache = await caches.open(CACHE_NAME);
+    
+      const cachedResponse = await cache.match(midia.url);
+      if (cachedResponse) {
+        if (midia.tipo === 'texto' || midia.tipo === 'html') {
+          midia.urlcache = await cachedResponse.text();
+        } 
         
-        localStorage.setItem(midia._id, JSON.stringify(midia));
-        return midia;
-    };
-
+        else {
+          const blob = await cachedResponse.blob();
+          console.log("Tipo de Blob:", blob.type);
+          const urlBlob = URL.createObjectURL(blob)
+          midia.urlcache = urlBlob;
+          console.log(urlBlob);
+        }
+        return;
+      }
+    
+      try {
+        const response = await fetch(midia.url);
+        if (!response.ok) {
+          throw new Error(`Erro ao baixar mídia: ${midia.url}`);
+        }
+    
+        const responseClone = response.clone();
+    
+        if (midia.tipo === 'texto' || midia.tipo === 'html') {
+          midia.urlcache = await response.text();
+        } else {
+          const blob = await response.blob();
+          const urlBlob = URL.createObjectURL(blob)
+          midia.urlcache = urlBlob;
+          console.log(urlBlob);
+        }
+    
+        await cache.put(midia.url, responseClone);
+        //console.log(`Mídia armazenada em cache: ${midia.url}`);
+      } catch (error) {
+        midia.erro = error.message;
+        //console.error(`Erro ao baixar mídia: ${error.message}`);
+      }
+    }
+    
     const CarregarMidia = async (playlist) => {
-        if (!Array.isArray(playlist.playlist.ordemMidias)) {
-            console.error('ordemMidias não é um array ou está indefinido:', playlist.ordemMidias);
-            return;
-        }
+      if (!Array.isArray(playlist.playlist.ordemMidias)) {
+        console.error('ordemMidias não é um array ou está indefinido:', playlist.playlist.ordemMidias);
+        return;
+      }
+      try {
         for (const midia of playlist.playlist.ordemMidias) {
-            try {
-                const cachedMidia = cacheMidia(midia);
-                DistribuirMidia(cachedMidia, cachedMidia.posicao);
-            } catch (erro) {
-                console.error(`Erro ao carregar mídia ${midia._id}:`, erro);
-            }
+          try {
+            await baixarMidia(midia);
+            DistribuirMidia(midia, midia.posicao);
+          } catch (erro) {
+            console.error(`Erro ao carregar mídia ${midia._id}:`, erro);
+          }
         }
+      } catch (erro) {
+        console.error('Erro ao carregar a playlist:', erro);
+      }
     };
-
+    
     useEffect(() => {
         if (PlaylistSelecionada && !mediaCarregada) {
             CarregarMidia(PlaylistSelecionada);
@@ -55,6 +95,73 @@ const Player2 = () => {
         } else if (posicao === 'baixo') {
             setBaixo((prev) => [...prev, midia]);
         }
+    };
+
+    const renderizarItem = (upload, index, onVideoEnd) => {
+      if (!upload) return null;
+    
+      const isHtml = (str) => /<[^>]+>/g.test(str);
+      const extensao = upload.url ? upload.url.split('.').pop() : '';
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
+      const tiposDeVideo = ['mp4', 'webm', 'ogg'];
+      const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+ 
+      if (youtubeRegex.test(upload.url)) {
+        const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
+        return (
+          <YouTube
+            key={index}
+            videoId={videoId}
+            onEnd={onVideoEnd}
+            opts={{
+              height: '390',
+              width: '640',
+              playerVars: { autoplay: 1, controls: 0 },
+            }}
+            className="preview-video"
+          />
+        );
+      } else if (tiposDeVideo.includes(extensao)) {
+        return (
+          <video 
+            key={index} 
+            className="video" 
+            autoPlay 
+            onEnded={onVideoEnd}
+            controls={false}
+          >
+            <source 
+              src={upload.urlcache || `${API_URL}${upload.url}`} 
+              type={`video/${extensao}`} 
+            />
+            Seu navegador não suporta a tag de vídeo.
+          </video>
+        );
+      } else if (tiposDeImagem.includes(extensao)) {
+        return (
+          <img
+            key={index}
+            className="imagem"
+            src={upload.urlcache || `${API_URL}${upload.url}`}
+            alt={`Imagem ${index}`}
+          />
+        );
+      } else if (upload.conteudo && !isHtml(upload.conteudo)) {
+        return <p key={index} className="texto">{upload.conteudo}</p>;
+      } else if (upload.conteudo) {
+        return (
+          <iframe 
+            key={`iframe-${index}`} 
+            className="preview-html-conteudo" 
+            srcDoc={upload.conteudo}
+            width="100%" 
+            height="100%" 
+            frameBorder="0"
+            title={`Iframe - ${upload.nome}`}
+          ></iframe>
+        );
+      }
+      return null;
     };
 
     const Player2Centro = ({ listacentro }) => {
@@ -93,80 +200,10 @@ const Player2 = () => {
 
       const handleVideoEnd = () => {
         setIndexAtual((indexAtual + 1) % listacentro.length);
-      };
-    
-      const renderizarItem = (upload, index) => {
-        if (!upload) return null;
-    
-        const extensao = upload.url ? upload.url.split('.').pop() : '';
-        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-        const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-        const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-    
-        if (youtubeRegex.test(upload.url)) {
-          const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
-    
-          return (
-            <YouTube
-              key={index}
-              videoId={videoId}
-              onEnd={handleVideoEnd}
-              opts={{
-                height: '390',
-                width: '640',
-                playerVars: { autoplay: 1, controls: 0 },
-              }}
-              className="preview-video"
-            />
-          );
-        } else if (tiposDeVideo.includes(extensao)) {
-          return (
-            <video 
-              key={index} 
-              className="video" 
-              autoPlay 
-              onEnded={() => setIndexAtual((indexAtual + 1) % listacentro.length)}
-              controls={false}
-            >
-              <source 
-                src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} 
-                type={`video/${extensao}`} 
-              />
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-          );
-        } else if (tiposDeImagem.includes(extensao)) {
-          return (
-            <img
-              key={index}
-              className="imagem"
-              src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`}
-              alt={`Imagem ${index}`}
-            />
-          );
-        } else if (upload.conteudo && !isHtml(upload.conteudo)) {
-          return <p key={index} className="texto">{upload.conteudo}</p>;
-        } else if (upload.conteudo) {
-          return (
-            <>
-              <iframe 
-                key={`iframe-${index}`} 
-                className="preview-html-conteudo" 
-                srcDoc={upload.conteudo}
-                width="100%" 
-                height="100%" 
-                frameBorder="0"
-                title={`Iframe - ${upload.nome}`}
-              ></iframe>
-            </>
-          );
-        }
-        return null;
-      };
-    
+      }; 
       return (
         <div className="conteudo-centro">
-          {renderizarItem(listacentro[indexAtual], indexAtual)}
+          {renderizarItem(listacentro[indexAtual], indexAtual,handleVideoEnd)}
         </div>
       );
     };
@@ -197,66 +234,13 @@ const Player2 = () => {
         return () => clearTimeout(timer);
       }, [indexAtual, listaesquerda]);
     
-      const renderizarItem = (upload, index) => {
-        if (!upload) return null;
-    
-        const extensao = upload.url ? upload.url.split('.').pop() : '';
-        const tiposDeVideo = ['mp4', 'webm', 'ogg'];
-        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{10,12})$/;
-        const tiposDeImagem = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-    
-        if (youtubeRegex.test(upload.url)) {
-          const videoId = upload.url.split('v=')[1]?.split('&')[0] || upload.url.split('/').pop();
-          return (
-            <iframe
-              key={index}
-              className="preview-video"
-              src={`https://www.youtube.com/embed/${videoId}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={`Video ${index}`}
-            ></iframe>
-          );
-        } else if (tiposDeVideo.includes(extensao)) {
-          return (
-            <video controls key={index} className="video">
-              <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} type={`video/${extensao}`} />
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-          );
-        } else if (tiposDeImagem.includes(extensao)) {
-          return (
-            <img
-              key={index}
-              className="imagem"
-              src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`}
-              alt={`Imagem ${index}`}
-            />
-          );
-        } else if (upload.conteudo && !isHtml(upload.conteudo)) {
-          return <p key={index} className="texto">{upload.conteudo}</p>;
-        } else if (upload.conteudo) {
-          return (
-            <>
-              <iframe 
-                key={`iframe-${index}`} 
-                className="preview-html-conteudo" 
-                srcDoc={upload.conteudo}
-                width="100%" 
-                height="100%" 
-                frameBorder="0"
-                title={`Iframe - ${upload.nome}`}
-              ></iframe>
-            </>
-          );
-        }
-        return null;
-      };
+      const handleVideoEnd = () => {
+        setIndexAtual((indexAtual + 1) % listaesquerda.length);
+      }; 
     
       return (
         <div className="conteudo-esquerda">
-          {renderizarItem(listaesquerda[indexAtual], indexAtual)}
+          {renderizarItem(listaesquerda[indexAtual], indexAtual,handleVideoEnd)}
         </div>
       );
     };

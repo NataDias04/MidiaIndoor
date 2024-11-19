@@ -1,3 +1,5 @@
+import API_URL from '../../config.js';
+
 // Define a função salvarVideo
 export const salvarVideo = async (file, nome, tipo) => {
   const formData = new FormData();
@@ -7,7 +9,7 @@ export const salvarVideo = async (file, nome, tipo) => {
   formData.append('tipo', tipo);
 
   try {
-    const response = await fetch('http://localhost:3000/video', {
+    const response = await fetch(`${API_URL}video`, {
       method: 'POST',
       body: formData,
     });
@@ -28,7 +30,7 @@ export const salvarVideo = async (file, nome, tipo) => {
 // Função para deletar texto simples
 export async function deletarVideo(videoId) {
   try {
-    const response = await fetch(`http://localhost:3000/video/${videoId}`, {
+    const response = await fetch(`${API_URL}video/${videoId}`, {
       method: 'DELETE',
     });
 
@@ -47,7 +49,7 @@ export async function deletarVideo(videoId) {
 // Função para buscar todos os vídeos
 export const buscarVideos = async () => {
   try {
-    const response = await fetch('http://localhost:3000/video', {
+    const response = await fetch(`${API_URL}video`, {
       method: 'GET',
     });
 
@@ -66,7 +68,7 @@ export const buscarVideos = async () => {
 // Função para buscar um vídeo pelo ID
 export const buscarVideo = async (videoId) => {
   try {
-    const response = await fetch(`http://localhost:3000/video/${videoId}`, {
+    const response = await fetch(`${API_URL}video/${videoId}`, {
       method: 'GET',
     });
 
@@ -86,7 +88,7 @@ export const buscarVideo = async (videoId) => {
 export const salvarVideoLink = async (nome, url, tipo) => {
 
   try {
-    const response = await fetch('http://localhost:3000/video_link', {
+    const response = await fetch(`${API_URL}video_link`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -110,7 +112,7 @@ export const salvarVideoLink = async (nome, url, tipo) => {
 // Função para deletar texto simples
 export async function deletarVideoLink(videolinkId) {
   try {
-    const response = await fetch(`http://localhost:3000/video_link/${videolinkId}`, {
+    const response = await fetch(`${API_URL}video_link/${videolinkId}`, {
       method: 'DELETE',
     });
 
@@ -129,7 +131,7 @@ export async function deletarVideoLink(videolinkId) {
 // Função para buscar todos os vídeos por link
 export const buscarVideosLink = async () => {
   try {
-    const response = await fetch('http://localhost:3000/video_link', {
+    const response = await fetch(`${API_URL}video_link`, {
       method: 'GET',
     });
 
@@ -148,7 +150,7 @@ export const buscarVideosLink = async () => {
 // Função para buscar um único vídeo por link
 export const buscarVideoLink = async (videolinkId) => {
   try {
-    const response = await fetch(`http://localhost:3000/video_link/${videolinkId}`, {
+    const response = await fetch(`${API_URL}video_link/${videolinkId}`, {
       method: 'GET',
     });
 

@@ -12,6 +12,8 @@ import { buscarImagens, buscarImagensLink, deletarImagem, deletarImagemLink } fr
 import { buscarTextosSimples, buscarHtmls, deletarTextoSimples, deletarHtml } from './rotas/texto.js';
 import { buscarVideos, buscarVideosLink, deletarVideo, deletarVideoLink } from './rotas/video.js';
 
+import API_URL from '../config.js';
+
 const PaginaUpload = () => {
   const [modalImagemAberto, setModalImagemAberto] = useState(false);
   const [modalVideoAberto, setModalVideoAberto] = useState(false);
@@ -46,7 +48,7 @@ const PaginaUpload = () => {
             );
         } else {
             return (
-                <img src={`http://localhost:3000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+                <img src={`${API_URL}${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
             );
         }
     }
@@ -86,7 +88,7 @@ const PaginaUpload = () => {
           } else {
             return (
                 <video controls key={index} className="preview-video">
-                    <source src={`http://localhost:3000/${upload.url}`} type={`video/${extensao}`} />
+                    <source src={`${API_URL}${upload.url}`} type={`video/${extensao}`} />
                     Seu navegador não suporta a tag de vídeo.
                 </video>
             );

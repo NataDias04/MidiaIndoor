@@ -6,6 +6,8 @@ import { deletarImagem, deletarImagemLink } from '../rotas/imagem.js';
 import { deletarTextoSimples, deletarHtml } from '../rotas/texto.js';
 import { deletarVideo, deletarVideoLink } from '../rotas/video.js';
 
+import API_URL from '../../config.js';
+
 const ModalPosicao3Layout3 = ({ fecharModalPosicao3Layout3, atualizarUploadsSelecionados }) => {
   const [modalEscolherUploadAberto, setModalEscolherUploadAberto] = useState(false);
   const [uploadsSelecionados, setUploadsSelecionados] = useState([]);
@@ -86,7 +88,7 @@ const ModalPosicao3Layout3 = ({ fecharModalPosicao3Layout3, atualizarUploadsSele
 
     if (tiposDeImagem.includes(extensao.toLowerCase())) {
       return (
-        <img src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+        <img src={upload.url.startsWith('http') ? upload.url : `${API_URL}${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
       );
     }
     return null;
@@ -113,7 +115,7 @@ const ModalPosicao3Layout3 = ({ fecharModalPosicao3Layout3, atualizarUploadsSele
     } else if (tiposDeVideo.includes(extensao)) {
       return (
         <video controls key={index} className="preview-video">
-          <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:3000/${upload.url}`} type={`video/${extensao}`} />
+          <source src={upload.url.startsWith('http') ? upload.url : `${API_URL}${upload.url}`} type={`video/${extensao}`} />
           Seu navegador não suporta a tag de vídeo.
         </video>
       );
