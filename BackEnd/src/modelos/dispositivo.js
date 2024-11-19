@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 const DispositivoSchema = new mongoose.Schema({
   nome: { type: String, required: true },
   resolucao: { type: String, required: true },
-  playlists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Playlist' }],
+  tipo: { type: String, required: true },
+  playlist: { type: mongoose.Schema.Types.ObjectId, ref: 'Playlist', required: true },
   data: { type: Date, default: Date.now },
- 
 });
 
 const Dispositivo = mongoose.model('Dispositivo', DispositivoSchema);
