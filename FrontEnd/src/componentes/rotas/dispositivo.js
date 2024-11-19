@@ -1,29 +1,38 @@
 import API_URL from '../../config';
 
-// Função para criar um novo dispositivo
-  export async function salvarDispositivo(nome, resolucao, playlists) {
+  // Função para criar um novo dispositivo
+  export async function salvarDispositivo(nome, resolucao, tipo, playlist) {
     try {
-      const response = await fetch(`${API_URL}dispositivo/`, {
+      // Verificar se a URL da API está correta
+      const url = `${API_URL}dispositivo/`; 
+      console.log('URL de requisição:', url);
+
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nome, resolucao, playlists }),
+        body: JSON.stringify({ nome, resolucao, tipo, playlist }),
       });
 
+      // Verificar se a resposta da API foi ok
       if (!response.ok) {
         const erroDetalhado = await response.json();
+        console.error('Erro ao criar dispositivo:', erroDetalhado);
         throw new Error(`Erro ao criar dispositivo: ${erroDetalhado.mensagem}`);
       }
 
+      // Processar a resposta da API
       const resultado = await response.json();
+      console.log('Dispositivo criado com sucesso:', resultado);
       return resultado;
     } catch (erro) {
-      console.error(erro);
+      // Logar o erro para depuração
+      console.error('Erro na requisição:', erro);
       throw erro;
     }
   }
-  
+    
   // Função para buscar todos os dispositivos
   export async function buscarDispositivos() {
     try {

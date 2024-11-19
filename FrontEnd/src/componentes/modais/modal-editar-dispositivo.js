@@ -7,7 +7,8 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
   const [nome, setNome] = useState('');
   const [resolucao, setResolucao] = useState('');
   const [playlists, setPlaylists] = useState([]);
-  const [playlistsSelecionadas, setPlaylistsSelecionadas] = useState([]);
+  const [playlistSelecionada, setPlaylistSelecionada] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [erro, setErro] = useState('');
@@ -16,7 +17,8 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
     if (dispositivo) {
       setNome(dispositivo.nome);
       setResolucao(dispositivo.resolucao);
-      setPlaylistsSelecionadas(dispositivo.playlists || []);
+      setPlaylistSelecionada(dispositivo.playlist || null); 
+      setIsChecked(dispositivo.tipo === 'sala-interna');
     }
   }, [dispositivo]);
 
@@ -47,18 +49,9 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
     setErro('');
   };
 
-  const handlePlaylistChange = (event) => {
-    const { value, checked } = event.target;
-
-    if (checked && !playlistsSelecionadas.includes(value)) {
-      setPlaylistsSelecionadas([...playlistsSelecionadas, value]);
-    } else if (!checked) {
-      setPlaylistsSelecionadas(playlistsSelecionadas.filter(id => id !== value));
-    }
-  };
-
-  const handleRemovePlaylist = (id) => {
-    setPlaylistsSelecionadas(playlistsSelecionadas.filter(item => item !== id));
+  const handlePlaylistChange = (e) => {
+    const value = e.target.value;
+    setPlaylistSelecionada(value || null); 
   };
 
   const handleSave = async () => {
@@ -67,9 +60,15 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
         setErro('A resolução não pode estar vazia.');
         return;
       }
+      const tipo = isChecked ? 'sala-interna' : 'playlist';
+      const dispositivoAtualizado = {
+        nome,
+        resolucao,
+        playlist: playlistSelecionada || null,
+        tipo,
+      };
 
-      const response = await atualizarDispositivo(dispositivo._id, nome, resolucao, playlistsSelecionadas);
-      console.log('Dispositivo atualizado com sucesso:', response);
+      await atualizarDispositivo(dispositivo._id, dispositivoAtualizado);
       setErro('');
     } catch (error) {
       console.error('Erro ao atualizar dispositivo:', error);
@@ -88,6 +87,18 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
       <div className="modal">
         <div className="modal-dispositivo">
           <h2>Editar Dispositivo</h2>
+
+          <div className="linha-check-box">
+            Playlist
+            <input
+              type="checkbox"
+              id="checkboxInput"
+              checked={isChecked}
+              onChange={(e) => setIsChecked(e.target.checked)}
+            />
+            <label htmlFor="checkboxInput" className="toggleSwitch"></label>
+            Sala-interna
+          </div>
 
           <div className="input-group">
             <label htmlFor="nome">Nome do Dispositivo</label>
@@ -117,42 +128,25 @@ const ModalEditarDispositivo = ({ fecharModal, dispositivo }) => {
           </div>
 
           <div className="input-group">
-            <label>Playlists Disponíveis</label>
+            <label htmlFor="playlist">Playlists Disponíveis</label>
             {loading ? (
               <p>Carregando playlists...</p>
             ) : error ? (
               <p>{error}</p>
             ) : (
-              playlists.length > 0 ? (
-                playlists.map((playlist) => (
-                  <div key={playlist._id} className="checkbox-group">
-                    <input
-                      type="checkbox"
-                      id={`playlist-${playlist._id}`}
-                      value={playlist._id}
-                      checked={playlistsSelecionadas.includes(playlist._id)}
-                      onChange={handlePlaylistChange}
-                    />
-                    <label htmlFor={`playlist-${playlist._id}`}>{playlist.nome}</label>
-                  </div>
-                ))
-              ) : (
-                <p>Nenhuma playlist encontrada.</p>
-              )
+              <select
+                id="playlist"
+                value={playlistSelecionada || ''}
+                onChange={handlePlaylistChange}
+              >
+                <option value="">Nenhuma</option>
+                {playlists.map((playlist) => (
+                  <option key={playlist._id} value={playlist._id}>
+                    {playlist.nome}
+                  </option>
+                ))}
+              </select>
             )}
-          </div>
-
-          <div className="playlists-selecionadas">
-            <h3>Playlists Selecionadas</h3>
-            {playlistsSelecionadas.map((id) => {
-              const playlist = playlists.find((p) => p._id === id);
-              return (
-                <div key={id} className="dispositivo-item">
-                  <span>{playlist?.nome || 'Playlist desconhecida'}</span>
-                  <button onClick={() => handleRemovePlaylist(id)}>Remover</button>
-                </div>
-              );
-            })}
           </div>
 
           {erro && <p className="erro-mensagem">{erro}</p>}

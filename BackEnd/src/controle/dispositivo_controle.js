@@ -4,11 +4,14 @@ const create = async (req, res) => {
   try {
     const { nome, tipo, resolucao, playlist } = req.body;
 
+    // Se a playlist estiver vazia ou não fornecida, defina como null
+    const playlistValue = playlist && playlist !== "" ? playlist : null;
+
     const novoDispositivo = new Dispositivo({
       nome,
       tipo,
       resolucao,
-      playlist,
+      playlist: playlistValue,
     });
 
     await novoDispositivo.save();
@@ -17,7 +20,6 @@ const create = async (req, res) => {
     res.status(500).json({ mensagem: 'Erro ao criar dispositivo', erro: error.message });
   }
 };
-
 
 const findAll = async (req, res) => {
   try {
@@ -46,9 +48,12 @@ const update = async (req, res) => {
   try {
     const { nome, resolucao, playlist } = req.body;
 
+    // Se a playlist estiver vazia ou não fornecida, defina como null
+    const playlistValue = playlist && playlist !== "" ? playlist : null;
+
     const dispositivoAtualizado = await Dispositivo.findByIdAndUpdate(
       req.params.id,
-      { nome, resolucao, playlist },
+      { nome, resolucao, playlist: playlistValue },
       { new: true, runValidators: true }
     );
 
