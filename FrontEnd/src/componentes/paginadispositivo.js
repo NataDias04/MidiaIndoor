@@ -112,8 +112,8 @@ const PaginaDispositivo = () => {
       </div>
 
       <div className="rodape-dispositivo">
-        <button className="botao-anterior-central" onClick={irParaCentral}>cancelar</button>
-        <button className="botao-anterior-central" onClick={irParaCentral}>salvar</button>
+        <button className="botao-cancel-disp" onClick={irParaCentral}>cancelar</button>
+        <button className="botao-salvar-disp" onClick={irParaCentral}>salvar</button>
       </div>
     </div>
   );

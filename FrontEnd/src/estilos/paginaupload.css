@@ -98,12 +98,61 @@ body::before {
   color: #7EC8E3;
 }
 
+.botao-imagem-upload{
+  justify-content: flex-end;
+  width: 5%;
+  border: none;
+  padding: 5px;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 570px;
+}
+
+.botao-imagem-upload:hover{
+  background-color: #5BA7C9;
+}
+
 .botao-video-upload{
   justify-content: flex-end;
-  
+  width: 5%;
+  border: none;
+  padding: 5px;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 390px;
 }
+
+.botao-video-upload:hover{
+  background-color: #5BA7C9;
+}
+
 .botao-texto-upload{
   justify-content: flex-end;
+  width: 5%;
+  border: none;
+  padding: 5px;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 210px;
+}
+
+.botao-texto-upload:hover{
+  background-color: #5BA7C9;
 }
 
 .modal {
@@ -206,7 +255,7 @@ body::before {
 
 #checkboxInput:checked+.toggleSwitch {
   transition-duration: .2s;
-  background-color: rgb(148, 118, 255);
+  background-color: #7EC8E3;
 }
 
 .ck-editor__editable {
@@ -223,11 +272,68 @@ body::before {
   justify-content: center;
 }
 
-.botao-salvar-imagem, .botao-salvar-video, .botao-salvar-texto{
-  margin-bottom: 20px;
+.botao-salvar-imagem, .botao-salvar-video {
+  width: 20%;
+  border: none;
+  padding: 5px;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 30px;
+  right: 52%;
+  transform: translateX(-10%);
 }
-.botao-modal-imagem, .botao-modal-video, .botao-modal-texto{
-  margin-bottom: 20px;
+
+.botao-salvar-texto{
+  width: 20%;
+  border: none;
+  padding: 5px;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 8px;
+  right: 52%;
+  transform: translateX(-10%);
+}
+
+.botao-modal-imagem, .botao-modal-video{
+  width: 20%;
+  border: none;
+  padding: 5px;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 30px;
+  left: 52%;
+  transform: translateX(-10%);
+}
+
+.botao-modal-texto{
+  width: 20%;
+  border: none;
+  padding: 5px;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 8px;
+  left: 52%;
+  transform: translateX(-10%);
 }
 
 .previews-upload{
@@ -293,4 +399,23 @@ body::before {
 
 .botao-apagar:hover {
   background-color: black;
+}
+
+.botao-anterior-central {
+  width: 20%;
+  border: none;
+  padding: 10px;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 30px;
+}
+
+.botao-anterior-central:hover, .botao-salvar-imagem:hover, .botao-salvar-video:hover, .botao-salvar-texto:hover,
+.botao-modal-imagem:hover, .botao-modal-video:hover, .botao-modal-texto:hover {
+  background-color: #5BA7C9;
 }

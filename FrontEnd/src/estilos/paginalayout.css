@@ -233,5 +233,38 @@ body {
 }
 
 .botao-pagina-layout{
-    margin-bottom: -20px;
+    width: 10%;
+    border: none;
+    padding: 8px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #e7e7e7;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 250px;
+}
+
+.botao-pagina-layout:hover{
+    background-color: #aaaaaa;
+}
+
+
+.botao-cancelar-layout {
+    width: 20%;
+    border: none;
+    padding: 10px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #7EC8E3;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 30px;
+}
+  
+.botao-cancelar-layout:hover {
+    background-color: #5BA7C9;
 }

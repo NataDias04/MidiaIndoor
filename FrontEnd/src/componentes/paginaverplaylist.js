@@ -64,8 +64,8 @@ const PaginaVerPlaylist = () => {
       </div>
 
       <div className="rodape-ver-playlist">
-      <button className="botao-anterior-central-ver-playlist" onClick= {irParaCentral} >cancelar</button>
-      <button className="botao-anterior-central-ver-playlist" onClick= {irParaCentral} >salvar</button>
+      <button className="botao-anterior-central-cancel-playlist" onClick= {irParaCentral} >cancelar</button>
+      <button className="botao-anterior-central-salvar-playlist" onClick= {irParaCentral} >salvar</button>
       </div>
     </div>
   );

@@ -98,8 +98,26 @@ body {
   color: #7EC8E3;
 }
 
-.botao-pagina-central{
+/*.botao-pagina-central{
   bottom: 20px;
   margin-bottom: 0;
   position: absolute;
+}*/
+
+.botao-pagina-central {
+  width: 60%;
+  border: none;
+  padding: 10px;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #7EC8E3;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 20px;
+}
+
+.botao-pagina-central:hover {
+  background-color: #5BA7C9;
 }
