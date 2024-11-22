@@ -17,6 +17,13 @@ const Player1 = () => {
     const [baixo, setBaixo] = useState([]);
     const [mediaCarregada, setMediaCarregada] = useState(false);
 
+    const [tipo, setTipo] = useState(location.state?.tipoDispositivo);
+
+    useEffect(() => {
+        setTipo(location.state?.tipoDispositivo);
+    }, [location.state?.tipoDispositivo]);
+
+
     async function baixarMidia(midia) {
       const cache = await caches.open(CACHE_NAME);
     
@@ -301,22 +308,29 @@ const Player1 = () => {
     return (
         <div className="player-dashbord-player1">
 
-          <div className="player-linha-1">
-            <div className="player-centro">
-              <PlayerCentro listacentro={centro} />
-            </div>
-            <div className="player-direita">
-              <PlayerDireita listadireita={direita} />
-            </div>
-          </div>
+          {tipo === 'sala-interna' ? (
+                <div className="player-centro-sala-interna">
+                  <PlayerCentro listacentro={centro} />
+                </div>
+          ) : (
+            <>
 
-          <div className="player-linha-2">
-            <div className='player-baixo'>
-              <PlayerBaixo listabaixo={baixo} />
-            </div>
-          </div>
+                <div className="player-linha-1">
+                  <div className="player-centro">
+                    <PlayerCentro listacentro={centro} />
+                  </div>
+                  <div className="player-direita">
+                    <PlayerDireita listadireita={direita} />
+                  </div>
+                </div>
 
-
+                <div className="player-linha-2">
+                  <div className='player-baixo'>
+                    <PlayerBaixo listabaixo={baixo} />
+                  </div>
+                </div>
+            </>
+          )}
         </div>
     );
 };

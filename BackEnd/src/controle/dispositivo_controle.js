@@ -46,14 +46,14 @@ const findOne = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { nome, resolucao, playlist } = req.body;
+    const { nome, tipo,resolucao, playlist } = req.body;
 
     // Se a playlist estiver vazia ou não fornecida, defina como null
     const playlistValue = playlist && playlist !== "" ? playlist : null;
 
     const dispositivoAtualizado = await Dispositivo.findByIdAndUpdate(
       req.params.id,
-      { nome, resolucao, playlist: playlistValue },
+      { nome, tipo,resolucao, playlist: playlistValue },
       { new: true, runValidators: true }
     );
 

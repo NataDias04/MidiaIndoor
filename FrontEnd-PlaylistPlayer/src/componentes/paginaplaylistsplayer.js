@@ -16,42 +16,55 @@ const PaginaPlaylist = () => {
   const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
 
-  const carregarPlaylists = async () => {
+  const carregarPlaylistEspecifica = async (playlistId) => {
     try {
-      if (dispositivoSelecionado && dispositivoSelecionado.playlists) {
-        const playlistIds = dispositivoSelecionado.playlists.map(playlist => playlist._id);
+      if (playlistId) {
+
+        const playlist = await buscarPlaylist(playlistId);
   
-        const todasPlaylists = await Promise.all(
-          playlistIds.map(async (id) => {
-            return await buscarPlaylist(id);
-          })
-        );
-  
-        setPlaylists(todasPlaylists);
+        if (playlist) {
+          setPlaylists([playlist]);
+        } else {
+          console.warn('Playlist não encontrada.');
+        }
       } else {
-        console.warn('Nenhum dispositivo selecionado ou playlists não encontradas.');
+        console.warn('ID da playlist não foi fornecido.');
       }
     } catch (erro) {
-      console.error('Erro ao carregar playlists:', erro);
+      console.error('Erro ao carregar a playlist específica:', erro);
     }
   };
-
+  
   const PlaylistPlayer1 = (playlist) => {
-    navigate('/player1', { state: {PlaylistSelecionada:{playlist}}});
+    navigate('/player1', { 
+      state: 
+      {PlaylistSelecionada:{playlist},
+      tipoDispositivo: dispositivoSelecionado.tipo
+      } 
+    });
   }
 
   const PlaylistPlayer2 = (playlist) => {
-    navigate('/player2', { state: {PlaylistSelecionada:{playlist}}});
+    navigate('/player2', { 
+      state: 
+      {PlaylistSelecionada:{playlist},
+      tipoDispositivo: dispositivoSelecionado.tipo
+      } 
+    });
   }
 
   const PlaylistPlayer3 = (playlist) => {
-    navigate('/player3', { state: {PlaylistSelecionada:{playlist}}});
+    navigate('/player3', { 
+      state: 
+      {PlaylistSelecionada:{playlist},
+      tipoDispositivo: dispositivoSelecionado.tipo
+      } 
+    });
   }
   
   const EnviarPlaylist = (playlist) => {
     let player = null;
   
-    // Determinar qual player deve ser selecionado
     for (const midia of playlist.ordemMidias) {
       console.log("TESTE", midia.posicao)
       if (midia.posicao === 'baixo-esquerda' || midia.posicao === 'cima-direita') {
@@ -75,8 +88,11 @@ const PaginaPlaylist = () => {
   
 
   useEffect(() => {
-    carregarPlaylists();
-  }, []);
+    if (dispositivoSelecionado && dispositivoSelecionado.playlist) {
+      const playlistId = dispositivoSelecionado.playlist._id || dispositivoSelecionado.playlist;
+      carregarPlaylistEspecifica(playlistId);
+    }
+  }, [dispositivoSelecionado]);
 
   return (
     <div className="player-dashbord-ver-playlist">

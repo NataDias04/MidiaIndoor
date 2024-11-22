@@ -18,6 +18,12 @@ const Player3 = () => {
     const [baixo_esquerda, setBaixoEsquerda] = useState([]);
     const [mediaCarregada, setMediaCarregada] = useState(false);
 
+    const [tipo, setTipo] = useState(location.state?.tipoDispositivo);
+
+    useEffect(() => {
+        setTipo(location.state?.tipoDispositivo);
+    }, [location.state?.tipoDispositivo]);
+
     async function baixarMidia(midia) {
       const cache = await caches.open(CACHE_NAME);
     
@@ -377,33 +383,42 @@ const Player3 = () => {
     return (
         <div className="player3-dashbord-player3">
 
-          <div className="player3-linha-1">
-            <div className="player3-centro">
-              <Player3Centro listacentro={centro} />
-            </div>
-            <div className='player3-coluna1'>
-              <div className="player3-direita-cima">
-                <Player3DireitaCima listadireitacima={direita_cima} />
+          {tipo === 'sala-interna' ? (
+                <div className="player-centro-sala-interna">
+                  <Player3Centro listacentro={centro} />
+                </div>
+          ) : (
+            <>
+
+              <div className="player3-linha-1">
+                <div className="player3-centro">
+                  <Player3Centro listacentro={centro} />
+                </div>
+                <div className='player3-coluna1'>
+                  <div className="player3-direita-cima">
+                    <Player3DireitaCima listadireitacima={direita_cima} />
+                  </div>
+
+                  <div className="player3-direita">
+                    <Player3Direita listadireita={direita} />
+                  </div>
+                </div>
               </div>
 
-              <div className="player3-direita">
-                <Player3Direita listadireita={direita} />
+              <div className="player3-linha-2">
+                <div className='player3-coluna2'>
+                    <div className='player3-baixo-esquerda'>
+                      <Player3BaixoEsquerda listabaixoesquerda={baixo_esquerda} />
+                    </div>
+
+                    <div className='player3-baixo'>
+                      <Player3Baixo listabaixo={baixo} />
+                    </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
 
-          <div className="player3-linha-2">
-            <div className='player3-coluna2'>
-                <div className='player3-baixo-esquerda'>
-                  <Player3BaixoEsquerda listabaixoesquerda={baixo_esquerda} />
-                </div>
-
-                <div className='player3-baixo'>
-                  <Player3Baixo listabaixo={baixo} />
-                </div>
-            </div>
-          </div>
-          
         </div>
     );
 };

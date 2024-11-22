@@ -72,15 +72,14 @@ import API_URL from '../../config';
     }
   }
   
-  // Função para atualizar um dispositivo pelo ID
-  export async function atualizarDispositivo(dispositivoId, nome, resolucao, playlists) {
+  export async function atualizarDispositivo(dispositivoId, dispositivoAtualizado) {
     try {
       const response = await fetch(`${API_URL}dispositivo/${dispositivoId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nome, resolucao, playlists }),
+        body: JSON.stringify(dispositivoAtualizado),
       });
   
       if (!response.ok) {
