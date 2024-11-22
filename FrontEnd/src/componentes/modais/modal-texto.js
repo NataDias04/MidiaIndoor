@@ -11,7 +11,6 @@ const ModalTexto = ({ fecharModal }) => {
   const tipohtml = 'html';
 
   const handleSave = () => {
-    
     const descodificado = (text) => {
       return text.replace(/&lt;/g, '<')
                 .replace(/&gt;/g, '>')
@@ -20,17 +19,24 @@ const ModalTexto = ({ fecharModal }) => {
                 .replace(/&#39;/g, "'");
     };
 
-     const extrairTituloDoHtml = (htmlString) => {
+    const extrairTituloDoHtml = (htmlString) => {
       const match = htmlString.match(/<title>(.*?)<\/title>/i);
       return match ? match[1] : 'Sem título';
     };
 
-    const htmldescodificado = descodificado(editorData)
+    const validarEstruturaHtml = (htmlString) => {
+      const regexHtmlCompleto = /<html>.*<\/html>/is;
+      const regexHead = /<head>.*<\/head>/is;
+      const regexBody = /<body>.*<\/body>/is;
+      return regexHtmlCompleto.test(htmlString) &&
+             regexHead.test(htmlString) &&
+             regexBody.test(htmlString);
+    };
 
+    const htmldescodificado = descodificado(editorData);
     const nome = extrairTituloDoHtml(htmldescodificado);
 
     console.log('editorData:', editorData);
-
     console.log('Título extraído:', nome);
 
     if (!nome || nome.trim() === '') {
@@ -38,11 +44,16 @@ const ModalTexto = ({ fecharModal }) => {
       return;
     }
 
+    if (!validarEstruturaHtml(htmldescodificado)) {
+      console.error('O HTML não contém a estrutura necessária');
+      return;
+    }
+
     const saveFunction = isChecked 
       ? () => salvarTextoSimples(editorData, tipotexto)
       : () => salvarHtml(editorData, nome, tipohtml);
 
-    saveFunction() 
+    saveFunction()
       .then(response => {
         console.log('Salvo com sucesso:', response);
       })

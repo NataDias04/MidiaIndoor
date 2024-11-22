@@ -146,8 +146,8 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
           {erro && <p className="erro-mensagem">{erro}</p>}
 
           <div className="botao-container">
-            <button className="botao-salvar-dispositivo" onClick={onSaveAndClose}>Salvar</button>
             <button className="botao-modal-dispositivo" onClick={fecharModalDispositivo}>Fechar</button>
+            <button className="botao-salvar-dispositivo" onClick={onSaveAndClose}>Salvar</button>
           </div>
         </div>
       </div>
