@@ -1,31 +1,42 @@
-// Função para criar um novo dispositivo
-  export async function salvarDispositivo(nome, resolucao, playlists) {
+import API_URL from '../../config';
+
+  // Função para criar um novo dispositivo
+  export async function salvarDispositivo(nome, resolucao, tipo, playlist) {
     try {
-      const response = await fetch('http://localhost:5000/dispositivo/', {
+      // Verificar se a URL da API está correta
+      const url = `${API_URL}dispositivo/`; 
+      console.log('URL de requisição:', url);
+
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nome, resolucao, playlists }),
+        body: JSON.stringify({ nome, resolucao, tipo, playlist }),
       });
 
+      // Verificar se a resposta da API foi ok
       if (!response.ok) {
         const erroDetalhado = await response.json();
+        console.error('Erro ao criar dispositivo:', erroDetalhado);
         throw new Error(`Erro ao criar dispositivo: ${erroDetalhado.mensagem}`);
       }
 
+      // Processar a resposta da API
       const resultado = await response.json();
+      console.log('Dispositivo criado com sucesso:', resultado);
       return resultado;
     } catch (erro) {
-      console.error(erro);
+      // Logar o erro para depuração
+      console.error('Erro na requisição:', erro);
       throw erro;
     }
   }
-  
+    
   // Função para buscar todos os dispositivos
   export async function buscarDispositivos() {
     try {
-      const response = await fetch('http://localhost:5000/dispositivo/', {
+      const response = await fetch(`${API_URL}dispositivo/`, {
         method: 'GET',
       });
   
@@ -45,7 +56,7 @@
   // Função para buscar um dispositivo específico pelo ID
   export async function buscarDispositivoPorId(dispositivoId) {
     try {
-      const response = await fetch(`http://localhost:5000/dispositivo/${dispositivoId}`, {
+      const response = await fetch(`${API_URL}dispositivo/${dispositivoId}`, {
         method: 'GET',
       });
   
@@ -61,15 +72,14 @@
     }
   }
   
-  // Função para atualizar um dispositivo pelo ID
-  export async function atualizarDispositivo(dispositivoId, nome, resolucao, playlists) {
+  export async function atualizarDispositivo(dispositivoId, dispositivoAtualizado) {
     try {
-      const response = await fetch(`http://localhost:5000/dispositivo/${dispositivoId}`, {
+      const response = await fetch(`${API_URL}dispositivo/${dispositivoId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nome, resolucao, playlists }),
+        body: JSON.stringify(dispositivoAtualizado),
       });
   
       if (!response.ok) {
@@ -87,7 +97,7 @@
   // Função para deletar um dispositivo pelo ID
   export async function deletarDispositivo(id) {
     try {
-      const response = await fetch(`http://localhost:5000/dispositivo/${id}`, {
+      const response = await fetch(`${API_URL}dispositivo/${id}`, {
         method: 'DELETE',
       });
   

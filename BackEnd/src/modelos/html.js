@@ -10,6 +10,14 @@ const HtmlSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  tipo:{
+    type: String,
+    default: "",
+  },
+  urlcache:{
+    type: String,
+    default: "",
+  },
   data: {
     type: Date,
     default: Date.now,

@@ -1,6 +1,8 @@
+import API_URL from '../../config.js';
+
 export async function criarPlaylist(nome, ordemMidias) {
     try {
-      const response = await fetch('http://localhost:5000/playlist', {
+      const response = await fetch(`${API_URL}playlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +25,7 @@ export async function criarPlaylist(nome, ordemMidias) {
   
   export async function buscarPlaylists() {
       try {
-        const response = await fetch('http://localhost:5000/playlist', {
+        const response = await fetch(`${API_URL}playlist`, {
           method: 'GET',
         });
     
@@ -43,7 +45,7 @@ export async function criarPlaylist(nome, ordemMidias) {
     export async function buscarPlaylist(playlistId) {
       try {
         console.log(`Buscando playlist com ID: ${playlistId}`);
-        const response = await fetch(`http://localhost:5000/playlist/${playlistId}`, {
+        const response = await fetch(`${API_URL}playlist/${playlistId}`, {
           method: 'GET',
         });
     
@@ -63,7 +65,7 @@ export async function criarPlaylist(nome, ordemMidias) {
   // Função para deletar uma playlist
   export async function deletarPlaylist(playlistId) {
     try {
-      const response = await fetch(`http://localhost:5000/playlist/${playlistId}`, {
+      const response = await fetch(`${API_URL}playlist/${playlistId}`, {
         method: 'DELETE',
       });
   

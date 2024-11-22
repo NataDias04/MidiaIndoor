@@ -1,6 +1,8 @@
+import API_URL from '../../config.js';
+
 export async function criarPlaylist(nome, ordemMidias) {
   try {
-    const response = await fetch('http://localhost:5000/playlist', {
+    const response = await fetch(`${API_URL}playlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +25,7 @@ export async function criarPlaylist(nome, ordemMidias) {
 
 export async function buscarPlaylists() {
     try {
-      const response = await fetch('http://localhost:5000/playlist', {
+      const response = await fetch(`${API_URL}playlist`, {
         method: 'GET',
       });
   
@@ -40,10 +42,29 @@ export async function buscarPlaylists() {
     }
   }
 
+  export async function buscarPlaylist(playlistId) {
+    try {
+      const response = await fetch(`${API_URL}playlist/${playlistId}`, {
+        method: 'GET',
+      });
+  
+      if (!response.ok) {
+        const erroDetails = await response.json();
+        throw new Error(`Erro ao buscar a playlist: ${erroDetails.mensagem}`);
+      }
+  
+      const playlist = await response.json();
+      return playlist;
+    } catch (erro) {
+      console.error('Erro ao buscar a playlist:', erro);
+      throw erro;
+    }
+  }
+
 // Função para deletar uma playlist
 export async function deletarPlaylist(playlistId) {
   try {
-    const response = await fetch(`http://localhost:5000/playlist/${playlistId}`, {
+    const response = await fetch(`${API_URL}playlist/${playlistId}`, {
       method: 'DELETE',
     });
 
@@ -61,7 +82,7 @@ export async function deletarPlaylist(playlistId) {
 
 export async function atualizarPlaylist(playlistId, nome, ordemMidias) {
   try {
-    const response = await fetch(`http://localhost:5000/playlist/${playlistId}`, {
+    const response = await fetch(`${API_URL}playlist/${playlistId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -86,6 +107,7 @@ export async function atualizarPlaylist(playlistId, nome, ordemMidias) {
   export default {
     criarPlaylist,
     buscarPlaylists,
+    buscarPlaylist,
     deletarPlaylist,
     atualizarPlaylist,
   };

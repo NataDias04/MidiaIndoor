@@ -5,6 +5,14 @@ const TextoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  tipo:{
+    type: String,
+    default: "",
+  },
+  urlcache:{
+    type: String,
+    default: "",
+  },
   date: { type: Date, default: Date.now }
 });
 

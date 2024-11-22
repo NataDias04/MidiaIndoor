@@ -12,6 +12,8 @@ import { buscarImagens, buscarImagensLink, deletarImagem, deletarImagemLink } fr
 import { buscarTextosSimples, buscarHtmls, deletarTextoSimples, deletarHtml } from './rotas/texto.js';
 import { buscarVideos, buscarVideosLink, deletarVideo, deletarVideoLink } from './rotas/video.js';
 
+import API_URL from '../config.js';
+
 const PaginaUpload = () => {
   const [modalImagemAberto, setModalImagemAberto] = useState(false);
   const [modalVideoAberto, setModalVideoAberto] = useState(false);
@@ -46,7 +48,7 @@ const PaginaUpload = () => {
             );
         } else {
             return (
-                <img src={`http://localhost:5000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+                <img src={`${API_URL}${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
             );
         }
     }
@@ -86,7 +88,7 @@ const PaginaUpload = () => {
           } else {
             return (
                 <video controls key={index} className="preview-video">
-                    <source src={`http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+                    <source src={`${API_URL}${upload.url}`} type={`video/${extensao}`} />
                     Seu navegador não suporta a tag de vídeo.
                 </video>
             );
@@ -97,26 +99,57 @@ const PaginaUpload = () => {
   };
 
   const RenderizarTexto = (upload, index) => {
-    if (upload.conteudo) {
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+
+    if (upload.conteudo && !isHtml(upload.conteudo)) {
       return <p key={index} className="preview-texto">{upload.conteudo}</p>;
     }
     return null;
   };
 
+  /*const RenderizarHtml = (upload, index) => {
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+  
+    if (upload.conteudo && isHtml(upload.conteudo)) {
+      if (upload.nome) {
+        console.log("TESTE TITULO", upload.nome);
+        return (
+          <p key={index} className="preview-html-titulo">
+            {`Titulo do Html: ${upload.nome}`}
+          </p>
+        );
+      }
+    }
+    return null;
+  };*/
+
   const RenderizarHtml = (upload, index) => {
-    if (upload.conteudo) {
-      return (
-      <iframe
-        key={index}
-        srcDoc={upload.conteudoHtml}
-        className="html-iframe"
-        title={`Conteúdo HTML ${index}`}
-        style={{ border: 'none', width: '100%', height: '100%' }}
-      />
-      );
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+    
+    if (upload.conteudo && isHtml(upload.conteudo)) {
+      if (upload.nome) {
+        console.log("TESTE TITULO", upload.nome);
+        return (
+          <>
+            <iframe 
+              key={`iframe-${index}`} 
+              className="preview-html-conteudo" 
+              srcDoc={upload.conteudo}
+              width="100%" 
+              height="500px" 
+              frameBorder="0"
+              title={`Iframe - ${upload.nome}`}
+            ></iframe>
+          </>
+        );
+      }
     }
     return null;
   };
+  
   
   const carregarUploads = async () => {
     try {

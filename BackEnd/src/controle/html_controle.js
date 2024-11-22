@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const create = async (req, res) => {
   try {
-    const { conteudo, nome } = req.body;
+    const { conteudo, nome, tipo } = req.body;
 
     console.log('Nome recebido:', req.body.nome);
 
@@ -19,7 +19,7 @@ const create = async (req, res) => {
 
     const conteudoDecodificado = he.decode(conteudo).replace(/<\/?p[^>]*>/g, '');
 
-    const novoHtml = new Html({ nome, conteudo: conteudoDecodificado });
+    const novoHtml = new Html({ nome,tipo, conteudo: conteudoDecodificado });
     await novoHtml.save();
 
     const uploadsDir = path.join(__dirname, '..', '..', 'uploads');

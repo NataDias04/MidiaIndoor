@@ -4,7 +4,7 @@ import path from 'path';
 
 const create = async (req, res) => {
   try {
-    const { nome } = req.body;
+    const { nome, tipo } = req.body;
     const file = req.file;
 
     if (!file) {
@@ -13,6 +13,7 @@ const create = async (req, res) => {
 
     const video = new Video({
       nome,
+      tipo,
       url: file.path,
     });
 

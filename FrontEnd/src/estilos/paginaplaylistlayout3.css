@@ -253,8 +253,9 @@ body {
 .upload-preview-layout3 img {
   width: 80%;
   height: auto;
-  object-fit: cover;
+  /*object-fit: cover;*/
   margin-top: 20px;
+  max-height: 90%;
 }
 
 .upload-preview-layout3 video {

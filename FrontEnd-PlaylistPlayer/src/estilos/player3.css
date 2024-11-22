@@ -127,3 +127,11 @@ body {
     height: 100%;
     aspect-ratio: 8 / 1;
   }
+
+  .player-centro-sala-interna {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

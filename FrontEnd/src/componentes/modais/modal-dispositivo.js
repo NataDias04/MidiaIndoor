@@ -9,9 +9,11 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
   const [erro, setErro] = useState('');
 
   const [playlists, setPlaylists] = useState([]);
-  const [playlistsSelecionadas, setPlaylistsSelecionadas] = useState([]);
+  const [playlistSelecionada, setPlaylistSelecionada] = useState(''); // Para uma única playlist
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleNomeChange = (e) => {
     setNome(e.target.value);
@@ -29,8 +31,10 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
         setErro('A resolução não pode estar vazia.');
         return;
       }
+      const tipo = isChecked ? 'sala-interna' : 'playlist';
 
-      const response = await salvarDispositivo(nome, resolucao, playlistsSelecionadas);
+      const response = await salvarDispositivo(nome, resolucao, tipo, playlistSelecionada);
+
       console.log('Dispositivo salvo com sucesso:', response);
       setErro('');
     } catch (error) {
@@ -58,12 +62,7 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
   }, []);
 
   const handlePlaylistChange = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setPlaylistsSelecionadas([...playlistsSelecionadas, value]);
-    } else {
-      setPlaylistsSelecionadas(playlistsSelecionadas.filter(id => id !== value));
-    }
+    setPlaylistSelecionada(event.target.value); // Armazena apenas a playlist selecionada
   };
 
   const onSaveAndClose = async () => {
@@ -77,6 +76,18 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
       <div className="modal">
         <div className="modal-dispositivo">
           Criar dispositivo
+
+          <div className="linha-check-box">
+            Playlist
+            <input
+              type="checkbox"
+              id="checkboxInput"
+              checked={isChecked}
+              onChange={(e) => setIsChecked(e.target.checked)}
+            />
+            <label htmlFor="checkboxInput" className="toggleSwitch"></label>
+            Sala-interna
+          </div>
 
           <div className="input-group">
             <label htmlFor="nome">Nome do Dispositivo</label>
@@ -114,11 +125,13 @@ const ModalDispositivo = ({ fecharModalDispositivo }) => {
             ) : (
               playlists.length > 0 ? (
                 playlists.map((playlist) => (
-                  <div key={playlist._id} className="checkbox-group">
+                  <div key={playlist._id} className="radio-group">
                     <input
-                      type="checkbox"
+                      type="radio" // Alterado para "radio"
                       id={`playlist-${playlist._id}`}
+                      name="playlist"
                       value={playlist._id}
+                      checked={playlistSelecionada === playlist._id} // Verifica se está selecionado
                       onChange={handlePlaylistChange}
                     />
                     <label htmlFor={`playlist-${playlist._id}`}>{playlist.nome}</label>

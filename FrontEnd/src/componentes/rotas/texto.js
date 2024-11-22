@@ -1,12 +1,14 @@
+import API_URL from '../../config.js';
+
 // Função para salvar texto simples
-export async function salvarTextoSimples(conteudo) {
+export async function salvarTextoSimples(conteudo, tipo) {
     try {
-      const response = await fetch('http://localhost:5000/texto', {
+      const response = await fetch(`${API_URL}texto`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ conteudo }),
+        body: JSON.stringify({ conteudo, tipo }),
       });
   
       if (!response.ok) {
@@ -24,7 +26,7 @@ export async function salvarTextoSimples(conteudo) {
   // Função para deletar texto simples
   export async function deletarTextoSimples(textoId) {
     try {
-      const response = await fetch(`http://localhost:5000/texto/${textoId}`, {
+      const response = await fetch(`${API_URL}texto/${textoId}`, {
         method: 'DELETE',
       });
   
@@ -43,7 +45,7 @@ export async function salvarTextoSimples(conteudo) {
   // Função para buscar todos os textos simples
 export async function buscarTextosSimples() {
   try {
-    const response = await fetch('http://localhost:5000/texto', {
+    const response = await fetch(`${API_URL}texto`, {
       method: 'GET',
     });
 
@@ -64,7 +66,7 @@ export async function buscarTextosSimples() {
 // Função para buscar um texto simples pelo ID
 export const buscarTextoSimples = async (textoId) => {
   try {
-    const response = await fetch(`http://localhost:5000/texto/${textoId}`, {
+    const response = await fetch(`${API_URL}texto/${textoId}`, {
       method: 'GET',
     });
 
@@ -85,14 +87,14 @@ export const buscarTextoSimples = async (textoId) => {
 
 
 // Função para salvar conteúdo HTML
-export async function salvarHtml(conteudo, nome) {
+export async function salvarHtml(conteudo, nome, tipo) {
     try {
-      const response = await fetch('http://localhost:5000/html', {
+      const response = await fetch(`${API_URL}html`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ conteudo: conteudo, nome })
+        body: JSON.stringify({ conteudo: conteudo, nome , tipo})
       });
   
       if (!response.ok) {
@@ -111,7 +113,7 @@ export async function salvarHtml(conteudo, nome) {
   // Função para deletar conteúdo HTML
   export async function deletarHtml(htmlId) {
     try {
-      const response = await fetch(`http://localhost:5000/html/${htmlId}`, {
+      const response = await fetch(`${API_URL}html/${htmlId}`, {
         method: 'DELETE',
       });
   
@@ -130,7 +132,7 @@ export async function salvarHtml(conteudo, nome) {
   // Função para buscar todos os conteúdos HTML
 export async function buscarHtmls() {
   try {
-    const response = await fetch('http://localhost:5000/html', {
+    const response = await fetch(`${API_URL}html`, {
       method: 'GET',
     });
 
@@ -151,7 +153,7 @@ export async function buscarHtmls() {
 // Função para buscar um conteúdo HTML pelo ID
 export const buscarHtml = async (htmlId) => {
   try {
-    const response = await fetch(`http://localhost:5000/html/${htmlId}`, {
+    const response = await fetch(`${API_URL}html/${htmlId}`, {
       method: 'GET',
     });
 

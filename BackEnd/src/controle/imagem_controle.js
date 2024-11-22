@@ -7,7 +7,7 @@ import path from 'path';
 const create = async (request, response) =>{
     try {
 
-        const {nome} = request.body;
+        const {nome, tipo} = request.body;
 
         const file = request.file;
 
@@ -15,6 +15,7 @@ const create = async (request, response) =>{
 
         const imagem = new Imagem({
             nome,
+            tipo,
             url: caminhoCorrigido,
         })
 

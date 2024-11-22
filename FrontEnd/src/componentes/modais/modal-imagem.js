@@ -8,6 +8,7 @@ const ModalImagem = ({ fecharModal }) => {
   const [imagemLink, setImagemLink] = useState('');
   const [imagemName, setImagemName] = useState('');
   const [erro, setErro] = useState('');
+  const tipo = 'imagem';
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -32,8 +33,8 @@ const ModalImagem = ({ fecharModal }) => {
   const handleSave = async () => {
     try {
       const saveFunction = isChecked
-        ? () => salvarImagem(imagemFile, imagemFile.name)
-        : () => salvarImagemLink(imagemName, imagemLink);
+        ? () => salvarImagem(imagemFile, imagemFile.name,tipo)
+        : () => salvarImagemLink(imagemName, imagemLink,tipo);
 
       const response = await saveFunction();
       console.log('Salvo com sucesso:', response);

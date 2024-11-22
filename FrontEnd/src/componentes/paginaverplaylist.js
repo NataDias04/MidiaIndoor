@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../estilos/paginaverplaylist.css';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FaTabletAlt } from 'react-icons/fa';
 import { buscarPlaylists, deletarPlaylist } from './rotas/playlist.js';
+
 
 const PaginaVerPlaylist = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -25,6 +26,11 @@ const PaginaVerPlaylist = () => {
   const irParaCentral = () => {
     navigate('/central');
   };
+
+  
+  const irParaEditar = async (playlistId)=> {
+    navigate ('/editarplaylist')
+  }
 
   const apagarPlaylist = async (playlist) =>{
     try {
@@ -52,6 +58,12 @@ const PaginaVerPlaylist = () => {
                         onClick={() => apagarPlaylist(playlist)}
                       >
                         ×
+                      </button>
+                      <button
+                      className="botao-editar-playlist"
+                      onClick={() => irParaEditar(playlist._id)}
+                      >
+                        Editar
                       </button>
                     </div>
                     

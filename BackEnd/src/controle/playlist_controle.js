@@ -2,7 +2,7 @@ import Playlist from '../modelos/playlist.js';
 
 const create = async (req, res) => {
   try {
-    const { nome, ordemMidias } = req.body;
+    const { nome, ordemMidias, descricao, imagem, video } = req.body;
 
     if (!nome || !ordemMidias || ordemMidias.length === 0) {
       return res.status(400).json({ mensagem: 'Dados incompletos' });
@@ -43,7 +43,7 @@ const findOne = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { nome, ordemMidias } = req.body;
+    const { nome, ordemMidias, descricao, imagem, video } = req.body;
 
     const playlist = await Playlist.findById(req.params.id);
     if (!playlist) {

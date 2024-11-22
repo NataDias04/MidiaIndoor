@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import ModalEscolherUpload from './modal-escolher-upload.js';
 
+import API_URL from '../../config.js';
+
 const ModalPosicao2Layout2 = ({ fecharModalPosicao2Layout2, atualizarUploadsSelecionados }) => {
   const [modalEscolherUploadAberto, setModalEscolherUploadAberto] = useState(false);
   const [uploadsSelecionados, setUploadsSelecionados] = useState([]);
@@ -84,7 +86,7 @@ const ModalPosicao2Layout2 = ({ fecharModalPosicao2Layout2, atualizarUploadsSele
 
     if (tiposDeImagem.includes(extensao.toLowerCase())) {
       return (
-        <img src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
+        <img src={upload.url.startsWith('http') ? upload.url : `${API_URL}${upload.url}`} alt={`upload-${index}`} className="preview-imagem" />
       );
     }
     return null;
@@ -111,7 +113,7 @@ const ModalPosicao2Layout2 = ({ fecharModalPosicao2Layout2, atualizarUploadsSele
     } else if (tiposDeVideo.includes(extensao)) {
       return (
         <video controls key={index} className="preview-video">
-          <source src={upload.url.startsWith('http') ? upload.url : `http://localhost:5000/${upload.url}`} type={`video/${extensao}`} />
+          <source src={upload.url.startsWith('http') ? upload.url : `${API_URL}${upload.url}`} type={`video/${extensao}`} />
           Seu navegador não suporta a tag de vídeo.
         </video>
       );
@@ -120,15 +122,39 @@ const ModalPosicao2Layout2 = ({ fecharModalPosicao2Layout2, atualizarUploadsSele
   };
 
   const RenderizarTexto = (upload, index) => {
-    return upload.conteudo ? <p key={index} className="preview-texto">{upload.conteudo}</p> : null;
+
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+
+    if (upload.conteudo && !isHtml(upload.conteudo)) {
+      return <p key={index} className="preview-texto">{upload.conteudo}</p>;
+    }
+    return null;
   };
 
-  const RenderizarHtml = (upload) => {
-    return upload.conteudoHtml ? (
-      <div dangerouslySetInnerHTML={{ __html: upload.conteudoHtml }} className="preview-html"></div>
-    ) : null;
-  };
+  const RenderizarHtml = (upload, index) => {
 
+    const isHtml = (str) => /<[^>]+>/g.test(str);
+    
+    if (upload.conteudo && isHtml(upload.conteudo)) {
+      if (upload.nome) {
+        console.log("TESTE TITULO", upload.nome);
+        return (
+          <>
+            <iframe 
+              key={`iframe-${index}`} 
+              className="preview-html-conteudo" 
+              srcDoc={upload.conteudo}
+              width="100%" 
+              height="500px" 
+              frameBorder="0"
+              title={`Iframe - ${upload.nome}`}
+            ></iframe>
+          </>
+        );
+      }
+    }
+    return null;
+  };
   const urlimagem = (upload) => {
     if (upload && upload.url) {
       const isImage = upload.url.endsWith('.jpg') || 
