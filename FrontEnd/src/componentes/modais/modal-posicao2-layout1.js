@@ -248,8 +248,8 @@ const ModalPosicao2Layout1 = ({ fecharModalPosicao2Layout1, atualizarUploadsSele
           </div>
 
           <div className="botao-container">
-            <button className='botao-salvar-upload' onClick={handleSalvarUpload}>Salvar</button>
-            <button className='botao-modal-upload' onClick={fecharModalPosicao2Layout1}>Fechar</button>
+            <button className='botao-cancel-layout-upload' onClick={fecharModalPosicao2Layout1}>Fechar</button>
+            <button className='botao-salvar-layout-upload' onClick={handleSalvarUpload}>Salvar</button>
           </div>
         </div>
       </div>
