@@ -126,8 +126,8 @@ const PaginaPlaylistLayout3 = () => {
       </div>
 
       <div className="rodape-playlist-layout3">
-        <button onClick={handleCancelar}>Cancelar</button>
-        <button onClick={handleSalvarPlaylist}>Salvar</button>
+        <button className='botao-cancel-layout1' onClick={handleCancelar}>Cancelar</button>
+        <button className='botao-salvar-layout1' onClick={handleSalvarPlaylist}>Salvar</button>
       </div>
     </div>
   );

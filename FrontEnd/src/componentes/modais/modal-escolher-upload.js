@@ -144,8 +144,8 @@ const ModalEscolherUpload = ({ fecharModalEscolherUpload, adicionarUpload }) => 
             )}
           </div>
           <div className="botao-container">
-            <button className='botao-salvar-upload' onClick={() => handleSalvarUpload(uploadSelecionado)}>Salvar</button>
-            <button className='botao-modal-upload' onClick={fecharModalEscolherUpload}>Fechar</button>
+            <button className='botao-cancel-layout-upload' onClick={fecharModalEscolherUpload}>Fechar</button>
+            <button className='botao-salvar-layout-upload' onClick={() => handleSalvarUpload(uploadSelecionado)}>Salvar</button>
           </div>
         </div>
       </div>

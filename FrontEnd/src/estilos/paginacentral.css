@@ -120,4 +120,5 @@ body {
 
 .botao-pagina-central:hover {
   background-color: #5BA7C9;
+  transform: translate(0em, 0.2em);
 }

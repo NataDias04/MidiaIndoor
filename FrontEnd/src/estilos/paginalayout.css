@@ -240,21 +240,62 @@ body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-    background-color: #e7e7e7;
+    background-color: #7EC8E3;
     transition: background-color 0.3s;
     position: absolute;
     bottom: 250px;
 }
 
 .botao-pagina-layout:hover{
-    background-color: #aaaaaa;
+    background-color: #5BA7C9;
+    transform: translate(0em, 0.2em);
 }
 
 
 .botao-cancelar-layout {
-    width: 20%;
+    width: 15%;
     border: none;
     padding: 10px;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 50px;
+}
+  
+.botao-cancelar-layout:hover {
+    background-color: #ccc;
+    transform: translate(0em, 0.2em);
+}
+
+.botao-cancel-layout1{
+    width: 17%;
+    border: none;
+    padding: 8px;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 45px;
+    right: 51%;
+    transform: translateX(-10%);
+}
+
+.botao-cancel-layout1:hover {
+    background-color: #ccc;
+    transform: translate(-2.05em, 0.2em);
+}
+
+.botao-salvar-layout1{
+    width: 17%;
+    border: none;
+    padding: 8px;
     color: #000;
     font-size: 16px;
     cursor: pointer;
@@ -262,9 +303,54 @@ body {
     background-color: #7EC8E3;
     transition: background-color 0.3s;
     position: absolute;
-    bottom: 30px;
+    bottom: 45px;
+    left: 51%;
+    transform: translateX(-10%);
 }
-  
-.botao-cancelar-layout:hover {
+
+.botao-salvar-layout1:hover {
     background-color: #5BA7C9;
+    transform: translate(-2.05em, 0.2em);
+}
+
+.botao-cancel-layout-upload{
+    width: 17%;
+    border: none;
+    padding: 8px;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 35px;
+    right: 51%;
+    transform: translateX(-10%);
+}
+
+.botao-cancel-layout-upload:hover{
+    background-color: #ccc;
+    transform: translate(-2em, 0.2em);
+}
+
+.botao-salvar-layout-upload{
+    width: 17%;
+    border: none;
+    padding: 8px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #7EC8E3;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 35px;
+    left: 51%;
+    transform: translateX(-10%);
+}
+
+.botao-salvar-layout-upload:hover{
+    background-color: #5BA7C9;
+    transform: translate(-2em, 0.2em);
 }
