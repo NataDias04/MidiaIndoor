@@ -138,7 +138,8 @@ const Player1 = () => {
             controls={false}
           >
             <source 
-              src={upload.urlcache || `${API_URL}${upload.url}`} 
+              src={`${API_URL}${upload.url}`} 
+              //src={upload.urlcache || `${API_URL}${upload.url}`} 
               type={`video/${extensao}`} 
             />
             Seu navegador não suporta a tag de vídeo.
@@ -149,7 +150,8 @@ const Player1 = () => {
           <img
             key={index}
             className="imagem"
-            src={upload.urlcache || `${API_URL}${upload.url}`}
+            src={`${API_URL}${upload.url}`} 
+            //src={upload.urlcache || `${API_URL}${upload.url}`}
             alt={`Imagem ${index}`}
           />
         );
